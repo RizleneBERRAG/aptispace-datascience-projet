@@ -97,7 +97,7 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
 
 # Introduction et Contexte Métier
 
-[![](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml)
+[![](https://github.com/RizleneBERRAG/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)](https://github.com/RizleneBERRAG/aptispace-datascience-projet/actions/workflows/ci.yml)
 
 *À rédiger par les étudiants : Présentez ici le contexte global de votre
 projet, la problématique métier que vous cherchez à résoudre, les

@@ -1,5 +1,5 @@
 import os, sys
-sys.path.append('/workspaces/aptispace-datascience-projet')
+sys.path.append('/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet')
 
 from pathlib import Path
 import pandas as pd

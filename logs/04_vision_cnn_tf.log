@@ -1,67 +1,16 @@
 === STDOUT ===
 TensorFlow version : 2.21.0
-X_train_full : (7352, 128, 9)
-X_test_full  : (2947, 128, 9)
-   activity_id            activity
-0            1             WALKING
-1            2    WALKING_UPSTAIRS
-2            3  WALKING_DOWNSTAIRS
-3            4             SITTING
-4            5            STANDING
-5            6              LAYING
-Train : (1200, 128, 9)
-Validation : (300, 128, 9)
-Test : (600, 128, 9)
-Model: "sequential"
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
-┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ conv1d (Conv1D)                 │ (None, 128, 16)        │           736 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling1d (MaxPooling1D)    │ (None, 64, 16)         │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv1d_1 (Conv1D)               │ (None, 64, 32)         │         1,568 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ global_average_pooling1d        │ (None, 32)             │             0 │
-│ (GlobalAveragePooling1D)        │                        │               │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense (Dense)                   │ (None, 32)             │         1,056 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_1 (Dense)                 │ (None, 6)              │           198 │
-└─────────────────────────────────┴────────────────────────┴───────────────┘
- Total params: 3,558 (13.90 KB)
- Trainable params: 3,558 (13.90 KB)
- Non-trainable params: 0 (0.00 B)
-   accuracy      loss  val_accuracy  val_loss
-0  0.198333  1.770045      0.303333  1.750326
-1  0.326667  1.712878      0.316667  1.693438
-    model  accuracy  precision_macro  recall_macro  f1_macro  test_loss
-0  CNN 1D  0.331667         0.529777      0.331667  0.240475   1.684915
-                    precision    recall  f1-score   support
-
-           WALKING       0.20      1.00      0.33       100
-  WALKING_UPSTAIRS       1.00      0.06      0.11       100
-WALKING_DOWNSTAIRS       0.00      0.00      0.00       100
-           SITTING       1.00      0.03      0.06       100
-          STANDING       0.00      0.00      0.00       100
-            LAYING       0.98      0.90      0.94       100
-
-          accuracy                           0.33       600
-         macro avg       0.53      0.33      0.24       600
-      weighted avg       0.53      0.33      0.24       600
-
-                  model  accuracy  precision_macro  recall_macro  f1_macro
-0   Logistic Regression  0.890278         0.892188      0.890278  0.890369
-1         Decision Tree  0.761111         0.769101      0.761111  0.757079
-2  Gaussian Naive Bayes  0.745833         0.786043      0.745833  0.735342
-3                CNN 1D  0.331667         0.529777      0.331667  0.240475
-Résultats Deep Learning sauvegardés.
 
 === STDERR ===
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1779114612.359766   75892 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-I0000 00:00:1779114612.360123   75892 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+I0000 00:00:1779117089.395967    2650 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1779114614.032440   75892 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-I0000 00:00:1779114614.033197   75892 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-E0000 00:00:1779114616.702768   75892 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
+I0000 00:00:1779117090.993183    2650 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+Traceback (most recent call last):
+  File "/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet/src/04_vision_cnn_tf.py", line 36, in <module>
+    train_signals = np.load(PROCESSED_DIR / "har_signals_train.npz", allow_pickle=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 454, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/processed/har_signals_train.npz'
