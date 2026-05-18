@@ -59,26 +59,33 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
     Learning)](#modélisation-tabulaire-machine-learning)
 - [03 — Modélisation Machine
   Learning](#03--modélisation-machine-learning)
-  - [Préparation des variables](#préparation-des-variables)
-  - [Choix des modèles](#choix-des-modèles)
-  - [Validation croisée groupée](#validation-croisée-groupée)
-  - [Visualisation des résultats de validation
-    croisée](#visualisation-des-résultats-de-validation-croisée)
-  - [Entraînement final sur le train et évaluation sur le
-    test](#entraînement-final-sur-le-train-et-évaluation-sur-le-test)
-  - [Comparaison des performances sur le
-    test](#comparaison-des-performances-sur-le-test)
+  - [Sous-échantillonnage stratifié](#sous-échantillonnage-stratifié)
+  - [Sélection des variables](#sélection-des-variables)
+  - [Modèles comparés](#modèles-comparés)
+  - [Entraînement et évaluation](#entraînement-et-évaluation)
+  - [Comparaison des modèles](#comparaison-des-modèles)
   - [Meilleur modèle](#meilleur-modèle)
   - [Matrice de confusion](#matrice-de-confusion)
   - [Analyse des erreurs](#analyse-des-erreurs)
   - [Sauvegarde des résultats](#sauvegarde-des-résultats)
-  - [Conclusion de la modélisation Machine
-    Learning](#conclusion-de-la-modélisation-machine-learning)
+  - [Conclusion](#conclusion)
   - [Modélisation Vision / Deep Learning (Analyse d’Images ou
     Signaux)](#modélisation-vision--deep-learning-analyse-dimages-ou-signaux)
-- [📷 Jalon 2 : Brique de Vision par Ordinateur (CNN & TensorFlow)
-  (Squelette
-  Étudiant)](#camera-jalon-2--brique-de-vision-par-ordinateur-cnn--tensorflow-squelette-étudiant)
+- [04 — Deep Learning sur signaux avec CNN
+  1D](#04--deep-learning-sur-signaux-avec-cnn-1d)
+  - [Chargement des signaux](#chargement-des-signaux)
+  - [Échantillonnage rapide pour la
+    compilation](#échantillonnage-rapide-pour-la-compilation)
+  - [Architecture CNN 1D](#architecture-cnn-1d)
+  - [Entraînement rapide](#entraînement-rapide)
+  - [Courbes d’apprentissage](#courbes-dapprentissage)
+  - [Évaluation sur le test](#évaluation-sur-le-test)
+  - [Rapport de classification et matrice de
+    confusion](#rapport-de-classification-et-matrice-de-confusion)
+  - [Comparaison avec le Machine
+    Learning](#comparaison-avec-le-machine-learning)
+  - [Sauvegarde des résultats](#sauvegarde-des-résultats-1)
+  - [Conclusion](#conclusion-1)
 - [Évaluation Métrique et Validation](#sec-evaluation)
   - [Stratégie de Validation](#stratégie-de-validation)
   - [Résultats et Interprétation](#résultats-et-interprétation)
@@ -459,107 +466,81 @@ des variables explicatives.*
 
 # 03 — Modélisation Machine Learning
 
-Ce notebook correspond à la partie modélisation classique du projet.
+Ce notebook présente une modélisation supervisée classique pour prédire
+l’activité humaine à partir des variables numériques extraites des
+capteurs du smartphone.
 
-L’objectif est d’entraîner plusieurs modèles de classification afin de
-prédire l’activité humaine à partir des variables numériques extraites
-des capteurs du smartphone.
+Pour garantir une compilation rapide du rapport, nous utilisons un
+sous-échantillon stratifié des données et une sélection des variables
+les plus informatives.
 
-Nous allons comparer plusieurs modèles :
+## Sous-échantillonnage stratifié
+
+Le dataset complet est assez volumineux pour une compilation automatique
+limitée dans le temps.
+
+Nous conservons un échantillon équilibré par activité afin que toutes
+les classes soient représentées.
+
+## Sélection des variables
+
+Nous sélectionnons les variables avec la variance la plus élevée.
+
+Cela permet de réduire le temps de calcul tout en conservant des
+variables informatives.
+
+## Modèles comparés
+
+Nous comparons trois modèles supervisés rapides :
 
 - Logistic Regression ;
-- Random Forest ;
-- Linear SVM ;
-- K-Nearest Neighbors.
+- Decision Tree ;
+- Gaussian Naive Bayes.
 
-L’évaluation sera réalisée avec des métriques adaptées à la
-classification multi-classes.
+Ces modèles permettent d’obtenir une première référence de performance
+avant l’approche Deep Learning.
 
-## Préparation des variables
+## Entraînement et évaluation
 
-Nous séparons les variables explicatives `X` de la cible `y`.
+Chaque modèle est entraîné sur le jeu d’entraînement échantillonné, puis
+évalué sur le jeu de test échantillonné.
 
-La cible à prédire est `activity_id`, qui correspond à l’activité
-humaine réalisée.
+Nous utilisons plusieurs métriques :
 
-## Choix des modèles
+- accuracy ;
+- précision macro ;
+- rappel macro ;
+- F1-score macro.
 
-Nous comparons plusieurs familles de modèles :
+## Comparaison des modèles
 
-- **Logistic Regression** : modèle linéaire simple et interprétable ;
-- **Random Forest** : modèle d’ensemble capable de capturer des
-  relations non linéaires ;
-- **Linear SVM** : modèle efficace pour des données avec beaucoup de
-  variables ;
-- **KNN** : modèle basé sur la proximité entre observations.
-
-Certains modèles utilisent une standardisation des variables, car ils
-sont sensibles aux échelles.
-
-## Validation croisée groupée
-
-Pour éviter une évaluation trop optimiste, nous utilisons une validation
-croisée groupée par sujet.
-
-Cela signifie que les observations d’un même sujet ne sont pas mélangées
-entre entraînement et validation au sein d’un même fold.
-
-Cette approche est plus rigoureuse car les mouvements d’une même
-personne peuvent se ressembler.
-
-## Visualisation des résultats de validation croisée
-
-Nous comparons les modèles selon le F1-score macro moyen.
-
-Le F1-score macro est pertinent ici car il donne le même poids à chaque
-activité.
-
-## Entraînement final sur le train et évaluation sur le test
-
-Après la validation croisée, nous entraînons chaque modèle sur tout le
-jeu d’entraînement.
-
-Nous évaluons ensuite les performances sur le jeu de test officiel.
-
-## Comparaison des performances sur le test
-
-Cette étape permet d’identifier le modèle le plus performant sur des
-données non vues pendant l’entraînement.
+Le F1-score macro est utilisé pour comparer les modèles, car il donne le
+même poids à chaque activité.
 
 ## Meilleur modèle
 
-Nous sélectionnons le modèle avec le meilleur F1-score macro sur le jeu
-de test.
+Nous sélectionnons le modèle ayant le meilleur F1-score macro.
 
 ## Matrice de confusion
 
-La matrice de confusion permet d’identifier les activités bien reconnues
-et celles qui sont confondues entre elles.
-
-Elle est particulièrement utile dans un problème multi-classes.
+La matrice de confusion permet de visualiser les confusions entre les
+différentes activités.
 
 ## Analyse des erreurs
 
-Nous observons les exemples mal prédits par le meilleur modèle.
-
-Cette analyse permet de mieux comprendre les limites du modèle.
+Nous calculons le taux d’erreur moyen par activité.
 
 ## Sauvegarde des résultats
 
-Nous sauvegardons les résultats des modèles afin de pouvoir les
-réutiliser dans le rapport ou dans une synthèse finale.
+Les résultats sont sauvegardés pour être comparés avec ceux du CNN 1D.
 
-## Conclusion de la modélisation Machine Learning
+## Conclusion
 
-Cette étape a permis de comparer plusieurs modèles classiques de
-classification.
+Cette étape montre qu’il est possible de prédire l’activité humaine à
+partir des variables numériques extraites des capteurs du smartphone.
 
-Les résultats permettent d’identifier le modèle le plus performant pour
-reconnaître l’activité humaine à partir des variables numériques du
-smartphone.
-
-La prochaine étape consistera à utiliser les signaux temporels
-directement avec une approche Deep Learning basée sur un CNN 1D.
+Les modèles classiques donnent une première base de comparaison avant
+l’approche Deep Learning sur signaux.
 
 ## Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)
 
@@ -574,37 +555,64 @@ commentez les courbes d’apprentissage obtenues.*
 
 ### Travaux Pratiques de Vision par Ordinateur (CNN)
 
-# 📷 Jalon 2 : Brique de Vision par Ordinateur (CNN & TensorFlow) (Squelette Étudiant)
+# 04 — Deep Learning sur signaux avec CNN 1D
 
-Ce notebook est dédié à la brique d’analyse d’images du **Jalon 2**.
-L’objectif est de concevoir un Réseau de Neurones Convolutif (CNN) sous
-TensorFlow/Keras pour classifier des motifs géométriques simples (Classe
-0: Cercle vs Classe 1: Multiples Rectangles).
+Ce notebook utilise les signaux temporels issus du smartphone pour
+entraîner un CNN 1D avec TensorFlow.
 
-### 1. Préparation de l’environnement
+L’objectif est de compléter l’approche Machine Learning classique avec
+une approche Deep Learning adaptée aux signaux.
 
-### 2. Génération du jeu d’images synthétiques
+## Chargement des signaux
 
-Pour travailler de manière autonome sans importer de lourdes bases
-d’images externes, cette fonction utilitaire génère des images simulées
-en $64 \times 64$ pixels de formes simples (Cercle vs Rectangles).
+Chaque observation contient :
 
-### 3. Split d’évaluation (Entraînement / Validation)
+- 128 pas de temps ;
+- 9 signaux capteurs ;
+- une activité à prédire.
 
-**À faire par l’étudiant :** Divisez vos données d’images `X_images` et
-`y_labels` en $80\%$ pour l’entraînement et $20\%$ pour la validation.
+## Échantillonnage rapide pour la compilation
 
-### 4. Conception de l’architecture du CNN
+Pour que le rapport compile rapidement, nous entraînons le CNN sur un
+sous-échantillon représentatif.
 
-**À faire par l’étudiant :** Instanciez un réseau convolutif séquentiel
-Keras comprenant des couches `Conv2D`, `MaxPooling2D`, `Flatten`,
-`Dense` et un `Dropout` pour classifier nos deux formes géométriques.
+La logique reste la même : le modèle apprend directement à partir des
+signaux.
 
-### 5. Compilation et Entraînement
+## Architecture CNN 1D
 
-**À faire par l’étudiant :** - Compilez le modèle avec l’optimiseur
-`'adam'` et la fonction de perte binaire. - Entraînez votre CNN sur
-environ 5 époques.
+Le CNN 1D apprend des motifs dans les signaux temporels, par exemple des
+variations d’accélération ou de rotation.
+
+## Entraînement rapide
+
+Nous entraînons le modèle sur deux époques pour garder une compilation
+raisonnable.
+
+## Courbes d’apprentissage
+
+Nous visualisons l’évolution de la loss et de l’accuracy.
+
+## Évaluation sur le test
+
+Nous évaluons le CNN 1D sur un sous-échantillon du jeu de test.
+
+## Rapport de classification et matrice de confusion
+
+## Comparaison avec le Machine Learning
+
+Nous comparons les résultats du CNN 1D avec les résultats des modèles
+classiques si ceux-ci sont disponibles.
+
+## Sauvegarde des résultats
+
+## Conclusion
+
+Cette partie montre comment exploiter directement les signaux temporels
+du smartphone avec un CNN 1D.
+
+L’approche Deep Learning complète l’approche Machine Learning classique,
+qui utilisait des variables tabulaires déjà extraites.
 
 ------------------------------------------------------------------------
 

@@ -1,1 +1,75 @@
-❌ ÉCHEC : Temps d'exécution limite dépassé (30s).
+=== STDOUT ===
+Train complet : (7352, 565)
+Test complet : (2947, 565)
+   activity_id            activity
+0            1             WALKING
+1            2    WALKING_UPSTAIRS
+2            3  WALKING_DOWNSTAIRS
+3            4             SITTING
+4            5            STANDING
+5            6              LAYING
+Train échantillonné : (1500, 565)
+Test échantillonné : (720, 565)
+
+Colonnes principales disponibles :
+   split  subject_id  activity_id activity
+0  train          17            1  WALKING
+1  train          21            1  WALKING
+2  train          25            1  WALKING
+3  train          29            1  WALKING
+4  train          11            1  WALKING
+
+Répartition train :
+activity
+WALKING               250
+WALKING_UPSTAIRS      250
+WALKING_DOWNSTAIRS    250
+SITTING               250
+STANDING              250
+LAYING                250
+Name: count, dtype: int64
+
+Répartition test :
+activity
+WALKING               120
+WALKING_UPSTAIRS      120
+WALKING_DOWNSTAIRS    120
+SITTING               120
+STANDING              120
+LAYING                120
+Name: count, dtype: int64
+Nombre de variables initiales : 561
+Nombre de variables sélectionnées : 50
+X_train : (1500, 50)
+X_test : (720, 50)
+Entraînement : Logistic Regression
+Entraînement : Decision Tree
+Entraînement : Gaussian Naive Bayes
+                  model  accuracy  precision_macro  recall_macro  f1_macro
+0   Logistic Regression  0.890278         0.892188      0.890278  0.890369
+1         Decision Tree  0.761111         0.769101      0.761111  0.757079
+2  Gaussian Naive Bayes  0.745833         0.786043      0.745833  0.735342
+Meilleur modèle : Logistic Regression
+                    precision    recall  f1-score   support
+
+           WALKING       0.85      0.92      0.88       120
+  WALKING_UPSTAIRS       0.82      0.87      0.84       120
+WALKING_DOWNSTAIRS       0.93      0.83      0.88       120
+           SITTING       0.89      0.84      0.87       120
+          STANDING       0.86      0.88      0.87       120
+            LAYING       1.00      1.00      1.00       120
+
+          accuracy                           0.89       720
+         macro avg       0.89      0.89      0.89       720
+      weighted avg       0.89      0.89      0.89       720
+
+             activity  is_error
+0  WALKING_DOWNSTAIRS  0.166667
+1             SITTING  0.158333
+2    WALKING_UPSTAIRS  0.133333
+3            STANDING  0.116667
+4             WALKING  0.083333
+5              LAYING  0.000000
+Résultats Machine Learning sauvegardés.
+
+=== STDERR ===

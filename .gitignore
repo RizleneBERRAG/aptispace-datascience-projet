@@ -53,3 +53,7 @@ data/processed/har_signals_train.npz
 data/processed/har_signals_test.npz
 data/processed/activity_labels.csv
 data/processed/features.csv
+data/processed/ml_cv_results.csv
+data/processed/ml_test_results.csv
+data/processed/dl_test_results.csv
+models/

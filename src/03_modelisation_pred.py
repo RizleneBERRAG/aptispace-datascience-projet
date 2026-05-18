@@ -8,13 +8,11 @@ import matplotlib.pyplot as plt
 
 from IPython.display import display
 
-from sklearn.model_selection import GroupKFold, cross_validate
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.svm import LinearSVC
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import (
     accuracy_score,
     precision_score,
@@ -33,115 +31,80 @@ train_df = pd.read_csv(PROCESSED_DIR / "har_train.csv")
 test_df = pd.read_csv(PROCESSED_DIR / "har_test.csv")
 activity_labels = pd.read_csv(PROCESSED_DIR / "activity_labels.csv")
 
-print("Train :", train_df.shape)
-print("Test :", test_df.shape)
+print("Train complet :", train_df.shape)
+print("Test complet :", test_df.shape)
 
 display(activity_labels)
 
+def stratified_sample(df, target_col, n_per_class, seed=42):
+    samples = []
+
+    for value in sorted(df[target_col].unique()):
+        group = df[df[target_col] == value]
+        n = min(len(group), n_per_class)
+        samples.append(group.sample(n=n, random_state=seed))
+
+    return pd.concat(samples, ignore_index=True)
+
+train_sample = stratified_sample(train_df, "activity_id", n_per_class=250)
+test_sample = stratified_sample(test_df, "activity_id", n_per_class=120)
+
+print("Train échantillonné :", train_sample.shape)
+print("Test échantillonné :", test_sample.shape)
+
+print("\nColonnes principales disponibles :")
+print(train_sample[["split", "subject_id", "activity_id", "activity"]].head())
+
+print("\nRépartition train :")
+display(train_sample["activity"].value_counts())
+
+print("\nRépartition test :")
+display(test_sample["activity"].value_counts())
+
 meta_cols = ["split", "subject_id", "activity_id", "activity"]
 
-feature_cols = [col for col in train_df.columns if col not in meta_cols]
+all_feature_cols = [col for col in train_sample.columns if col not in meta_cols]
 
-X_train = train_df[feature_cols]
-y_train = train_df["activity_id"]
+variances = train_sample[all_feature_cols].var().sort_values(ascending=False)
+selected_features = variances.head(50).index.tolist()
 
-X_test = test_df[feature_cols]
-y_test = test_df["activity_id"]
+X_train = train_sample[selected_features]
+y_train = train_sample["activity_id"]
 
-groups_train = train_df["subject_id"]
+X_test = test_sample[selected_features]
+y_test = test_sample["activity_id"]
 
-print("Nombre de variables :", X_train.shape[1])
-print("Nombre de classes :", y_train.nunique())
-print("Taille X_train :", X_train.shape)
-print("Taille X_test :", X_test.shape)
+print("Nombre de variables initiales :", len(all_feature_cols))
+print("Nombre de variables sélectionnées :", len(selected_features))
+print("X_train :", X_train.shape)
+print("X_test :", X_test.shape)
 
 models = {
     "Logistic Regression": Pipeline([
         ("scaler", StandardScaler()),
-        ("model", LogisticRegression(max_iter=1000, n_jobs=-1))
+        ("model", LogisticRegression(max_iter=300))
     ]),
-    "Random Forest": RandomForestClassifier(
-        n_estimators=120,
-        random_state=42,
-        n_jobs=-1
+    "Decision Tree": DecisionTreeClassifier(
+        max_depth=10,
+        random_state=42
     ),
-    "Linear SVM": Pipeline([
-        ("scaler", StandardScaler()),
-        ("model", LinearSVC(max_iter=5000, random_state=42))
-    ]),
-    "KNN": Pipeline([
-        ("scaler", StandardScaler()),
-        ("model", KNeighborsClassifier(n_neighbors=5))
-    ])
+    "Gaussian Naive Bayes": GaussianNB()
 }
 
 list(models.keys())
 
-cv = GroupKFold(n_splits=3)
-
-scoring = {
-    "accuracy": "accuracy",
-    "f1_macro": "f1_macro"
-}
-
-cv_results = []
-
-for model_name, model in models.items():
-    print(f"Validation croisée : {model_name}")
-
-    scores = cross_validate(
-        model,
-        X_train,
-        y_train,
-        groups=groups_train,
-        cv=cv,
-        scoring=scoring,
-        n_jobs=-1
-    )
-
-    cv_results.append({
-        "model": model_name,
-        "mean_accuracy": scores["test_accuracy"].mean(),
-        "std_accuracy": scores["test_accuracy"].std(),
-        "mean_f1_macro": scores["test_f1_macro"].mean(),
-        "std_f1_macro": scores["test_f1_macro"].std()
-    })
-
-cv_results_df = pd.DataFrame(cv_results).sort_values(
-    by="mean_f1_macro",
-    ascending=False
-)
-
-display(cv_results_df)
-
-fig, ax = plt.subplots(figsize=(9, 5))
-
-cv_results_df.sort_values("mean_f1_macro").plot(
-    x="model",
-    y="mean_f1_macro",
-    kind="barh",
-    ax=ax,
-    legend=False
-)
-
-ax.set_title("Comparaison des modèles - F1-score macro")
-ax.set_xlabel("F1-score macro moyen")
-ax.set_ylabel("Modèle")
-fig.tight_layout()
-plt.show()
-
-test_results = []
+results = []
 trained_models = {}
 
 for model_name, model in models.items():
-    print(f"Entraînement final : {model_name}")
-
+    print("Entraînement :", model_name)
+    
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
-
+    
     trained_models[model_name] = model
-
-    test_results.append({
+    
+    results.append({
         "model": model_name,
         "accuracy": accuracy_score(y_test, y_pred),
         "precision_macro": precision_score(y_test, y_pred, average="macro", zero_division=0),
@@ -149,16 +112,12 @@ for model_name, model in models.items():
         "f1_macro": f1_score(y_test, y_pred, average="macro", zero_division=0)
     })
 
-test_results_df = pd.DataFrame(test_results).sort_values(
-    by="f1_macro",
-    ascending=False
-)
+results_df = pd.DataFrame(results).sort_values("f1_macro", ascending=False)
+display(results_df)
 
-display(test_results_df)
+fig, ax = plt.subplots(figsize=(8, 5))
 
-fig, ax = plt.subplots(figsize=(9, 5))
-
-test_results_df.sort_values("f1_macro").plot(
+results_df.sort_values("f1_macro").plot(
     x="model",
     y="f1_macro",
     kind="barh",
@@ -166,29 +125,26 @@ test_results_df.sort_values("f1_macro").plot(
     legend=False
 )
 
-ax.set_title("Comparaison des modèles sur le test - F1-score macro")
+ax.set_title("Comparaison des modèles Machine Learning")
 ax.set_xlabel("F1-score macro")
 ax.set_ylabel("Modèle")
 fig.tight_layout()
 plt.show()
 
-best_model_name = test_results_df.iloc[0]["model"]
+best_model_name = results_df.iloc[0]["model"]
 best_model = trained_models[best_model_name]
-
-print("Meilleur modèle :", best_model_name)
 
 y_pred_best = best_model.predict(X_test)
 
-print("\nRapport de classification :")
-print(
-    classification_report(
-        y_test,
-        y_pred_best,
-        labels=activity_labels["activity_id"].tolist(),
-        target_names=activity_labels["activity"].tolist(),
-        zero_division=0
-    )
-)
+print("Meilleur modèle :", best_model_name)
+
+print(classification_report(
+    y_test,
+    y_pred_best,
+    labels=activity_labels["activity_id"].tolist(),
+    target_names=activity_labels["activity"].tolist(),
+    zero_division=0
+))
 
 labels = activity_labels["activity_id"].tolist()
 display_labels = activity_labels["activity"].tolist()
@@ -207,16 +163,12 @@ fig.tight_layout()
 fig.savefig(FIGURES_DIR / "confusion_matrix_best_ml_model.png", dpi=150)
 plt.show()
 
-errors_df = test_df[["subject_id", "activity_id", "activity"]].copy()
+errors_df = test_sample[["subject_id", "activity_id", "activity"]].copy()
 errors_df["predicted_activity_id"] = y_pred_best
 
 id_to_activity = dict(zip(activity_labels["activity_id"], activity_labels["activity"]))
 errors_df["predicted_activity"] = errors_df["predicted_activity_id"].map(id_to_activity)
 errors_df["is_error"] = errors_df["activity_id"] != errors_df["predicted_activity_id"]
-
-error_rate = errors_df["is_error"].mean()
-
-print("Taux d'erreur :", round(error_rate, 4))
 
 errors_by_activity = (
     errors_df
@@ -228,23 +180,6 @@ errors_by_activity = (
 
 display(errors_by_activity)
 
-fig, ax = plt.subplots(figsize=(9, 5))
+results_df.to_csv(PROCESSED_DIR / "ml_test_results.csv", index=False)
 
-errors_by_activity.sort_values("is_error").plot(
-    x="activity",
-    y="is_error",
-    kind="barh",
-    ax=ax,
-    legend=False
-)
-
-ax.set_title("Taux d'erreur par activité")
-ax.set_xlabel("Taux d'erreur")
-ax.set_ylabel("Activité")
-fig.tight_layout()
-plt.show()
-
-cv_results_df.to_csv(PROCESSED_DIR / "ml_cv_results.csv", index=False)
-test_results_df.to_csv(PROCESSED_DIR / "ml_test_results.csv", index=False)
-
-print("Résultats sauvegardés dans data/processed.")
+print("Résultats Machine Learning sauvegardés.")

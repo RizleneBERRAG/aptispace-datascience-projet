@@ -96,35 +96,6 @@ div.csl-indent {
 <link href="rapport_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="rapport_files/libs/bootstrap/bootstrap-1900d47cc981608c692c441b21f497f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -195,29 +166,33 @@ window.Quarto = {
   </ul></li>
   <li><a href="#modélisation-machine-learning" id="toc-modélisation-machine-learning" class="nav-link" data-scroll-target="#modélisation-machine-learning"><span class="header-section-number">8</span> 03 — Modélisation Machine Learning</a>
   <ul class="collapse">
-  <li><a href="#préparation-des-variables" id="toc-préparation-des-variables" class="nav-link" data-scroll-target="#préparation-des-variables"><span class="header-section-number">8.1</span> Préparation des variables</a></li>
-  <li><a href="#choix-des-modèles" id="toc-choix-des-modèles" class="nav-link" data-scroll-target="#choix-des-modèles"><span class="header-section-number">8.2</span> Choix des modèles</a></li>
-  <li><a href="#validation-croisée-groupée" id="toc-validation-croisée-groupée" class="nav-link" data-scroll-target="#validation-croisée-groupée"><span class="header-section-number">8.3</span> Validation croisée groupée</a></li>
-  <li><a href="#visualisation-des-résultats-de-validation-croisée" id="toc-visualisation-des-résultats-de-validation-croisée" class="nav-link" data-scroll-target="#visualisation-des-résultats-de-validation-croisée"><span class="header-section-number">8.4</span> Visualisation des résultats de validation croisée</a></li>
-  <li><a href="#entraînement-final-sur-le-train-et-évaluation-sur-le-test" id="toc-entraînement-final-sur-le-train-et-évaluation-sur-le-test" class="nav-link" data-scroll-target="#entraînement-final-sur-le-train-et-évaluation-sur-le-test"><span class="header-section-number">8.5</span> Entraînement final sur le train et évaluation sur le test</a></li>
-  <li><a href="#comparaison-des-performances-sur-le-test" id="toc-comparaison-des-performances-sur-le-test" class="nav-link" data-scroll-target="#comparaison-des-performances-sur-le-test"><span class="header-section-number">8.6</span> Comparaison des performances sur le test</a></li>
-  <li><a href="#meilleur-modèle" id="toc-meilleur-modèle" class="nav-link" data-scroll-target="#meilleur-modèle"><span class="header-section-number">8.7</span> Meilleur modèle</a></li>
-  <li><a href="#matrice-de-confusion" id="toc-matrice-de-confusion" class="nav-link" data-scroll-target="#matrice-de-confusion"><span class="header-section-number">8.8</span> Matrice de confusion</a></li>
-  <li><a href="#analyse-des-erreurs" id="toc-analyse-des-erreurs" class="nav-link" data-scroll-target="#analyse-des-erreurs"><span class="header-section-number">8.9</span> Analyse des erreurs</a></li>
-  <li><a href="#sauvegarde-des-résultats" id="toc-sauvegarde-des-résultats" class="nav-link" data-scroll-target="#sauvegarde-des-résultats"><span class="header-section-number">8.10</span> Sauvegarde des résultats</a></li>
-  <li><a href="#conclusion-de-la-modélisation-machine-learning" id="toc-conclusion-de-la-modélisation-machine-learning" class="nav-link" data-scroll-target="#conclusion-de-la-modélisation-machine-learning"><span class="header-section-number">8.11</span> Conclusion de la modélisation Machine Learning</a></li>
-  <li><a href="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux" id="toc-modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="nav-link" data-scroll-target="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.12</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</a>
+  <li><a href="#sous-échantillonnage-stratifié" id="toc-sous-échantillonnage-stratifié" class="nav-link" data-scroll-target="#sous-échantillonnage-stratifié"><span class="header-section-number">8.1</span> Sous-échantillonnage stratifié</a></li>
+  <li><a href="#sélection-des-variables" id="toc-sélection-des-variables" class="nav-link" data-scroll-target="#sélection-des-variables"><span class="header-section-number">8.2</span> Sélection des variables</a></li>
+  <li><a href="#modèles-comparés" id="toc-modèles-comparés" class="nav-link" data-scroll-target="#modèles-comparés"><span class="header-section-number">8.3</span> Modèles comparés</a></li>
+  <li><a href="#entraînement-et-évaluation" id="toc-entraînement-et-évaluation" class="nav-link" data-scroll-target="#entraînement-et-évaluation"><span class="header-section-number">8.4</span> Entraînement et évaluation</a></li>
+  <li><a href="#comparaison-des-modèles" id="toc-comparaison-des-modèles" class="nav-link" data-scroll-target="#comparaison-des-modèles"><span class="header-section-number">8.5</span> Comparaison des modèles</a></li>
+  <li><a href="#meilleur-modèle" id="toc-meilleur-modèle" class="nav-link" data-scroll-target="#meilleur-modèle"><span class="header-section-number">8.6</span> Meilleur modèle</a></li>
+  <li><a href="#matrice-de-confusion" id="toc-matrice-de-confusion" class="nav-link" data-scroll-target="#matrice-de-confusion"><span class="header-section-number">8.7</span> Matrice de confusion</a></li>
+  <li><a href="#analyse-des-erreurs" id="toc-analyse-des-erreurs" class="nav-link" data-scroll-target="#analyse-des-erreurs"><span class="header-section-number">8.8</span> Analyse des erreurs</a></li>
+  <li><a href="#sauvegarde-des-résultats" id="toc-sauvegarde-des-résultats" class="nav-link" data-scroll-target="#sauvegarde-des-résultats"><span class="header-section-number">8.9</span> Sauvegarde des résultats</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">8.10</span> Conclusion</a></li>
+  <li><a href="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux" id="toc-modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="nav-link" data-scroll-target="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.11</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</a>
   <ul class="collapse">
-  <li><a href="#travaux-pratiques-de-vision-par-ordinateur-cnn" id="toc-travaux-pratiques-de-vision-par-ordinateur-cnn" class="nav-link" data-scroll-target="#travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.12.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</a></li>
+  <li><a href="#travaux-pratiques-de-vision-par-ordinateur-cnn" id="toc-travaux-pratiques-de-vision-par-ordinateur-cnn" class="nav-link" data-scroll-target="#travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.11.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#jalon-2-brique-de-vision-par-ordinateur-cnn-tensorflow-squelette-étudiant" id="toc-jalon-2-brique-de-vision-par-ordinateur-cnn-tensorflow-squelette-étudiant" class="nav-link" data-scroll-target="#jalon-2-brique-de-vision-par-ordinateur-cnn-tensorflow-squelette-étudiant"><span class="header-section-number">9</span> 📷 Jalon 2 : Brique de Vision par Ordinateur (CNN &amp; TensorFlow) (Squelette Étudiant)</a>
+  <li><a href="#deep-learning-sur-signaux-avec-cnn-1d" id="toc-deep-learning-sur-signaux-avec-cnn-1d" class="nav-link" data-scroll-target="#deep-learning-sur-signaux-avec-cnn-1d"><span class="header-section-number">9</span> 04 — Deep Learning sur signaux avec CNN 1D</a>
   <ul class="collapse">
-  <li><a href="#préparation-de-lenvironnement" id="toc-préparation-de-lenvironnement" class="nav-link" data-scroll-target="#préparation-de-lenvironnement"><span class="header-section-number">9.0.1</span> 1. Préparation de l’environnement</a></li>
-  <li><a href="#génération-du-jeu-dimages-synthétiques" id="toc-génération-du-jeu-dimages-synthétiques" class="nav-link" data-scroll-target="#génération-du-jeu-dimages-synthétiques"><span class="header-section-number">9.0.2</span> 2. Génération du jeu d’images synthétiques</a></li>
-  <li><a href="#split-dévaluation-entraînement-validation" id="toc-split-dévaluation-entraînement-validation" class="nav-link" data-scroll-target="#split-dévaluation-entraînement-validation"><span class="header-section-number">9.0.3</span> 3. Split d’évaluation (Entraînement / Validation)</a></li>
-  <li><a href="#conception-de-larchitecture-du-cnn" id="toc-conception-de-larchitecture-du-cnn" class="nav-link" data-scroll-target="#conception-de-larchitecture-du-cnn"><span class="header-section-number">9.0.4</span> 4. Conception de l’architecture du CNN</a></li>
-  <li><a href="#compilation-et-entraînement" id="toc-compilation-et-entraînement" class="nav-link" data-scroll-target="#compilation-et-entraînement"><span class="header-section-number">9.0.5</span> 5. Compilation et Entraînement</a></li>
+  <li><a href="#chargement-des-signaux" id="toc-chargement-des-signaux" class="nav-link" data-scroll-target="#chargement-des-signaux"><span class="header-section-number">9.1</span> Chargement des signaux</a></li>
+  <li><a href="#échantillonnage-rapide-pour-la-compilation" id="toc-échantillonnage-rapide-pour-la-compilation" class="nav-link" data-scroll-target="#échantillonnage-rapide-pour-la-compilation"><span class="header-section-number">9.2</span> Échantillonnage rapide pour la compilation</a></li>
+  <li><a href="#architecture-cnn-1d" id="toc-architecture-cnn-1d" class="nav-link" data-scroll-target="#architecture-cnn-1d"><span class="header-section-number">9.3</span> Architecture CNN 1D</a></li>
+  <li><a href="#entraînement-rapide" id="toc-entraînement-rapide" class="nav-link" data-scroll-target="#entraînement-rapide"><span class="header-section-number">9.4</span> Entraînement rapide</a></li>
+  <li><a href="#courbes-dapprentissage" id="toc-courbes-dapprentissage" class="nav-link" data-scroll-target="#courbes-dapprentissage"><span class="header-section-number">9.5</span> Courbes d’apprentissage</a></li>
+  <li><a href="#évaluation-sur-le-test" id="toc-évaluation-sur-le-test" class="nav-link" data-scroll-target="#évaluation-sur-le-test"><span class="header-section-number">9.6</span> Évaluation sur le test</a></li>
+  <li><a href="#rapport-de-classification-et-matrice-de-confusion" id="toc-rapport-de-classification-et-matrice-de-confusion" class="nav-link" data-scroll-target="#rapport-de-classification-et-matrice-de-confusion"><span class="header-section-number">9.7</span> Rapport de classification et matrice de confusion</a></li>
+  <li><a href="#comparaison-avec-le-machine-learning" id="toc-comparaison-avec-le-machine-learning" class="nav-link" data-scroll-target="#comparaison-avec-le-machine-learning"><span class="header-section-number">9.8</span> Comparaison avec le Machine Learning</a></li>
+  <li><a href="#sauvegarde-des-résultats-1" id="toc-sauvegarde-des-résultats-1" class="nav-link" data-scroll-target="#sauvegarde-des-résultats-1"><span class="header-section-number">9.9</span> Sauvegarde des résultats</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1"><span class="header-section-number">9.10</span> Conclusion</a></li>
   </ul></li>
   <li><a href="#sec-evaluation" id="toc-sec-evaluation" class="nav-link" data-scroll-target="#sec-evaluation"><span class="header-section-number">10</span> Évaluation Métrique et Validation</a>
   <ul class="collapse">
@@ -554,106 +529,121 @@ window.Quarto = {
 </section>
 <section id="modélisation-machine-learning" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> 03 — Modélisation Machine Learning</h1>
-<p>Ce notebook correspond à la partie modélisation classique du projet.</p>
-<p>L’objectif est d’entraîner plusieurs modèles de classification afin de prédire l’activité humaine à partir des variables numériques extraites des capteurs du smartphone.</p>
-<p>Nous allons comparer plusieurs modèles :</p>
+<p>Ce notebook présente une modélisation supervisée classique pour prédire l’activité humaine à partir des variables numériques extraites des capteurs du smartphone.</p>
+<p>Pour garantir une compilation rapide du rapport, nous utilisons un sous-échantillon stratifié des données et une sélection des variables les plus informatives.</p>
+<section id="sous-échantillonnage-stratifié" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="sous-échantillonnage-stratifié"><span class="header-section-number">8.1</span> Sous-échantillonnage stratifié</h2>
+<p>Le dataset complet est assez volumineux pour une compilation automatique limitée dans le temps.</p>
+<p>Nous conservons un échantillon équilibré par activité afin que toutes les classes soient représentées.</p>
+</section>
+<section id="sélection-des-variables" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="sélection-des-variables"><span class="header-section-number">8.2</span> Sélection des variables</h2>
+<p>Nous sélectionnons les variables avec la variance la plus élevée.</p>
+<p>Cela permet de réduire le temps de calcul tout en conservant des variables informatives.</p>
+</section>
+<section id="modèles-comparés" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="modèles-comparés"><span class="header-section-number">8.3</span> Modèles comparés</h2>
+<p>Nous comparons trois modèles supervisés rapides :</p>
 <ul>
 <li>Logistic Regression ;</li>
-<li>Random Forest ;</li>
-<li>Linear SVM ;</li>
-<li>K-Nearest Neighbors.</li>
+<li>Decision Tree ;</li>
+<li>Gaussian Naive Bayes.</li>
 </ul>
-<p>L’évaluation sera réalisée avec des métriques adaptées à la classification multi-classes.</p>
-<section id="préparation-des-variables" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="préparation-des-variables"><span class="header-section-number">8.1</span> Préparation des variables</h2>
-<p>Nous séparons les variables explicatives <code>X</code> de la cible <code>y</code>.</p>
-<p>La cible à prédire est <code>activity_id</code>, qui correspond à l’activité humaine réalisée.</p>
+<p>Ces modèles permettent d’obtenir une première référence de performance avant l’approche Deep Learning.</p>
 </section>
-<section id="choix-des-modèles" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="choix-des-modèles"><span class="header-section-number">8.2</span> Choix des modèles</h2>
-<p>Nous comparons plusieurs familles de modèles :</p>
+<section id="entraînement-et-évaluation" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="entraînement-et-évaluation"><span class="header-section-number">8.4</span> Entraînement et évaluation</h2>
+<p>Chaque modèle est entraîné sur le jeu d’entraînement échantillonné, puis évalué sur le jeu de test échantillonné.</p>
+<p>Nous utilisons plusieurs métriques :</p>
 <ul>
-<li><strong>Logistic Regression</strong> : modèle linéaire simple et interprétable ;</li>
-<li><strong>Random Forest</strong> : modèle d’ensemble capable de capturer des relations non linéaires ;</li>
-<li><strong>Linear SVM</strong> : modèle efficace pour des données avec beaucoup de variables ;</li>
-<li><strong>KNN</strong> : modèle basé sur la proximité entre observations.</li>
+<li>accuracy ;</li>
+<li>précision macro ;</li>
+<li>rappel macro ;</li>
+<li>F1-score macro.</li>
 </ul>
-<p>Certains modèles utilisent une standardisation des variables, car ils sont sensibles aux échelles.</p>
 </section>
-<section id="validation-croisée-groupée" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="validation-croisée-groupée"><span class="header-section-number">8.3</span> Validation croisée groupée</h2>
-<p>Pour éviter une évaluation trop optimiste, nous utilisons une validation croisée groupée par sujet.</p>
-<p>Cela signifie que les observations d’un même sujet ne sont pas mélangées entre entraînement et validation au sein d’un même fold.</p>
-<p>Cette approche est plus rigoureuse car les mouvements d’une même personne peuvent se ressembler.</p>
+<section id="comparaison-des-modèles" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="comparaison-des-modèles"><span class="header-section-number">8.5</span> Comparaison des modèles</h2>
+<p>Le F1-score macro est utilisé pour comparer les modèles, car il donne le même poids à chaque activité.</p>
 </section>
-<section id="visualisation-des-résultats-de-validation-croisée" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="visualisation-des-résultats-de-validation-croisée"><span class="header-section-number">8.4</span> Visualisation des résultats de validation croisée</h2>
-<p>Nous comparons les modèles selon le F1-score macro moyen.</p>
-<p>Le F1-score macro est pertinent ici car il donne le même poids à chaque activité.</p>
+<section id="meilleur-modèle" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="meilleur-modèle"><span class="header-section-number">8.6</span> Meilleur modèle</h2>
+<p>Nous sélectionnons le modèle ayant le meilleur F1-score macro.</p>
 </section>
-<section id="entraînement-final-sur-le-train-et-évaluation-sur-le-test" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="entraînement-final-sur-le-train-et-évaluation-sur-le-test"><span class="header-section-number">8.5</span> Entraînement final sur le train et évaluation sur le test</h2>
-<p>Après la validation croisée, nous entraînons chaque modèle sur tout le jeu d’entraînement.</p>
-<p>Nous évaluons ensuite les performances sur le jeu de test officiel.</p>
+<section id="matrice-de-confusion" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="matrice-de-confusion"><span class="header-section-number">8.7</span> Matrice de confusion</h2>
+<p>La matrice de confusion permet de visualiser les confusions entre les différentes activités.</p>
 </section>
-<section id="comparaison-des-performances-sur-le-test" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="comparaison-des-performances-sur-le-test"><span class="header-section-number">8.6</span> Comparaison des performances sur le test</h2>
-<p>Cette étape permet d’identifier le modèle le plus performant sur des données non vues pendant l’entraînement.</p>
+<section id="analyse-des-erreurs" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="analyse-des-erreurs"><span class="header-section-number">8.8</span> Analyse des erreurs</h2>
+<p>Nous calculons le taux d’erreur moyen par activité.</p>
 </section>
-<section id="meilleur-modèle" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="meilleur-modèle"><span class="header-section-number">8.7</span> Meilleur modèle</h2>
-<p>Nous sélectionnons le modèle avec le meilleur F1-score macro sur le jeu de test.</p>
+<section id="sauvegarde-des-résultats" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="sauvegarde-des-résultats"><span class="header-section-number">8.9</span> Sauvegarde des résultats</h2>
+<p>Les résultats sont sauvegardés pour être comparés avec ceux du CNN 1D.</p>
 </section>
-<section id="matrice-de-confusion" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="matrice-de-confusion"><span class="header-section-number">8.8</span> Matrice de confusion</h2>
-<p>La matrice de confusion permet d’identifier les activités bien reconnues et celles qui sont confondues entre elles.</p>
-<p>Elle est particulièrement utile dans un problème multi-classes.</p>
+<section id="conclusion" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8.10</span> Conclusion</h2>
+<p>Cette étape montre qu’il est possible de prédire l’activité humaine à partir des variables numériques extraites des capteurs du smartphone.</p>
+<p>Les modèles classiques donnent une première base de comparaison avant l’approche Deep Learning sur signaux.</p>
 </section>
-<section id="analyse-des-erreurs" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="analyse-des-erreurs"><span class="header-section-number">8.9</span> Analyse des erreurs</h2>
-<p>Nous observons les exemples mal prédits par le meilleur modèle.</p>
-<p>Cette analyse permet de mieux comprendre les limites du modèle.</p>
-</section>
-<section id="sauvegarde-des-résultats" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="sauvegarde-des-résultats"><span class="header-section-number">8.10</span> Sauvegarde des résultats</h2>
-<p>Nous sauvegardons les résultats des modèles afin de pouvoir les réutiliser dans le rapport ou dans une synthèse finale.</p>
-</section>
-<section id="conclusion-de-la-modélisation-machine-learning" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="conclusion-de-la-modélisation-machine-learning"><span class="header-section-number">8.11</span> Conclusion de la modélisation Machine Learning</h2>
-<p>Cette étape a permis de comparer plusieurs modèles classiques de classification.</p>
-<p>Les résultats permettent d’identifier le modèle le plus performant pour reconnaître l’activité humaine à partir des variables numériques du smartphone.</p>
-<p>La prochaine étape consistera à utiliser les signaux temporels directement avec une approche Deep Learning basée sur un CNN 1D.</p>
-</section>
-<section id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="level2" data-number="8.12">
-<h2 data-number="8.12" class="anchored" data-anchor-id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.12</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</h2>
+<section id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.11</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</h2>
 <p><em>À rédiger par les étudiants : Expliquez l’intérêt de la brique de Deep Learning (images, signaux ou traitement de données structurées complexes) pour classifier ou enrichir vos prédictions. Détaillez l’architecture de votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras (conv, pooling, dense, dropout, activation) et commentez les courbes d’apprentissage obtenues.</em></p>
 <p>[Détailler votre architecture CNN et analyse ici]</p>
-<section id="travaux-pratiques-de-vision-par-ordinateur-cnn" class="level3" data-number="8.12.1">
-<h3 data-number="8.12.1" class="anchored" data-anchor-id="travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.12.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</h3>
+<section id="travaux-pratiques-de-vision-par-ordinateur-cnn" class="level3" data-number="8.11.1">
+<h3 data-number="8.11.1" class="anchored" data-anchor-id="travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.11.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</h3>
 </section>
 </section>
 </section>
-<section id="jalon-2-brique-de-vision-par-ordinateur-cnn-tensorflow-squelette-étudiant" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> 📷 Jalon 2 : Brique de Vision par Ordinateur (CNN &amp; TensorFlow) (Squelette Étudiant)</h1>
-<p>Ce notebook est dédié à la brique d’analyse d’images du <strong>Jalon 2</strong>. L’objectif est de concevoir un Réseau de Neurones Convolutif (CNN) sous TensorFlow/Keras pour classifier des motifs géométriques simples (Classe 0: Cercle vs Classe 1: Multiples Rectangles).</p>
-<section id="préparation-de-lenvironnement" class="level3" data-number="9.0.1">
-<h3 data-number="9.0.1" class="anchored" data-anchor-id="préparation-de-lenvironnement"><span class="header-section-number">9.0.1</span> 1. Préparation de l’environnement</h3>
+<section id="deep-learning-sur-signaux-avec-cnn-1d" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> 04 — Deep Learning sur signaux avec CNN 1D</h1>
+<p>Ce notebook utilise les signaux temporels issus du smartphone pour entraîner un CNN 1D avec TensorFlow.</p>
+<p>L’objectif est de compléter l’approche Machine Learning classique avec une approche Deep Learning adaptée aux signaux.</p>
+<section id="chargement-des-signaux" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="chargement-des-signaux"><span class="header-section-number">9.1</span> Chargement des signaux</h2>
+<p>Chaque observation contient :</p>
+<ul>
+<li>128 pas de temps ;</li>
+<li>9 signaux capteurs ;</li>
+<li>une activité à prédire.</li>
+</ul>
 </section>
-<section id="génération-du-jeu-dimages-synthétiques" class="level3" data-number="9.0.2">
-<h3 data-number="9.0.2" class="anchored" data-anchor-id="génération-du-jeu-dimages-synthétiques"><span class="header-section-number">9.0.2</span> 2. Génération du jeu d’images synthétiques</h3>
-<p>Pour travailler de manière autonome sans importer de lourdes bases d’images externes, cette fonction utilitaire génère des images simulées en <span class="math inline">\(64 \times 64\)</span> pixels de formes simples (Cercle vs Rectangles).</p>
+<section id="échantillonnage-rapide-pour-la-compilation" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="échantillonnage-rapide-pour-la-compilation"><span class="header-section-number">9.2</span> Échantillonnage rapide pour la compilation</h2>
+<p>Pour que le rapport compile rapidement, nous entraînons le CNN sur un sous-échantillon représentatif.</p>
+<p>La logique reste la même : le modèle apprend directement à partir des signaux.</p>
 </section>
-<section id="split-dévaluation-entraînement-validation" class="level3" data-number="9.0.3">
-<h3 data-number="9.0.3" class="anchored" data-anchor-id="split-dévaluation-entraînement-validation"><span class="header-section-number">9.0.3</span> 3. Split d’évaluation (Entraînement / Validation)</h3>
-<p><strong>À faire par l’étudiant :</strong> Divisez vos données d’images <code>X_images</code> et <code>y_labels</code> en <span class="math inline">\(80\%\)</span> pour l’entraînement et <span class="math inline">\(20\%\)</span> pour la validation.</p>
+<section id="architecture-cnn-1d" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="architecture-cnn-1d"><span class="header-section-number">9.3</span> Architecture CNN 1D</h2>
+<p>Le CNN 1D apprend des motifs dans les signaux temporels, par exemple des variations d’accélération ou de rotation.</p>
 </section>
-<section id="conception-de-larchitecture-du-cnn" class="level3" data-number="9.0.4">
-<h3 data-number="9.0.4" class="anchored" data-anchor-id="conception-de-larchitecture-du-cnn"><span class="header-section-number">9.0.4</span> 4. Conception de l’architecture du CNN</h3>
-<p><strong>À faire par l’étudiant :</strong> Instanciez un réseau convolutif séquentiel Keras comprenant des couches <code>Conv2D</code>, <code>MaxPooling2D</code>, <code>Flatten</code>, <code>Dense</code> et un <code>Dropout</code> pour classifier nos deux formes géométriques.</p>
+<section id="entraînement-rapide" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="entraînement-rapide"><span class="header-section-number">9.4</span> Entraînement rapide</h2>
+<p>Nous entraînons le modèle sur deux époques pour garder une compilation raisonnable.</p>
 </section>
-<section id="compilation-et-entraînement" class="level3" data-number="9.0.5">
-<h3 data-number="9.0.5" class="anchored" data-anchor-id="compilation-et-entraînement"><span class="header-section-number">9.0.5</span> 5. Compilation et Entraînement</h3>
-<p><strong>À faire par l’étudiant :</strong> - Compilez le modèle avec l’optimiseur <code>'adam'</code> et la fonction de perte binaire. - Entraînez votre CNN sur environ 5 époques.</p>
+<section id="courbes-dapprentissage" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="courbes-dapprentissage"><span class="header-section-number">9.5</span> Courbes d’apprentissage</h2>
+<p>Nous visualisons l’évolution de la loss et de l’accuracy.</p>
+</section>
+<section id="évaluation-sur-le-test" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="évaluation-sur-le-test"><span class="header-section-number">9.6</span> Évaluation sur le test</h2>
+<p>Nous évaluons le CNN 1D sur un sous-échantillon du jeu de test.</p>
+</section>
+<section id="rapport-de-classification-et-matrice-de-confusion" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="rapport-de-classification-et-matrice-de-confusion"><span class="header-section-number">9.7</span> Rapport de classification et matrice de confusion</h2>
+</section>
+<section id="comparaison-avec-le-machine-learning" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="comparaison-avec-le-machine-learning"><span class="header-section-number">9.8</span> Comparaison avec le Machine Learning</h2>
+<p>Nous comparons les résultats du CNN 1D avec les résultats des modèles classiques si ceux-ci sont disponibles.</p>
+</section>
+<section id="sauvegarde-des-résultats-1" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="sauvegarde-des-résultats-1"><span class="header-section-number">9.9</span> Sauvegarde des résultats</h2>
+</section>
+<section id="conclusion-1" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="conclusion-1"><span class="header-section-number">9.10</span> Conclusion</h2>
+<p>Cette partie montre comment exploiter directement les signaux temporels du smartphone avec un CNN 1D.</p>
+<p>L’approche Deep Learning complète l’approche Machine Learning classique, qui utilisait des variables tabulaires déjà extraites.</p>
 <hr>
 </section>
 </section>

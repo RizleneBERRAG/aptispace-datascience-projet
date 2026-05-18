@@ -1,61 +1,67 @@
 === STDOUT ===
-Version TensorFlow : 2.21.0
-GPU Disponible : []
-Dataset d'images généré. Dimensions : (100, 64, 64, 3)
-Taille Train : 80 images, Taille Val : 20 images
+TensorFlow version : 2.21.0
+X_train_full : (7352, 128, 9)
+X_test_full  : (2947, 128, 9)
+   activity_id            activity
+0            1             WALKING
+1            2    WALKING_UPSTAIRS
+2            3  WALKING_DOWNSTAIRS
+3            4             SITTING
+4            5            STANDING
+5            6              LAYING
+Train : (1200, 128, 9)
+Validation : (300, 128, 9)
+Test : (600, 128, 9)
 Model: "sequential"
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
 ┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ conv2d (Conv2D)                 │ (None, 62, 62, 16)     │           448 │
+│ conv1d (Conv1D)                 │ (None, 128, 16)        │           736 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d (MaxPooling2D)    │ (None, 31, 31, 16)     │             0 │
+│ max_pooling1d (MaxPooling1D)    │ (None, 64, 16)         │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_1 (Conv2D)               │ (None, 29, 29, 32)     │         4,640 │
+│ conv1d_1 (Conv1D)               │ (None, 64, 32)         │         1,568 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d_1 (MaxPooling2D)  │ (None, 14, 14, 32)     │             0 │
+│ global_average_pooling1d        │ (None, 32)             │             0 │
+│ (GlobalAveragePooling1D)        │                        │               │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ flatten (Flatten)               │ (None, 6272)           │             0 │
+│ dense (Dense)                   │ (None, 32)             │         1,056 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense (Dense)                   │ (None, 32)             │       200,736 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout (Dropout)               │ (None, 32)             │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_1 (Dense)                 │ (None, 1)              │            33 │
+│ dense_1 (Dense)                 │ (None, 6)              │           198 │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
- Total params: 205,857 (804.13 KB)
- Trainable params: 205,857 (804.13 KB)
+ Total params: 3,558 (13.90 KB)
+ Trainable params: 3,558 (13.90 KB)
  Non-trainable params: 0 (0.00 B)
-Epoch 1/5
+   accuracy      loss  val_accuracy  val_loss
+0  0.198333  1.770045      0.303333  1.750326
+1  0.326667  1.712878      0.316667  1.693438
+    model  accuracy  precision_macro  recall_macro  f1_macro  test_loss
+0  CNN 1D  0.331667         0.529777      0.331667  0.240475   1.684915
+                    precision    recall  f1-score   support
 
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m2s[0m 1s/step - accuracy: 0.5625 - loss: 0.6878
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m1s[0m 99ms/step - accuracy: 0.8250 - loss: 0.5970 - val_accuracy: 0.9500 - val_loss: 0.3959
-Epoch 2/5
+           WALKING       0.20      1.00      0.33       100
+  WALKING_UPSTAIRS       1.00      0.06      0.11       100
+WALKING_DOWNSTAIRS       0.00      0.00      0.00       100
+           SITTING       1.00      0.03      0.06       100
+          STANDING       0.00      0.00      0.00       100
+            LAYING       0.98      0.90      0.94       100
 
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 28ms/step - accuracy: 1.0000 - loss: 0.3717
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 33ms/step - accuracy: 0.9750 - loss: 0.3359 - val_accuracy: 1.0000 - val_loss: 0.1430
-Epoch 3/5
+          accuracy                           0.33       600
+         macro avg       0.53      0.33      0.24       600
+      weighted avg       0.53      0.33      0.24       600
 
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 25ms/step - accuracy: 1.0000 - loss: 0.1273
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 33ms/step - accuracy: 1.0000 - loss: 0.1112 - val_accuracy: 1.0000 - val_loss: 0.0376
-Epoch 4/5
-
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 26ms/step - accuracy: 1.0000 - loss: 0.0309
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 33ms/step - accuracy: 1.0000 - loss: 0.0271 - val_accuracy: 1.0000 - val_loss: 0.0089
-Epoch 5/5
-
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 27ms/step - accuracy: 1.0000 - loss: 0.0113
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 34ms/step - accuracy: 1.0000 - loss: 0.0080 - val_accuracy: 1.0000 - val_loss: 0.0029
+                  model  accuracy  precision_macro  recall_macro  f1_macro
+0   Logistic Regression  0.890278         0.892188      0.890278  0.890369
+1         Decision Tree  0.761111         0.769101      0.761111  0.757079
+2  Gaussian Naive Bayes  0.745833         0.786043      0.745833  0.735342
+3                CNN 1D  0.331667         0.529777      0.331667  0.240475
+Résultats Deep Learning sauvegardés.
 
 === STDERR ===
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1779098728.817184   14626 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-I0000 00:00:1779098728.817521   14626 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-I0000 00:00:1779098728.873696   14626 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1779114612.359766   75892 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1779114612.360123   75892 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1779098730.356691   14626 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-I0000 00:00:1779098730.357092   14626 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-E0000 00:00:1779098731.544586   14626 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
-/home/vscode/.local/lib/python3.11/site-packages/keras/src/layers/convolutional/base_conv.py:113: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
-  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+I0000 00:00:1779114614.032440   75892 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1779114614.033197   75892 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+E0000 00:00:1779114616.702768   75892 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
