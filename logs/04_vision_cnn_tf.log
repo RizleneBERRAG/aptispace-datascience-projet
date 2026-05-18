@@ -28,32 +28,34 @@ Model: "sequential"
  Non-trainable params: 0 (0.00 B)
 Epoch 1/5
 
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m1s[0m 918ms/step - accuracy: 0.5938 - loss: 0.6940
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m1s[0m 101ms/step - accuracy: 0.6750 - loss: 0.6408 - val_accuracy: 1.0000 - val_loss: 0.5147
+[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m2s[0m 1s/step - accuracy: 0.5625 - loss: 0.6878
+[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m1s[0m 99ms/step - accuracy: 0.8250 - loss: 0.5970 - val_accuracy: 0.9500 - val_loss: 0.3959
 Epoch 2/5
 
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 36ms/step - accuracy: 0.9375 - loss: 0.4541
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 38ms/step - accuracy: 0.9750 - loss: 0.3765 - val_accuracy: 1.0000 - val_loss: 0.1973
+[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 28ms/step - accuracy: 1.0000 - loss: 0.3717
+[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 33ms/step - accuracy: 0.9750 - loss: 0.3359 - val_accuracy: 1.0000 - val_loss: 0.1430
 Epoch 3/5
 
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 35ms/step - accuracy: 1.0000 - loss: 0.1956
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 40ms/step - accuracy: 1.0000 - loss: 0.1546 - val_accuracy: 1.0000 - val_loss: 0.0686
+[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 25ms/step - accuracy: 1.0000 - loss: 0.1273
+[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 33ms/step - accuracy: 1.0000 - loss: 0.1112 - val_accuracy: 1.0000 - val_loss: 0.0376
 Epoch 4/5
 
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 37ms/step - accuracy: 1.0000 - loss: 0.0603
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 39ms/step - accuracy: 1.0000 - loss: 0.0478 - val_accuracy: 1.0000 - val_loss: 0.0158
+[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 26ms/step - accuracy: 1.0000 - loss: 0.0309
+[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 33ms/step - accuracy: 1.0000 - loss: 0.0271 - val_accuracy: 1.0000 - val_loss: 0.0089
 Epoch 5/5
 
-[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 37ms/step - accuracy: 1.0000 - loss: 0.0126
-[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 40ms/step - accuracy: 1.0000 - loss: 0.0097 - val_accuracy: 1.0000 - val_loss: 0.0045
+[1m1/3[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 27ms/step - accuracy: 1.0000 - loss: 0.0113
+[1m3/3[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 34ms/step - accuracy: 1.0000 - loss: 0.0080 - val_accuracy: 1.0000 - val_loss: 0.0029
 
 === STDERR ===
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1779095972.559468    2588 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-I0000 00:00:1779095972.601510    2588 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+I0000 00:00:1779098728.817184   14626 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1779098728.817521   14626 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+I0000 00:00:1779098728.873696   14626 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1779095974.078152    2588 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-E0000 00:00:1779095975.442517    2588 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
-/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/keras/src/layers/convolutional/base_conv.py:113: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+I0000 00:00:1779098730.356691   14626 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1779098730.357092   14626 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+E0000 00:00:1779098731.544586   14626 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
+/home/vscode/.local/lib/python3.11/site-packages/keras/src/layers/convolutional/base_conv.py:113: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
   super().__init__(activity_regularizer=activity_regularizer, **kwargs)

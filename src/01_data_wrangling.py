@@ -1,5 +1,5 @@
 import os, sys
-sys.path.append('/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet')
+sys.path.append('/workspaces/aptispace-datascience-projet')
 
 # Installation automatique des dépendances requises dans le noyau Jupyter actuel
 # %pip install -r ../requirements.txt
@@ -18,7 +18,7 @@ print("Libraries importées avec succès ! Prêt à démarrer le Wrangling.")
 
 
 # Chargement du dataset brut avec votre fonction load_raw_data
-raw_data_path = '../data/raw/raw_data_sample.csv'
+raw_data_path = 'data/raw/raw_data_sample.csv'
 df_raw = dc.load_raw_data(raw_data_path)
 
 # Affichage des premières lignes pour inspection visuelle
@@ -53,7 +53,7 @@ print("Valeurs manquantes finales :", df_final.isnull().sum())
 
 
 # Sauvegarde
-processed_path = '../data/processed/cleaned_data_sample.csv'
+processed_path = 'data/processed/cleaned_data_sample.csv'
 df_final.to_csv(processed_path, index=False)
 print(f"💾 Données propres sauvegardées dans : {processed_path}")
 

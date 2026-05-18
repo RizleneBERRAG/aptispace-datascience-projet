@@ -1,30 +1,28 @@
 === STDOUT ===
 Libraries importées avec succès ! Prêt à démarrer le Wrangling.
-❌ Erreur lors du chargement des données : [Errno 2] No such file or directory: '../data/raw/raw_data_sample.csv'
+✅ Données chargées avec succès. Dimensions : (18, 3)
+<class 'pandas.DataFrame'>
+RangeIndex: 18 entries, 0 to 17
+Data columns (total 3 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   timestamp  18 non-null     str    
+ 1   value      15 non-null     float64
+ 2   category   18 non-null     str    
+dtypes: float64(1), str(2)
+memory usage: 564.0 bytes
+NaNs: timestamp    0
+value        3
+category     0
+dtype: int64
+Doublons: 0
+📅 Dates nettoyées dans 'timestamp'. Incohérences converties en NaNs : 6
+🚨 Anomalies (outliers) détectées dans 'value' : 2 remplacées par NaN
+🔧 Valeurs manquantes imputées avec la méthode 'interpolate' pour les colonnes : ['value']
+Valeurs manquantes finales : timestamp    6
+value        0
+category     0
+dtype: int64
+💾 Données propres sauvegardées dans : data/processed/cleaned_data_sample.csv
 
 === STDERR ===
-Traceback (most recent call last):
-  File "/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet/src/01_data_wrangling.py", line 22, in <module>
-    df_raw = dc.load_raw_data(raw_data_path)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet/src/data_clean.py", line 25, in load_raw_data
-    raise e
-  File "/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet/src/data_clean.py", line 20, in load_raw_data
-    df = pd.read_csv(file_path)
-         ^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 873, in read_csv
-    return _read(filepath_or_buffer, kwds)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 300, in _read
-    parser = TextFileReader(filepath_or_buffer, **kwds)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1645, in __init__
-    self._engine = self._make_engine(f, self.engine)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1904, in _make_engine
-    self.handles = get_handle(
-                   ^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/common.py", line 930, in get_handle
-    handle = open(
-             ^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '../data/raw/raw_data_sample.csv'

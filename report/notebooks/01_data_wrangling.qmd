@@ -24,7 +24,7 @@ print("Libraries importées avec succès ! Prêt à démarrer le Wrangling.")
 
 ```{python}
 # Chargement du dataset brut avec votre fonction load_raw_data
-raw_data_path = '../data/raw/raw_data_sample.csv'
+raw_data_path = 'data/raw/raw_data_sample.csv'
 df_raw = dc.load_raw_data(raw_data_path)
 
 # Affichage des premières lignes pour inspection visuelle
@@ -92,7 +92,7 @@ Enregistrez votre DataFrame nettoyé dans `data/processed/cleaned_data_sample.cs
 
 ```{python}
 # Sauvegarde
-processed_path = '../data/processed/cleaned_data_sample.csv'
+processed_path = 'data/processed/cleaned_data_sample.csv'
 df_final.to_csv(processed_path, index=False)
 print(f"💾 Données propres sauvegardées dans : {processed_path}")
 ```

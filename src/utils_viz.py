@@ -40,38 +40,51 @@ def set_custom_style(theme: str = 'light'):
     
     print(f"🎨 Charte graphique '{theme}' initialisée avec succès.")
 
-def plot_generic_trends(df: pd.DataFrame, x_col: str, y_col: str, group_col: Optional[str] = None) -> plt.Figure:
+def plot_generic_trends(df, x_col, y_col, group_col=None):
     """
-    Génère un graphique linéaire d'évolution temporelle ou tendancielle de base.
-    
-    Parameters:
-    -----------
-    df : pd.DataFrame
-        Le DataFrame d'entrée contenant les données.
-    x_col : str
-        Le nom de la colonne pour l'axe des abscisses (ex: date, index).
-    y_col : str
-        Le nom de la colonne pour l'axe des ordonnées.
-    group_col : Optional[str], default None
-        Optionnel : Le nom de la colonne catégorielle pour grouper et dessiner plusieurs courbes.
-        
-    Returns:
-    --------
-    plt.Figure
-        La figure Matplotlib créée.
+    Trace une courbe d'évolution en gérant les dates invalides.
+    Les lignes avec timestamp vide/NaT ou valeur numérique manquante sont ignorées.
     """
-    fig, ax = plt.subplots(figsize=(10, 5))
-    if group_col and group_col in df.columns:
-        for val, grp in df.groupby(group_col):
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    df_plot = df.copy()
+
+    # Sécurisation des dates
+    df_plot[x_col] = pd.to_datetime(df_plot[x_col], errors="coerce")
+
+    # Sécurisation des valeurs numériques
+    df_plot[y_col] = pd.to_numeric(df_plot[y_col], errors="coerce")
+
+    # Suppression des lignes impossibles à tracer
+    df_plot = df_plot.dropna(subset=[x_col, y_col])
+
+    if df_plot.empty:
+        ax.text(
+            0.5,
+            0.5,
+            "Aucune donnée valide à afficher",
+            ha="center",
+            va="center",
+            transform=ax.transAxes
+        )
+        ax.set_title("Tendance des données")
+        return fig
+
+    if group_col and group_col in df_plot.columns:
+        for val, grp in df_plot.groupby(group_col):
+            grp = grp.sort_values(x_col)
             ax.plot(grp[x_col], grp[y_col], label=f"{group_col}: {val}", alpha=0.8)
         ax.legend()
     else:
-        ax.plot(df[x_col], df[y_col], alpha=0.8)
-    
+        df_plot = df_plot.sort_values(x_col)
+        ax.plot(df_plot[x_col], df_plot[y_col], alpha=0.8)
+
+    ax.set_title("Tendance des données")
     ax.set_xlabel(x_col)
     ax.set_ylabel(y_col)
-    ax.set_title(f"Évolution de {y_col} par rapport à {x_col}")
+    fig.autofmt_xdate()
     fig.tight_layout()
+
     return fig
 
 def plot_correlation_matrix(df: pd.DataFrame, columns: List[str]) -> plt.Figure:

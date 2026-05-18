@@ -1,25 +1,13 @@
 === STDOUT ===
 🎨 Charte graphique 'light' initialisée avec succès.
 Libraries de modélisation prêtes !
+💡 Nouvelles caractéristiques extraites : 'hour', 'dayofweek'
+Taille Train : (14, 2), Taille Test : (4, 2)
+Prédictions générées : [23.71 23.71 23.71 23.71]
+MAE  : 5.815
+RMSE : 6.002
+R²   : -15.288
+Variable : hour         | Importance : 0.9661
+Variable : dayofweek    | Importance : 0.0339
 
 === STDERR ===
-Traceback (most recent call last):
-  File "/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet/src/03_modelisation_pred.py", line 26, in <module>
-    df = pd.read_csv('../data/processed/cleaned_data_sample.csv')
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 873, in read_csv
-    return _read(filepath_or_buffer, kwds)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 300, in _read
-    parser = TextFileReader(filepath_or_buffer, **kwds)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1645, in __init__
-    self._engine = self._make_engine(f, self.engine)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1904, in _make_engine
-    self.handles = get_handle(
-                   ^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pandas/io/common.py", line 930, in get_handle
-    handle = open(
-             ^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '../data/processed/cleaned_data_sample.csv'

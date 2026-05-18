@@ -28,7 +28,7 @@ uv.set_custom_style(theme='light')
 
 ```{python}
 # Chargement du dataset propre
-df = pd.read_csv('../data/processed/cleaned_data_sample.csv')
+df = pd.read_csv('data/processed/cleaned_data_sample.csv')
 df['timestamp'] = pd.to_datetime(df['timestamp'])
 df.head()
 ```

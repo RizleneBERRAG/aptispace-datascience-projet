@@ -30,8 +30,8 @@ print("Libraries de modélisation prêtes !")
 ```
 
 ```{python}
-# Charger '../data/processed/cleaned_data_sample.csv'
-df = pd.read_csv('../data/processed/cleaned_data_sample.csv')
+# Charger 'data/processed/cleaned_data_sample.csv'
+df = pd.read_csv('data/processed/cleaned_data_sample.csv')
 df['timestamp'] = pd.to_datetime(df['timestamp'])
 
 # Appliquer l'ingénierie de caractéristiques temporelles

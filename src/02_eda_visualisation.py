@@ -1,5 +1,5 @@
 import os, sys
-sys.path.append('/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet')
+sys.path.append('/workspaces/aptispace-datascience-projet')
 
 # Installation automatique des dépendances requises dans le noyau Jupyter actuel
 # %pip install -r ../requirements.txt
@@ -22,7 +22,7 @@ uv.set_custom_style(theme='light')
 
 
 # Chargement du dataset propre
-df = pd.read_csv('../data/processed/cleaned_data_sample.csv')
+df = pd.read_csv('data/processed/cleaned_data_sample.csv')
 df['timestamp'] = pd.to_datetime(df['timestamp'])
 df.head()
 
