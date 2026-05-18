@@ -1,3 +1,8 @@
+```{python}
+# Installation automatique des dépendances requises dans le noyau Jupyter actuel
+%pip install -r ../requirements.txt
+```
+
 # 🧠 Jalon 2 : Modélisation Prédictive & Apprentissage (Squelette Étudiant)
 
 Dans ce notebook du **Jalon 2**, l'objectif est d'implémenter un pipeline complet d'apprentissage supervisé pour prédire une variable cible (`value`) à l'aide de Scikit-Learn. 

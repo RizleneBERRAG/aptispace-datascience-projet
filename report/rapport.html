@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,11 +11,8 @@
 <meta name="author" content="Étudiant(e) 3 : [Insérer Prénom Nom]">
 <meta name="dcterms.date" content="2026-05-18">
 
-<title>Mon Super Projet Data Science</title>
+<title>Mon Projet Data Science</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -66,6 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -87,17 +85,18 @@ div.csl-indent {
 <script src="rapport_files/libs/clipboard/clipboard.min.js"></script>
 <script src="rapport_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="rapport_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="rapport_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="rapport_files/libs/quarto-html/popper.min.js"></script>
 <script src="rapport_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="rapport_files/libs/quarto-html/anchor.min.js"></script>
 <link href="rapport_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="rapport_files/libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="rapport_files/libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="rapport_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="rapport_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="rapport_files/libs/bootstrap/bootstrap-5f872ca0521029d851d5ff7b222a1192.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="rapport_files/libs/bootstrap/bootstrap-2932f9646e6173e84bd706ff147e19d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -171,13 +170,13 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-viz" id="toc-sec-viz" class="nav-link" data-scroll-target="#sec-viz"><span class="header-section-number">6</span> Visualisation Multidimensionnelle (Insights)</a>
   <ul class="collapse">
-  <li><a href="#profils-dactivité-journalière" id="toc-profils-dactivité-journalière" class="nav-link" data-scroll-target="#profils-dactivité-journalière"><span class="header-section-number">6.1</span> Profils d’Activité Journalière</a></li>
+  <li><a href="#profils-et-distributions-caractéristiques" id="toc-profils-et-distributions-caractéristiques" class="nav-link" data-scroll-target="#profils-et-distributions-caractéristiques"><span class="header-section-number">6.1</span> Profils et Distributions Caractéristiques</a></li>
   <li><a href="#corrélations-globales" id="toc-corrélations-globales" class="nav-link" data-scroll-target="#corrélations-globales"><span class="header-section-number">6.2</span> Corrélations Globales</a></li>
   </ul></li>
   <li><a href="#sec-modelling" id="toc-sec-modelling" class="nav-link" data-scroll-target="#sec-modelling"><span class="header-section-number">7</span> Modélisation et Apprentissage</a>
   <ul class="collapse">
   <li><a href="#schéma-global-du-pipeline-de-données" id="toc-schéma-global-du-pipeline-de-données" class="nav-link" data-scroll-target="#schéma-global-du-pipeline-de-données"><span class="header-section-number">7.1</span> Schéma Global du Pipeline de Données</a></li>
-  <li><a href="#modélisation-tabulaire-prédiction-vélos" id="toc-modélisation-tabulaire-prédiction-vélos" class="nav-link" data-scroll-target="#modélisation-tabulaire-prédiction-vélos"><span class="header-section-number">7.2</span> Modélisation Tabulaire (Prédiction Vélos)</a>
+  <li><a href="#modélisation-tabulaire-machine-learning" id="toc-modélisation-tabulaire-machine-learning" class="nav-link" data-scroll-target="#modélisation-tabulaire-machine-learning"><span class="header-section-number">7.2</span> Modélisation Tabulaire (Machine Learning)</a>
   <ul class="collapse">
   <li><a href="#travaux-pratiques-de-modélisation-tabulaire" id="toc-travaux-pratiques-de-modélisation-tabulaire" class="nav-link" data-scroll-target="#travaux-pratiques-de-modélisation-tabulaire"><span class="header-section-number">7.2.1</span> Travaux Pratiques de Modélisation Tabulaire</a></li>
   </ul></li>
@@ -189,7 +188,7 @@ window.Quarto = {
   <li><a href="#entraînement-du-modèle-de-forêt-aléatoire" id="toc-entraînement-du-modèle-de-forêt-aléatoire" class="nav-link" data-scroll-target="#entraînement-du-modèle-de-forêt-aléatoire"><span class="header-section-number">8.0.3</span> 3. Entraînement du modèle de Forêt Aléatoire</a></li>
   <li><a href="#évaluation-métrique" id="toc-évaluation-métrique" class="nav-link" data-scroll-target="#évaluation-métrique"><span class="header-section-number">8.0.4</span> 4. Évaluation métrique</a></li>
   <li><a href="#importance-des-variables-explicatives" id="toc-importance-des-variables-explicatives" class="nav-link" data-scroll-target="#importance-des-variables-explicatives"><span class="header-section-number">8.0.5</span> 5. Importance des variables explicatives</a></li>
-  <li><a href="#modélisation-vision-analyse-dimages" id="toc-modélisation-vision-analyse-dimages" class="nav-link" data-scroll-target="#modélisation-vision-analyse-dimages"><span class="header-section-number">8.1</span> Modélisation Vision (Analyse d’Images)</a>
+  <li><a href="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux" id="toc-modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="nav-link" data-scroll-target="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.1</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</a>
   <ul class="collapse">
   <li><a href="#travaux-pratiques-de-vision-par-ordinateur-cnn" id="toc-travaux-pratiques-de-vision-par-ordinateur-cnn" class="nav-link" data-scroll-target="#travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.1.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</a></li>
   </ul></li>
@@ -204,12 +203,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-evaluation" id="toc-sec-evaluation" class="nav-link" data-scroll-target="#sec-evaluation"><span class="header-section-number">10</span> Évaluation Métrique et Validation</a>
   <ul class="collapse">
-  <li><a href="#stratégie-de-validation-chronologique" id="toc-stratégie-de-validation-chronologique" class="nav-link" data-scroll-target="#stratégie-de-validation-chronologique"><span class="header-section-number">10.1</span> Stratégie de Validation Chronologique</a></li>
+  <li><a href="#stratégie-de-validation" id="toc-stratégie-de-validation" class="nav-link" data-scroll-target="#stratégie-de-validation"><span class="header-section-number">10.1</span> Stratégie de Validation</a></li>
   <li><a href="#résultats-et-interprétation" id="toc-résultats-et-interprétation" class="nav-link" data-scroll-target="#résultats-et-interprétation"><span class="header-section-number">10.2</span> Résultats et Interprétation</a></li>
   </ul></li>
   <li><a href="#sec-storytelling" id="toc-sec-storytelling" class="nav-link" data-scroll-target="#sec-storytelling"><span class="header-section-number">11</span> Data Storytelling et Communication</a>
   <ul class="collapse">
-  <li><a href="#recommandations-pour-la-métropole" id="toc-recommandations-pour-la-métropole" class="nav-link" data-scroll-target="#recommandations-pour-la-métropole"><span class="header-section-number">11.1</span> Recommandations pour la Métropole</a></li>
+  <li><a href="#recommandations-stratégiques-métier" id="toc-recommandations-stratégiques-métier" class="nav-link" data-scroll-target="#recommandations-stratégiques-métier"><span class="header-section-number">11.1</span> Recommandations Stratégiques / Métier</a></li>
   <li><a href="#limites-et-perspectives" id="toc-limites-et-perspectives" class="nav-link" data-scroll-target="#limites-et-perspectives"><span class="header-section-number">11.2</span> Limites et Perspectives</a></li>
   </ul></li>
   <li><a href="#bibliographie" id="toc-bibliographie" class="nav-link" data-scroll-target="#bibliographie">Bibliographie</a></li>
@@ -220,8 +219,8 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Mon Super Projet Data Science</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-<p class="subtitle lead">Projet Fil Rouge Data Science - Métropole Durable</p>
+<div class="quarto-title-block"><div><h1 class="title">Mon Projet Data Science</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Projet Fil Rouge Data Science - Sujet Libre</p>
 </div>
 
 
@@ -260,30 +259,30 @@ window.Quarto = {
 <figcaption>CI Compilation Pipeline</figcaption>
 </figure>
 </div>
-<p><em>À rédiger par les étudiants : Présentez ici le contexte global du projet de transition écologique de la métropole, les enjeux sociétaux de la mobilité active, les questions scientifiques soulevées et la problématique métier que vous cherchez à résoudre.</em></p>
+<p><em>À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d’aide à la décision sur la base de vos données.</em></p>
 <section id="contexte-du-projet" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="contexte-du-projet"><span class="header-section-number">1.1</span> Contexte du Projet</h2>
-<p><em>À rédiger par les étudiants — Pistes de réflexion :</em> - <em>Quels sont les objectifs environnementaux globaux de la métropole en matière de réduction d’empreinte carbone et de pollution ?</em> - <em>En quoi la promotion de la mobilité active (vélo) et des transports en commun (bus) constitue-t-elle un levier d’action stratégique ?</em> - <em>Pourquoi l’analyse quantitative des données de trafic est-elle indispensable pour piloter les infrastructures urbaines ?</em></p>
+<p><em>À rédiger par les étudiants — Pistes de réflexion :</em> - <em>Quels sont les objectifs globaux et le domaine d’étude de votre projet ?</em> - <em>En quoi ce sujet de recherche est-il pertinent et stratégique ?</em> - <em>Pourquoi l’analyse quantitative de ce jeu de données est-elle indispensable pour répondre à votre problématique ?</em></p>
 <p>[Rédiger votre paragraphe de contexte ici]</p>
 </section>
 <section id="objectif-analytique" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="objectif-analytique"><span class="header-section-number">1.2</span> Objectif Analytique</h2>
-<p><em>À rédiger par les étudiants — Pistes de réflexion :</em> - <em>Quelles sont les variables cibles principales (ex: bike_count) et la tâche prédictive globale ?</em> - <em>Comment le couplage de données physiques (météo, pollution, trafic) et d’images (brique de vision CNN) permet-il d’adopter une approche multi-sources ?</em> - <em>Quels sont les livrables analytiques attendus pour aider la métropole dans ses prises de décisions stratégiques ?</em></p>
+<p><em>À rédiger par les étudiants — Pistes de réflexion :</em> - <em>Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?</em> - <em>Comment le couplage de données multi-sources et l’intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l’analyse ?</em> - <em>Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?</em></p>
 <p>[Rédiger votre paragraphe d’objectifs ici]</p>
 <hr>
 </section>
 </section>
 <section id="sec-wrangling" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Acquisition et Préparation des Données (Data Wrangling)</h1>
-<p>Le succès de tout projet de Data Science repose sur la qualité de la préparation des données <span class="citation" data-cites="pandas2020">(<a href="#ref-pandas2020" role="doc-biblioref">McKinney 2020</a>)</span>. Cette section documente l’audit de qualité et les étapes de nettoyage appliquées au jeu de données de capteurs brut.</p>
+<p>Le succès de tout projet de Data Science repose sur la qualité de la préparation des données <span class="citation" data-cites="pandas2020">(<a href="#ref-pandas2020" role="doc-biblioref">McKinney 2020</a>)</span>. Cette section documente l’audit de qualité et les étapes de nettoyage appliquées à vos jeux de données bruts.</p>
 <section id="audit-de-qualité" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="audit-de-qualité"><span class="header-section-number">2.1</span> Audit de Qualité</h2>
-<p><em>À rédiger par les étudiants : Présentez un audit critique complet du fichier de données brutes. Indiquez la liste des anomalies physiques et typologiques détectées (formats de dates, outliers physiques, taux de valeurs manquantes).</em></p>
+<p><em>À rédiger par les étudiants : Présentez un audit critique complet de vos fichiers de données brutes. Indiquez la liste des anomalies physiques et typologiques détectées (formats de dates hétérogènes, outliers physiques, taux de valeurs manquantes, etc.).</em></p>
 <p>[Rédiger votre audit de données ici]</p>
 </section>
 <section id="algorithme-de-nettoyage" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="algorithme-de-nettoyage"><span class="header-section-number">2.2</span> Algorithme de Nettoyage</h2>
-<p><em>À rédiger par les étudiants : Justifiez et détaillez l’enchaînement de vos opérations de traitement (uniformisation des dates, masquage des outliers physiques par NaN, imputation temporelle). Faites référence aux fonctions correspondantes de votre module <code>src/data_clean.py</code>.</em></p>
+<p><em>À rédiger par les étudiants : Justifiez et détaillez l’enchaînement de vos opérations de traitement (uniformisation des dates, masquage des outliers, imputation, etc.). Faites référence aux fonctions correspondantes de votre module <code>src/data_clean.py</code>.</em></p>
 <p>[Rédiger la justification méthodologique ici]</p>
 </section>
 <section id="travaux-pratiques-de-wrangling" class="level2" data-number="2.3">
@@ -320,7 +319,7 @@ window.Quarto = {
 </section>
 <section id="sec-eda" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Analyse Exploratoire des Données (EDA)</h1>
-<p>Dans cette section, nous analysons les relations statistiques fondamentales qui régissent la mobilité active (vélos) et les transports en commun (bus) au sein de la métropole.</p>
+<p>Dans cette section, nous analysons les relations statistiques fondamentales qui régissent votre domaine d’étude au sein du jeu de données.</p>
 <section id="statistiques-descriptives" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="statistiques-descriptives"><span class="header-section-number">4.1</span> Statistiques Descriptives</h2>
 <p><em>À rédiger par les étudiants : Présentez une vue d’ensemble descriptive rapide de vos variables nettoyées.</em></p>
@@ -328,7 +327,7 @@ window.Quarto = {
 </section>
 <section id="ingénierie-de-variables-feature-engineering" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="ingénierie-de-variables-feature-engineering"><span class="header-section-number">4.2</span> Ingénierie de Variables (Feature Engineering)</h2>
-<p><em>À rédiger par les étudiants : Expliquez l’intérêt mathématique et l’impact sur les modèles prédictifs d’extraire des composantes temporelles cycliques (comme l’encodage sinus / cosinus des heures).</em></p>
+<p><em>À rédiger par les étudiants : Expliquez l’intérêt mathématique et l’impact sur les modèles prédictifs d’extraire des caractéristiques dérivées (ex: variables cycliques temporelles, ratios financiers, ratios physiques, etc.).</em></p>
 <p>[Rédiger votre explication de l’ingénierie de variables ici]</p>
 </section>
 <section id="travaux-pratiques-dexploration-visuelle-eda" class="level2" data-number="4.3">
@@ -368,20 +367,20 @@ window.Quarto = {
 </section>
 <section id="sec-viz" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Visualisation Multidimensionnelle (Insights)</h1>
-<p>Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs publics, en s’appuyant sur notre module <code>src/utils_viz.py</code>.</p>
+<p>Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs, en s’appuyant sur notre module <code>src/utils_viz.py</code>.</p>
 <p><em>À rédiger par les étudiants : Présentez et commentez en détail vos 3 à 5 insights majeurs découverts lors de l’exploration descriptive visuelle. Intégrez et justifiez les figures clés générées.</em></p>
-<section id="profils-dactivité-journalière" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="profils-dactivité-journalière"><span class="header-section-number">6.1</span> Profils d’Activité Journalière</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-traffic-density</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Profil horaire moyen des déplacements (Vélos vs Bus)."</span></span>
+<section id="profils-et-distributions-caractéristiques" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="profils-et-distributions-caractéristiques"><span class="header-section-number">6.1</span> Profils et Distributions Caractéristiques</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-distribution-density</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Distribution ou profils caractéristiques de vos variables clés."</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser uv.plot_traffic_density() de votre module pour tracer la figure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser vos fonctions personnalisées de votre module pour tracer la figure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>[Commenter la figure et décrire vos observations ici]</p>
 </section>
 <section id="corrélations-globales" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="corrélations-globales"><span class="header-section-number">6.2</span> Corrélations Globales</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-correlation</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Matrice de corrélation de Spearman entre variables."</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Matrice de corrélation de Spearman ou de Pearson entre variables."</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser uv.plot_correlation_matrix() de votre module pour tracer la figure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>[Commenter la figure et décrire vos observations ici]</p>
@@ -392,25 +391,25 @@ window.Quarto = {
 <h1 data-number="7"><span class="header-section-number">7</span> Modélisation et Apprentissage</h1>
 <section id="schéma-global-du-pipeline-de-données" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="schéma-global-du-pipeline-de-données"><span class="header-section-number">7.1</span> Schéma Global du Pipeline de Données</h2>
-<p>Le pipeline complet intègre à la fois la branche analytique tabulaire (Machine Learning) et la branche d’analyse visuelle (Deep Learning CNN) :</p>
+<p>Le pipeline complet intègre à la fois la branche analytique tabulaire (Machine Learning) et la branche d’analyse visuelle ou de signaux complexes (Deep Learning CNN) :</p>
 <pre class="mermaid"><code>graph TD
-    A[Données Capteurs Brutes CSV] --&gt;|Formatage &amp; Alignement| B(data_clean.clean_dates)
-    C[Données Météo &amp; Pollution] --&gt;|Imputation &amp; Interpolation| D(data_clean.impute_missing_values)
+    A[Données Brutes Multi-Sources CSV/API] --&gt;|Formatage &amp; Alignement| B(data_clean.clean_dates)
+    C[Données Externes Complémentaires] --&gt;|Imputation &amp; Interpolation| D(data_clean.impute_missing_values)
     B &amp; D --&gt;|Gestion Outliers| E[Jeu de données Propre &amp; Fusionné]
-    E --&gt;|Extraction Temporelle| F[Feature Engineering]
-    F --&gt;|Splits Temporels Chronologiques| G[Modèle Machine Learning Tabulaire]
-    H[Flux Caméras Trafic en Temps Réel] --&gt;|Prétraitement d'images 64x64| I[Réseau Convolutif CNN TensorFlow]
-    G --&gt;|Prédictions de Flux de Mobilité| J[Livrables &amp; Aide à la Décision Métropole]
-    I --&gt;|Détection de Congestion| J
+    E --&gt;|Extraction Temporelle/Caractéristiques| F[Feature Engineering]
+    F --&gt;|Splits Temporels ou Stratifiés| G[Modèle Machine Learning Tabulaire]
+    H[Flux Multimédias Réels Images/Signaux] --&gt;|Prétraitement d'images/signaux| I[Réseau Convolutif CNN TensorFlow]
+    G --&gt;|Prédictions de la Problématique Métier| J[Livrables &amp; Aide à la Décision]
+    I --&gt;|Détection de Motifs Complexes| J
     
     style E fill:#e0f2fe,stroke:#0284c7,stroke-width:2px
     style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
     style G fill:#fef3c7,stroke:#d97706,stroke-width:2px
     style I fill:#fef3c7,stroke:#d97706,stroke-width:2px</code></pre>
 </section>
-<section id="modélisation-tabulaire-prédiction-vélos" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="modélisation-tabulaire-prédiction-vélos"><span class="header-section-number">7.2</span> Modélisation Tabulaire (Prédiction Vélos)</h2>
-<p><em>À rédiger par les étudiants : Expliquez le choix de votre algorithme d’apprentissage supervisé (Forêt Aléatoire) et décrivez l’importance des variables explicatives.</em></p>
+<section id="modélisation-tabulaire-machine-learning" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="modélisation-tabulaire-machine-learning"><span class="header-section-number">7.2</span> Modélisation Tabulaire (Machine Learning)</h2>
+<p><em>À rédiger par les étudiants : Expliquez le choix de vos algorithmes d’apprentissage (supervisé ou non supervisé) et décrivez l’importance des variables explicatives.</em></p>
 <p>[Détailler votre modélisation ici]</p>
 <section id="travaux-pratiques-de-modélisation-tabulaire" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="travaux-pratiques-de-modélisation-tabulaire"><span class="header-section-number">7.2.1</span> Travaux Pratiques de Modélisation Tabulaire</h3>
@@ -440,9 +439,9 @@ window.Quarto = {
 <h3 data-number="8.0.5" class="anchored" data-anchor-id="importance-des-variables-explicatives"><span class="header-section-number">8.0.5</span> 5. Importance des variables explicatives</h3>
 <p><strong>À faire par l’étudiant :</strong> Extrayez et affichez l’importance relative de chaque caractéristique prédictive.</p>
 </section>
-<section id="modélisation-vision-analyse-dimages" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="modélisation-vision-analyse-dimages"><span class="header-section-number">8.1</span> Modélisation Vision (Analyse d’Images)</h2>
-<p><em>À rédiger par les étudiants : Expliquez l’intérêt de la brique de Deep Learning d’images pour classifier le trafic. Détaillez l’architecture de votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras (conv, pooling, dense, dropout, activation) et commentez les courbes d’apprentissage obtenues.</em></p>
+<section id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.1</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</h2>
+<p><em>À rédiger par les étudiants : Expliquez l’intérêt de la brique de Deep Learning (images, signaux ou traitement de données structurées complexes) pour classifier ou enrichir vos prédictions. Détaillez l’architecture de votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras (conv, pooling, dense, dropout, activation) et commentez les courbes d’apprentissage obtenues.</em></p>
 <p>[Détailler votre architecture CNN et analyse ici]</p>
 <section id="travaux-pratiques-de-vision-par-ordinateur-cnn" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.1.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</h3>
@@ -475,9 +474,9 @@ window.Quarto = {
 </section>
 <section id="sec-evaluation" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Évaluation Métrique et Validation</h1>
-<section id="stratégie-de-validation-chronologique" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="stratégie-de-validation-chronologique"><span class="header-section-number">10.1</span> Stratégie de Validation Chronologique</h2>
-<p><em>À rédiger par les étudiants : Expliquez pourquoi un découpage d’évaluation aléatoire classique violerait le principe de causalité temporelle et comment vous avez configuré une validation temporelle rigoureuse.</em></p>
+<section id="stratégie-de-validation" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="stratégie-de-validation"><span class="header-section-number">10.1</span> Stratégie de Validation</h2>
+<p><em>À rédiger par les étudiants : Expliquez pourquoi le découpage d’évaluation choisi (ex: validation temporelle, stratifiée ou par groupe) est adapté à la structure de vos données pour éviter les fuites de données.</em></p>
 <p>[Rédiger la section de validation ici]</p>
 </section>
 <section id="résultats-et-interprétation" class="level2" data-number="10.2">
@@ -493,20 +492,20 @@ window.Quarto = {
 <thead>
 <tr class="header">
 <th>Modèle</th>
-<th>MAE (cyclistes)</th>
-<th>RMSE (cyclistes)</th>
-<th><span class="math inline">\(R^2\)</span> (%)</th>
+<th>Métrique 1 (ex: MAE / Précision)</th>
+<th>Métrique 2 (ex: RMSE / F1-Score)</th>
+<th>R² / Score (%)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Baseline Historique</td>
+<td>Baseline (ex: Naïve / Moyenne)</td>
 <td>[À compléter]</td>
 <td>[À compléter]</td>
 <td>[À compléter]</td>
 </tr>
 <tr class="even">
-<td><strong>Forêt Aléatoire</strong></td>
+<td><strong>Modèle Choisi</strong></td>
 <td><strong>[À compléter]</strong></td>
 <td><strong>[À compléter]</strong></td>
 <td><strong>[À compléter]</strong></td>
@@ -519,9 +518,9 @@ window.Quarto = {
 </section>
 <section id="sec-storytelling" class="level1" data-number="11">
 <h1 data-number="11"><span class="header-section-number">11</span> Data Storytelling et Communication</h1>
-<section id="recommandations-pour-la-métropole" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="recommandations-pour-la-métropole"><span class="header-section-number">11.1</span> Recommandations pour la Métropole</h2>
-<p><em>À rédiger par les étudiants : Formulez des recommandations stratégiques, opérationnelles et innovantes pour aider les décideurs publics sur la base de vos découvertes analytiques et prédictives.</em></p>
+<section id="recommandations-stratégiques-métier" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="recommandations-stratégiques-métier"><span class="header-section-number">11.1</span> Recommandations Stratégiques / Métier</h2>
+<p><em>À rédiger par les étudiants : Formulez des recommandations stratégiques, opérationnelles et innovantes basées sur vos découvertes analytiques et prédictives pour guider les décideurs.</em></p>
 <p>[Rédiger vos recommandations ici]</p>
 </section>
 <section id="limites-et-perspectives" class="level2" data-number="11.2">
@@ -534,12 +533,12 @@ window.Quarto = {
 </section>
 <section id="bibliographie" class="level1 unnumbered">
 <h1 class="unnumbered">Bibliographie</h1>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-pandas2020" class="csl-entry" role="listitem">
 McKinney, Wes. 2020. <em>Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython</em>. O’Reilly Media.
 </div>
 <div id="ref-quarto2024" class="csl-entry" role="listitem">
-Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Collaborative Scientific and Technical Publishing.”</span> <a href="https://quarto.org/">https://quarto.org/</a>.
+Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Collaborative Scientific and Technical Publishing.”</span> 2024. <a href="https://quarto.org/">https://quarto.org/</a>.
 </div>
 </div>
 <!-- -->
@@ -1000,8 +999,8 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Mon Super Projet Data Science"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Projet Fil Rouge Data Science - Métropole Durable"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Mon Projet Data Science"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Projet Fil Rouge Data Science - Sujet Libre"</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - "Étudiant(e) 1 : [Insérer Prénom Nom]"</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - "Étudiant(e) 2 : [Insérer Prénom Nom]"</span></span>
@@ -1036,21 +1035,21 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![CI Compilation Pipeline](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)</span><span class="co">](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml)</span></span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez ici le contexte global du projet de transition écologique de la métropole, les enjeux sociétaux de la mobilité active, les questions scientifiques soulevées et la problématique métier que vous cherchez à résoudre.*</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.*</span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contexte du Projet</span></span>
 <span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants — Pistes de réflexion :*</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quels sont les objectifs environnementaux globaux de la métropole en matière de réduction d'empreinte carbone et de pollution ?*</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*En quoi la promotion de la mobilité active (vélo) et des transports en commun (bus) constitue-t-elle un levier d'action stratégique ?*</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Pourquoi l'analyse quantitative des données de trafic est-elle indispensable pour piloter les infrastructures urbaines ?*</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quels sont les objectifs globaux et le domaine d'étude de votre projet ?*</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*En quoi ce sujet de recherche est-il pertinent et stratégique ?*</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Pourquoi l'analyse quantitative de ce jeu de données est-elle indispensable pour répondre à votre problématique ?*</span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger votre paragraphe de contexte ici</span><span class="co">]</span></span>
 <span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectif Analytique</span></span>
 <span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants — Pistes de réflexion :*</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quelles sont les variables cibles principales (ex: bike_count) et la tâche prédictive globale ?*</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Comment le couplage de données physiques (météo, pollution, trafic) et d'images (brique de vision CNN) permet-il d'adopter une approche multi-sources ?*</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quels sont les livrables analytiques attendus pour aider la métropole dans ses prises de décisions stratégiques ?*</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?*</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Comment le couplage de données multi-sources et l'intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l'analyse ?*</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?*</span>
 <span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger votre paragraphe d'objectifs ici</span><span class="co">]</span></span>
 <span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
@@ -1058,15 +1057,15 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
 <span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="fu"># Acquisition et Préparation des Données (Data Wrangling) {#sec-wrangling}</span></span>
 <span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>Le succès de tout projet de Data Science repose sur la qualité de la préparation des données <span class="co">[</span><span class="ot">@pandas2020</span><span class="co">]</span>. Cette section documente l'audit de qualité et les étapes de nettoyage appliquées au jeu de données de capteurs brut.</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>Le succès de tout projet de Data Science repose sur la qualité de la préparation des données <span class="co">[</span><span class="ot">@pandas2020</span><span class="co">]</span>. Cette section documente l'audit de qualité et les étapes de nettoyage appliquées à vos jeux de données bruts.</span>
 <span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Audit de Qualité</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez un audit critique complet du fichier de données brutes. Indiquez la liste des anomalies physiques et typologiques détectées (formats de dates, outliers physiques, taux de valeurs manquantes).*</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez un audit critique complet de vos fichiers de données brutes. Indiquez la liste des anomalies physiques et typologiques détectées (formats de dates hétérogènes, outliers physiques, taux de valeurs manquantes, etc.).*</span>
 <span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger votre audit de données ici</span><span class="co">]</span></span>
 <span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algorithme de Nettoyage</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Justifiez et détaillez l'enchaînement de vos opérations de traitement (uniformisation des dates, masquage des outliers physiques par NaN, imputation temporelle). Faites référence aux fonctions correspondantes de votre module `src/data_clean.py`.*</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Justifiez et détaillez l'enchaînement de vos opérations de traitement (uniformisation des dates, masquage des outliers, imputation, etc.). Faites référence aux fonctions correspondantes de votre module `src/data_clean.py`.*</span>
 <span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger la justification méthodologique ici</span><span class="co">]</span></span>
 <span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
@@ -1077,7 +1076,7 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
 <span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="fu"># Analyse Exploratoire des Données (EDA) {#sec-eda}</span></span>
 <span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>Dans cette section, nous analysons les relations statistiques fondamentales qui régissent la mobilité active (vélos) et les transports en commun (bus) au sein de la métropole.</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>Dans cette section, nous analysons les relations statistiques fondamentales qui régissent votre domaine d'étude au sein du jeu de données.</span>
 <span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Statistiques Descriptives</span></span>
 <span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez une vue d'ensemble descriptive rapide de vos variables nettoyées.*</span>
@@ -1085,7 +1084,7 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
 <span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger les statistiques descriptives ici</span><span class="co">]</span></span>
 <span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ingénierie de Variables (Feature Engineering)</span></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Expliquez l'intérêt mathématique et l'impact sur les modèles prédictifs d'extraire des composantes temporelles cycliques (comme l'encodage sinus / cosinus des heures).*</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Expliquez l'intérêt mathématique et l'impact sur les modèles prédictifs d'extraire des caractéristiques dérivées (ex: variables cycliques temporelles, ratios financiers, ratios physiques, etc.).*</span>
 <span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger votre explication de l'ingénierie de variables ici</span><span class="co">]</span></span>
 <span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
@@ -1096,23 +1095,23 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
 <span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="fu"># Visualisation Multidimensionnelle (Insights) {#sec-viz}</span></span>
 <span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs publics, en s'appuyant sur notre module <span class="in">`src/utils_viz.py`</span>.</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs, en s'appuyant sur notre module <span class="in">`src/utils_viz.py`</span>.</span>
 <span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez et commentez en détail vos 3 à 5 insights majeurs découverts lors de l'exploration descriptive visuelle. Intégrez et justifiez les figures clés générées.*</span>
 <span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Profils d'Activité Journalière</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Profils et Distributions Caractéristiques</span></span>
 <span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-traffic-density</span></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Profil horaire moyen des déplacements (Vélos vs Bus)."</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-distribution-density</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Distribution ou profils caractéristiques de vos variables clés."</span></span>
 <span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser uv.plot_traffic_density() de votre module pour tracer la figure</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser vos fonctions personnalisées de votre module pour tracer la figure</span></span>
 <span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Commenter la figure et décrire vos observations ici</span><span class="co">]</span></span>
 <span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="fu">## Corrélations Globales</span></span>
 <span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
 <span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-correlation</span></span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Matrice de corrélation de Spearman entre variables."</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Matrice de corrélation de Spearman ou de Pearson entre variables."</span></span>
 <span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
 <span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser uv.plot_correlation_matrix() de votre module pour tracer la figure</span></span>
 <span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
@@ -1123,18 +1122,18 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
 <span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="fu"># Modélisation et Apprentissage {#sec-modelling}</span></span>
 <span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## Schéma Global du Pipeline de Données</span></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>Le pipeline complet intègre à la fois la branche analytique tabulaire (Machine Learning) et la branche d'analyse visuelle (Deep Learning CNN) :</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>Le pipeline complet intègre à la fois la branche analytique tabulaire (Machine Learning) et la branche d'analyse visuelle ou de signaux complexes (Deep Learning CNN) :</span>
 <span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="in">```mermaid</span></span>
 <span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>graph TD</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>    A[Données Capteurs Brutes CSV] --&gt;|Formatage &amp; Alignement| B(data_clean.clean_dates)</span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>    C[Données Météo &amp; Pollution] --&gt;|Imputation &amp; Interpolation| D(data_clean.impute_missing_values)</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>    A[Données Brutes Multi-Sources CSV/API] --&gt;|Formatage &amp; Alignement| B(data_clean.clean_dates)</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>    C[Données Externes Complémentaires] --&gt;|Imputation &amp; Interpolation| D(data_clean.impute_missing_values)</span>
 <span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>    B &amp; D --&gt;|Gestion Outliers| E[Jeu de données Propre &amp; Fusionné]</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>    E --&gt;|Extraction Temporelle| F[Feature Engineering]</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>    F --&gt;|Splits Temporels Chronologiques| G[Modèle Machine Learning Tabulaire]</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>    H[Flux Caméras Trafic en Temps Réel] --&gt;|Prétraitement d<span class="ot">'</span><span class="ss">images 64x64| I[Réseau Convolutif CNN TensorFlow]</span></span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="ss">    G --&gt;|Prédictions de Flux de Mobilité| J[Livrables &amp; Aide à la Décision Métropole]</span></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="ss">    I --&gt;|Détection de Congestion| J</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>    E --&gt;|Extraction Temporelle/Caractéristiques| F[Feature Engineering]</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>    F --&gt;|Splits Temporels ou Stratifiés| G[Modèle Machine Learning Tabulaire]</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>    H[Flux Multimédias Réels Images/Signaux] --&gt;|Prétraitement d<span class="ot">'</span><span class="ss">images/signaux| I[Réseau Convolutif CNN TensorFlow]</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="ss">    G --&gt;|Prédictions de la Problématique Métier| J[Livrables &amp; Aide à la Décision]</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="ss">    I --&gt;|Détection de Motifs Complexes| J</span></span>
 <span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span></span>
 <span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="ss">    style E fill:#e0f2fe,stroke:#0284c7,stroke-width:2px</span></span>
 <span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="ss">    style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px</span></span>
@@ -1142,63 +1141,63 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
 <span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="ss">    style I fill:#fef3c7,stroke:#d97706,stroke-width:2px</span></span>
 <span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
 <span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="ss">## Modélisation Tabulaire (Prédiction Vélos)</span></span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="ss">*À rédiger par les étudiants : Expliquez le choix de votre algorithme d</span><span class="ot">'</span>apprentissage supervisé (Forêt Aléatoire) et décrivez l<span class="ot">'</span><span class="ss">importance des variables explicatives.*</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="ss">## Modélisation Tabulaire (Machine Learning)</span></span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="ss">*À rédiger par les étudiants : Expliquez le choix de vos algorithmes d</span><span class="ot">'</span>apprentissage (supervisé ou non supervisé) et décrivez l<span class="ot">'</span><span class="ss">importance des variables explicatives.*</span></span>
 <span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="ss">[Détailler votre modélisation ici]</span></span>
 <span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="ss">### Travaux Pratiques de Modélisation Tabulaire</span></span>
 <span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="ss">{{&lt; include notebooks/03_modelisation_pred.qmd &gt;}}</span></span>
 <span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="ss">## Modélisation Vision (Analyse d</span><span class="ot">'</span>Images)</span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Expliquez l<span class="ot">'</span><span class="ss">intérêt de la brique de Deep Learning d</span><span class="ot">'</span>images pour classifier <span class="ot">le</span> trafic. Détaillez l<span class="ot">'</span><span class="ss">architecture de votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras (conv, pooling, dense, dropout, activation) et commentez les courbes d</span><span class="ot">'</span>apprentissage obtenues.*</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="ss">## Modélisation Vision / Deep Learning (Analyse d</span><span class="ot">'</span>Images ou Signaux)</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Expliquez l<span class="ot">'</span><span class="ss">intérêt de la brique de Deep Learning (images, signaux ou traitement de données structurées complexes) pour classifier ou enrichir vos prédictions. Détaillez l</span><span class="ot">'</span>architecture de votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras (conv, pooling, dense, dropout, activation) et commentez les courbes d<span class="ot">'</span><span class="ss">apprentissage obtenues.*</span></span>
 <span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>[Détailler votre architecture CNN et analyse ici]</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="ss">[Détailler votre architecture CNN et analyse ici]</span></span>
 <span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="co">### Travaux Pratiques de Vision par Ordinateur (CNN)</span></span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>{{&lt; include notebooks/<span class="bn">04_</span>vision_cnn_tf.qmd &gt;}}</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="ss">### Travaux Pratiques de Vision par Ordinateur (CNN)</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="ss">{{&lt; include notebooks/04_vision_cnn_tf.qmd &gt;}}</span></span>
 <span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="ss">---</span></span>
 <span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Évaluation Métrique et Validation {#sec-evaluation}</span></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="ss"># Évaluation Métrique et Validation {#sec-evaluation}</span></span>
 <span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="co">## Stratégie de Validation Chronologique</span></span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Expliquez pourquoi un découpage d<span class="ot">'</span><span class="ss">évaluation aléatoire classique violerait le principe de causalité temporelle et comment vous avez configuré une validation temporelle rigoureuse.*</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="ss">## Stratégie de Validation</span></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="ss">*À rédiger par les étudiants : Expliquez pourquoi le découpage d</span><span class="ot">'</span>évaluation choisi (ex: validation temporelle, stratifiée ou par groupe) est adapté à la structure de vos données pour éviter les fuites de données.*</span>
 <span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="ss">[Rédiger la section de validation ici]</span></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>[Rédiger la section de validation ici]</span>
 <span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="ss">## Résultats et Interprétation</span></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="ss">*À rédiger par les étudiants : Complétez le tableau d</span><span class="ot">'</span>évaluation ci-dessous en reportant vos résultats de modélisation.*</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="co">## Résultats et Interprétation</span></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Complétez <span class="ot">le</span> tableau d<span class="ot">'</span><span class="ss">évaluation ci-dessous en reportant vos résultats de modélisation.*</span></span>
 <span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>| Modèle | MAE (cyclistes) | RMSE (cyclistes) | <span class="dt">$R</span>^<span class="dv">2</span>$ (%) |</span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>|--------|-----------------|------------------|-----------|</span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>| Baseline Historique | [À compléter] | [À compléter] | [À compléter] |</span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>| *<span class="dt">*Forêt</span> Aléatoire*<span class="ot">*</span> | *<span class="ot">*</span>[À compléter]*<span class="ot">*</span> | *<span class="ot">*</span>[À compléter]*<span class="ot">*</span> | *<span class="ot">*</span>[À compléter]*<span class="ot">*</span> |</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="ss">| Modèle | Métrique 1 (ex: MAE / Précision) | Métrique 2 (ex: RMSE / F1-Score) | R² / Score (%) |</span></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="ss">|--------|-----------------|------------------|-----------|</span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="ss">| Baseline (ex: Naïve / Moyenne) | [À compléter] | [À compléter] | [À compléter] |</span></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="ss">| **Modèle Choisi** | **[À compléter]** | **[À compléter]** | **[À compléter]** |</span></span>
 <span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>[Interpréter et comparer les métriques d<span class="ot">'</span><span class="ss">erreur calculées ici]</span></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="ss">[Interpréter et comparer les métriques d</span><span class="ot">'</span>erreur calculées ici]</span>
 <span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="ss">---</span></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="ss"># Data Storytelling et Communication {#sec-storytelling}</span></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Storytelling et Communication {#sec-storytelling}</span></span>
 <span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="ss">## Recommandations pour la Métropole</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="ss">*À rédiger par les étudiants : Formulez des recommandations stratégiques, opérationnelles et innovantes pour aider les décideurs publics sur la base de vos découvertes analytiques et prédictives.*</span></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="co">## Recommandations Stratégiques / Métier</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Formulez des recommandations stratégiques, opérationnelles et innovantes basées sur vos découvertes analytiques et prédictives pour guider les décideurs.*</span>
 <span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="ss">[Rédiger vos recommandations ici]</span></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>[Rédiger vos recommandations ici]</span>
 <span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="ss">## Limites et Perspectives</span></span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="ss">*À rédiger par les étudiants : Identifiez honnêtement les biais ou limites de votre approche et proposez des pistes d</span><span class="ot">'</span>amélioration futures (ex: intégration de données externes réelles, modélisation plus poussée).*</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="co">## Limites et Perspectives</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Identifiez honnêtement les biais ou limites de votre approche et proposez des pistes d<span class="ot">'</span><span class="ss">amélioration futures (ex: intégration de données externes réelles, modélisation plus poussée).*</span></span>
 <span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>[Rédiger les limites et perspectives ici]</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="ss">[Rédiger les limites et perspectives ici]</span></span>
 <span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>Ce document dynamique a été compilé en Quarto [<span class="dt">@quarto2024</span>].</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="ss">Ce document dynamique a été compilé en Quarto [@quarto2024].</span></span>
 <span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="ss">---</span></span>
 <span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="co"># Bibliographie {.unnumbered}</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="ss"># Bibliographie {.unnumbered}</span></span>
 <span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>::: {<span class="co">#refs}</span></span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="ss">::: {#refs}</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="ss">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

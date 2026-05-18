@@ -1,4 +1,4 @@
-# Mon Super Projet Data Science
+# Mon Projet Data Science
 Étudiant(e) 1 : \[Insérer Prénom Nom\], Étudiant(e) 2 : \[Insérer Prénom
 Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
 2026-05-18
@@ -23,27 +23,27 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
   (Squelette
   Étudiant)](#bar_chart-jalon-1--analyse-exploratoire-des-données-eda--visualisation-squelette-étudiant)
 - [Visualisation Multidimensionnelle (Insights)](#sec-viz)
-  - [Profils d’Activité Journalière](#profils-dactivité-journalière)
+  - [Profils et Distributions
+    Caractéristiques](#profils-et-distributions-caractéristiques)
   - [Corrélations Globales](#corrélations-globales)
 - [Modélisation et Apprentissage](#sec-modelling)
   - [Schéma Global du Pipeline de
     Données](#schéma-global-du-pipeline-de-données)
-  - [Modélisation Tabulaire (Prédiction
-    Vélos)](#modélisation-tabulaire-prédiction-vélos)
+  - [Modélisation Tabulaire (Machine
+    Learning)](#modélisation-tabulaire-machine-learning)
 - [🧠 Jalon 2 : Modélisation Prédictive & Apprentissage (Squelette
   Étudiant)](#brain-jalon-2--modélisation-prédictive--apprentissage-squelette-étudiant)
-  - [Modélisation Vision (Analyse
-    d’Images)](#modélisation-vision-analyse-dimages)
+  - [Modélisation Vision / Deep Learning (Analyse d’Images ou
+    Signaux)](#modélisation-vision--deep-learning-analyse-dimages-ou-signaux)
 - [📷 Jalon 2 : Brique de Vision par Ordinateur (CNN & TensorFlow)
   (Squelette
   Étudiant)](#camera-jalon-2--brique-de-vision-par-ordinateur-cnn--tensorflow-squelette-étudiant)
 - [Évaluation Métrique et Validation](#sec-evaluation)
-  - [Stratégie de Validation
-    Chronologique](#stratégie-de-validation-chronologique)
+  - [Stratégie de Validation](#stratégie-de-validation)
   - [Résultats et Interprétation](#résultats-et-interprétation)
 - [Data Storytelling et Communication](#sec-storytelling)
-  - [Recommandations pour la
-    Métropole](#recommandations-pour-la-métropole)
+  - [Recommandations Stratégiques /
+    Métier](#recommandations-stratégiques--métier)
   - [Limites et Perspectives](#limites-et-perspectives)
 - [Bibliographie](#bibliographie)
 
@@ -51,32 +51,30 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
 
 [![](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml)
 
-*À rédiger par les étudiants : Présentez ici le contexte global du
-projet de transition écologique de la métropole, les enjeux sociétaux de
-la mobilité active, les questions scientifiques soulevées et la
-problématique métier que vous cherchez à résoudre.*
+*À rédiger par les étudiants : Présentez ici le contexte global de votre
+projet, la problématique métier que vous cherchez à résoudre, les
+questions scientifiques soulevées et les opportunités d’aide à la
+décision sur la base de vos données.*
 
 ## Contexte du Projet
 
 *À rédiger par les étudiants — Pistes de réflexion :* - *Quels sont les
-objectifs environnementaux globaux de la métropole en matière de
-réduction d’empreinte carbone et de pollution ?* - *En quoi la promotion
-de la mobilité active (vélo) et des transports en commun (bus)
-constitue-t-elle un levier d’action stratégique ?* - *Pourquoi l’analyse
-quantitative des données de trafic est-elle indispensable pour piloter
-les infrastructures urbaines ?*
+objectifs globaux et le domaine d’étude de votre projet ?* - *En quoi ce
+sujet de recherche est-il pertinent et stratégique ?* - *Pourquoi
+l’analyse quantitative de ce jeu de données est-elle indispensable pour
+répondre à votre problématique ?*
 
 \[Rédiger votre paragraphe de contexte ici\]
 
 ## Objectif Analytique
 
 *À rédiger par les étudiants — Pistes de réflexion :* - *Quelles sont
-les variables cibles principales (ex: bike_count) et la tâche prédictive
-globale ?* - *Comment le couplage de données physiques (météo,
-pollution, trafic) et d’images (brique de vision CNN) permet-il
-d’adopter une approche multi-sources ?* - *Quels sont les livrables
-analytiques attendus pour aider la métropole dans ses prises de
-décisions stratégiques ?*
+les variables cibles principales et la tâche globale de modélisation
+(classification, régression, clustering, etc.) ?* - *Comment le couplage
+de données multi-sources et l’intégration de différents types de données
+(tabulaires, images, signaux, etc.) enrichissent-ils l’analyse ?* -
+*Quels sont les livrables analytiques attendus pour répondre à votre
+problématique et guider les prises de décisions ?*
 
 \[Rédiger votre paragraphe d’objectifs ici\]
 
@@ -87,14 +85,14 @@ décisions stratégiques ?*
 Le succès de tout projet de Data Science repose sur la qualité de la
 préparation des données ([McKinney 2020](#ref-pandas2020)). Cette
 section documente l’audit de qualité et les étapes de nettoyage
-appliquées au jeu de données de capteurs brut.
+appliquées à vos jeux de données bruts.
 
 ## Audit de Qualité
 
-*À rédiger par les étudiants : Présentez un audit critique complet du
-fichier de données brutes. Indiquez la liste des anomalies physiques et
-typologiques détectées (formats de dates, outliers physiques, taux de
-valeurs manquantes).*
+*À rédiger par les étudiants : Présentez un audit critique complet de
+vos fichiers de données brutes. Indiquez la liste des anomalies
+physiques et typologiques détectées (formats de dates hétérogènes,
+outliers physiques, taux de valeurs manquantes, etc.).*
 
 \[Rédiger votre audit de données ici\]
 
@@ -102,8 +100,8 @@ valeurs manquantes).*
 
 *À rédiger par les étudiants : Justifiez et détaillez l’enchaînement de
 vos opérations de traitement (uniformisation des dates, masquage des
-outliers physiques par NaN, imputation temporelle). Faites référence aux
-fonctions correspondantes de votre module `src/data_clean.py`.*
+outliers, imputation, etc.). Faites référence aux fonctions
+correspondantes de votre module `src/data_clean.py`.*
 
 \[Rédiger la justification méthodologique ici\]
 
@@ -155,8 +153,8 @@ Enregistrez votre DataFrame nettoyé dans
 # Analyse Exploratoire des Données (EDA)
 
 Dans cette section, nous analysons les relations statistiques
-fondamentales qui régissent la mobilité active (vélos) et les transports
-en commun (bus) au sein de la métropole.
+fondamentales qui régissent votre domaine d’étude au sein du jeu de
+données.
 
 ## Statistiques Descriptives
 
@@ -168,8 +166,9 @@ rapide de vos variables nettoyées.*
 ## Ingénierie de Variables (Feature Engineering)
 
 *À rédiger par les étudiants : Expliquez l’intérêt mathématique et
-l’impact sur les modèles prédictifs d’extraire des composantes
-temporelles cycliques (comme l’encodage sinus / cosinus des heures).*
+l’impact sur les modèles prédictifs d’extraire des caractéristiques
+dérivées (ex: variables cycliques temporelles, ratios financiers, ratios
+physiques, etc.).*
 
 \[Rédiger votre explication de l’ingénierie de variables ici\]
 
@@ -222,20 +221,20 @@ le comportement de vos variables.
 # Visualisation Multidimensionnelle (Insights)
 
 Nous présentons ici les résultats visuels clés permettant de dégager des
-insights exploitables pour les décideurs publics, en s’appuyant sur
-notre module `src/utils_viz.py`.
+insights exploitables pour les décideurs, en s’appuyant sur notre module
+`src/utils_viz.py`.
 
 *À rédiger par les étudiants : Présentez et commentez en détail vos 3 à
 5 insights majeurs découverts lors de l’exploration descriptive
 visuelle. Intégrez et justifiez les figures clés générées.*
 
-## Profils d’Activité Journalière
+## Profils et Distributions Caractéristiques
 
 ``` python
-#| label: fig-traffic-density
-#| fig-cap: "Profil horaire moyen des déplacements (Vélos vs Bus)."
+#| label: fig-distribution-density
+#| fig-cap: "Distribution ou profils caractéristiques de vos variables clés."
 #| echo: false
-# TODO: Utiliser uv.plot_traffic_density() de votre module pour tracer la figure
+# TODO: Utiliser vos fonctions personnalisées de votre module pour tracer la figure
 ```
 
 \[Commenter la figure et décrire vos observations ici\]
@@ -244,7 +243,7 @@ visuelle. Intégrez et justifiez les figures clés générées.*
 
 ``` python
 #| label: fig-correlation
-#| fig-cap: "Matrice de corrélation de Spearman entre variables."
+#| fig-cap: "Matrice de corrélation de Spearman ou de Pearson entre variables."
 #| echo: false
 # TODO: Utiliser uv.plot_correlation_matrix() de votre module pour tracer la figure
 ```
@@ -258,19 +257,19 @@ visuelle. Intégrez et justifiez les figures clés générées.*
 ## Schéma Global du Pipeline de Données
 
 Le pipeline complet intègre à la fois la branche analytique tabulaire
-(Machine Learning) et la branche d’analyse visuelle (Deep Learning CNN)
-:
+(Machine Learning) et la branche d’analyse visuelle ou de signaux
+complexes (Deep Learning CNN) :
 
 ``` mermaid
 graph TD
-    A[Données Capteurs Brutes CSV] -->|Formatage & Alignement| B(data_clean.clean_dates)
-    C[Données Météo & Pollution] -->|Imputation & Interpolation| D(data_clean.impute_missing_values)
+    A[Données Brutes Multi-Sources CSV/API] -->|Formatage & Alignement| B(data_clean.clean_dates)
+    C[Données Externes Complémentaires] -->|Imputation & Interpolation| D(data_clean.impute_missing_values)
     B & D -->|Gestion Outliers| E[Jeu de données Propre & Fusionné]
-    E -->|Extraction Temporelle| F[Feature Engineering]
-    F -->|Splits Temporels Chronologiques| G[Modèle Machine Learning Tabulaire]
-    H[Flux Caméras Trafic en Temps Réel] -->|Prétraitement d'images 64x64| I[Réseau Convolutif CNN TensorFlow]
-    G -->|Prédictions de Flux de Mobilité| J[Livrables & Aide à la Décision Métropole]
-    I -->|Détection de Congestion| J
+    E -->|Extraction Temporelle/Caractéristiques| F[Feature Engineering]
+    F -->|Splits Temporels ou Stratifiés| G[Modèle Machine Learning Tabulaire]
+    H[Flux Multimédias Réels Images/Signaux] -->|Prétraitement d'images/signaux| I[Réseau Convolutif CNN TensorFlow]
+    G -->|Prédictions de la Problématique Métier| J[Livrables & Aide à la Décision]
+    I -->|Détection de Motifs Complexes| J
     
     style E fill:#e0f2fe,stroke:#0284c7,stroke-width:2px
     style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
@@ -278,11 +277,11 @@ graph TD
     style I fill:#fef3c7,stroke:#d97706,stroke-width:2px
 ```
 
-## Modélisation Tabulaire (Prédiction Vélos)
+## Modélisation Tabulaire (Machine Learning)
 
-*À rédiger par les étudiants : Expliquez le choix de votre algorithme
-d’apprentissage supervisé (Forêt Aléatoire) et décrivez l’importance des
-variables explicatives.*
+*À rédiger par les étudiants : Expliquez le choix de vos algorithmes
+d’apprentissage (supervisé ou non supervisé) et décrivez l’importance
+des variables explicatives.*
 
 \[Détailler votre modélisation ici\]
 
@@ -323,13 +322,14 @@ Mean Squared Error) - **R²** (Coefficient de détermination)
 **À faire par l’étudiant :** Extrayez et affichez l’importance relative
 de chaque caractéristique prédictive.
 
-## Modélisation Vision (Analyse d’Images)
+## Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)
 
 *À rédiger par les étudiants : Expliquez l’intérêt de la brique de Deep
-Learning d’images pour classifier le trafic. Détaillez l’architecture de
-votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras
-(conv, pooling, dense, dropout, activation) et commentez les courbes
-d’apprentissage obtenues.*
+Learning (images, signaux ou traitement de données structurées
+complexes) pour classifier ou enrichir vos prédictions. Détaillez
+l’architecture de votre réseau de neurones convolutif (CNN) conçu sous
+TensorFlow/Keras (conv, pooling, dense, dropout, activation) et
+commentez les courbes d’apprentissage obtenues.*
 
 \[Détailler votre architecture CNN et analyse ici\]
 
@@ -371,12 +371,12 @@ environ 5 époques.
 
 # Évaluation Métrique et Validation
 
-## Stratégie de Validation Chronologique
+## Stratégie de Validation
 
-*À rédiger par les étudiants : Expliquez pourquoi un découpage
-d’évaluation aléatoire classique violerait le principe de causalité
-temporelle et comment vous avez configuré une validation temporelle
-rigoureuse.*
+*À rédiger par les étudiants : Expliquez pourquoi le découpage
+d’évaluation choisi (ex: validation temporelle, stratifiée ou par
+groupe) est adapté à la structure de vos données pour éviter les fuites
+de données.*
 
 \[Rédiger la section de validation ici\]
 
@@ -385,10 +385,10 @@ rigoureuse.*
 *À rédiger par les étudiants : Complétez le tableau d’évaluation
 ci-dessous en reportant vos résultats de modélisation.*
 
-| Modèle | MAE (cyclistes) | RMSE (cyclistes) | $R^2$ (%) |
+| Modèle | Métrique 1 (ex: MAE / Précision) | Métrique 2 (ex: RMSE / F1-Score) | R² / Score (%) |
 |----|----|----|----|
-| Baseline Historique | \[À compléter\] | \[À compléter\] | \[À compléter\] |
-| **Forêt Aléatoire** | **\[À compléter\]** | **\[À compléter\]** | **\[À compléter\]** |
+| Baseline (ex: Naïve / Moyenne) | \[À compléter\] | \[À compléter\] | \[À compléter\] |
+| **Modèle Choisi** | **\[À compléter\]** | **\[À compléter\]** | **\[À compléter\]** |
 
 \[Interpréter et comparer les métriques d’erreur calculées ici\]
 
@@ -396,11 +396,11 @@ ci-dessous en reportant vos résultats de modélisation.*
 
 # Data Storytelling et Communication
 
-## Recommandations pour la Métropole
+## Recommandations Stratégiques / Métier
 
 *À rédiger par les étudiants : Formulez des recommandations
-stratégiques, opérationnelles et innovantes pour aider les décideurs
-publics sur la base de vos découvertes analytiques et prédictives.*
+stratégiques, opérationnelles et innovantes basées sur vos découvertes
+analytiques et prédictives pour guider les décideurs.*
 
 \[Rédiger vos recommandations ici\]
 
@@ -420,7 +420,8 @@ Ce document dynamique a été compilé en Quarto ([Team
 
 # Bibliographie
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-pandas2020" class="csl-entry">
 
@@ -432,7 +433,7 @@ Pandas, NumPy, and IPython*. O’Reilly Media.
 <div id="ref-quarto2024" class="csl-entry">
 
 Team, Quarto Development. 2024. “Quarto Dynamic Publishing System:
-Collaborative Scientific and Technical Publishing.”
+Collaborative Scientific and Technical Publishing.” 2024.
 <https://quarto.org/>.
 
 </div>

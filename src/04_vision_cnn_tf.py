@@ -1,5 +1,9 @@
 import os, sys
-sys.path.append('/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet')
+sys.path.append('/home/aptitek/Documents/Aptispace/datascience/lab/projet')
+
+# Installation automatique des dépendances requises dans le noyau Jupyter actuel
+# %pip install -r ../requirements.txt
+
 
 import os
 import numpy as np

@@ -1,3 +1,8 @@
+```{python}
+# Installation automatique des dépendances requises dans le noyau Jupyter actuel
+%pip install -r ../requirements.txt
+```
+
 # 📊 Jalon 1 : Analyse Exploratoire des Données (EDA) & Visualisation (Squelette Étudiant)
 
 Ce notebook est dédié à la découverte de relations clés et à l'analyse visuelle de nos données. À partir du jeu de données propre généré précédemment, nous allons enrichir nos variables explicatives et appeler les fonctions de notre module de visualisation `src.utils_viz` pour générer des graphiques professionnels.

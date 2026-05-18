@@ -158,7 +158,7 @@ pip install -r requirements.txt
 Pour lier votre environnement virtuel à vos notebooks Jupyter :
 
 ``` bash
-python -m ipykernel install --user --name=venv-mobilite --display-name="Python (Projet Mobilité)"
+python -m ipykernel install --user --name=venv-projet --display-name="Python (Projet Data Science)"
 ```
 
 ------------------------------------------------------------------------

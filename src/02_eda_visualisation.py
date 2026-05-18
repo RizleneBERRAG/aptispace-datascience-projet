@@ -1,5 +1,9 @@
 import os, sys
-sys.path.append('/home/runner/work/aptispace-datascience-projet/aptispace-datascience-projet')
+sys.path.append('/home/aptitek/Documents/Aptispace/datascience/lab/projet')
+
+# Installation automatique des dépendances requises dans le noyau Jupyter actuel
+# %pip install -r ../requirements.txt
+
 
 import os
 import sys
@@ -14,7 +18,7 @@ from src import utils_viz as uv
 
 # Activation de la charte graphique personnalisée du projet
 uv.set_custom_style(theme='light')
-%matplotlib inline
+# %matplotlib inline
 
 
 # Chargement du dataset propre

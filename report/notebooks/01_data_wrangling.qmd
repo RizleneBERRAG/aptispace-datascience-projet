@@ -1,3 +1,8 @@
+```{python}
+# Installation automatique des dépendances requises dans le noyau Jupyter actuel
+%pip install -r ../requirements.txt
+```
+
 # 🧹 Jalon 1 : Data Wrangling & Nettoyage (Squelette Étudiant)
 
 Ce notebook correspond à la première étape du **Jalon 1**. L'objectif est d'importer le jeu de données brut (`data/raw/raw_data_sample.csv`), d'effectuer un audit de sa qualité (données manquantes, anomalies physiques, formats de dates hétérogènes) et de le nettoyer à l'aide de votre package personnalisé `src.data_clean`.

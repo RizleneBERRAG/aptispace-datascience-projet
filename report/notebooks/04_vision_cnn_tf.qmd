@@ -1,3 +1,8 @@
+```{python}
+# Installation automatique des dépendances requises dans le noyau Jupyter actuel
+%pip install -r ../requirements.txt
+```
+
 # 📷 Jalon 2 : Brique de Vision par Ordinateur (CNN & TensorFlow) (Squelette Étudiant)
 
 Ce notebook est dédié à la brique d'analyse d'images du **Jalon 2**. L'objectif est de concevoir un Réseau de Neurones Convolutif (CNN) sous TensorFlow/Keras pour classifier des motifs géométriques simples (Classe 0: Cercle vs Classe 1: Multiples Rectangles).
