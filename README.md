@@ -11,8 +11,20 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
   - [Audit de Qualité](#audit-de-qualité)
   - [Algorithme de Nettoyage](#algorithme-de-nettoyage)
   - [Travaux Pratiques de Wrangling](#travaux-pratiques-de-wrangling)
-- [🧹 Jalon 1 : Data Wrangling & Nettoyage (Squelette
-  Étudiant)](#broom-jalon-1--data-wrangling--nettoyage-squelette-étudiant)
+- [01 — Acquisition, compréhension et préparation des
+  données](#01--acquisition-compréhension-et-préparation-des-données)
+  - [Objectif du notebook](#objectif-du-notebook)
+  - [Structure du dataset](#structure-du-dataset)
+  - [Chargement des activités](#chargement-des-activités)
+  - [Chargement des variables](#chargement-des-variables)
+  - [Reconstruction des jeux train et
+    test](#reconstruction-des-jeux-train-et-test)
+  - [Vérifications qualité](#vérifications-qualité)
+  - [Sauvegarde des données tabulaires
+    propres](#sauvegarde-des-données-tabulaires-propres)
+  - [Préparation des signaux
+    inertiels](#préparation-des-signaux-inertiels)
+  - [Conclusion du wrangling](#conclusion-du-wrangling)
 - [Analyse Exploratoire des Données (EDA)](#sec-eda)
   - [Statistiques Descriptives](#statistiques-descriptives)
   - [Ingénierie de Variables (Feature
@@ -107,46 +119,97 @@ correspondantes de votre module `src/data_clean.py`.*
 
 ## Travaux Pratiques de Wrangling
 
-# 🧹 Jalon 1 : Data Wrangling & Nettoyage (Squelette Étudiant)
+# 01 — Acquisition, compréhension et préparation des données
 
-Ce notebook correspond à la première étape du **Jalon 1**. L’objectif
-est d’importer le jeu de données brut (`data/raw/raw_data_sample.csv`),
-d’effectuer un audit de sa qualité (données manquantes, anomalies
-physiques, formats de dates hétérogènes) et de le nettoyer à l’aide de
-votre package personnalisé `src.data_clean`.
+Ce notebook correspond à la première étape du projet : récupérer les
+données, comprendre leur structure et produire des fichiers propres
+utilisables pour l’analyse exploratoire, le Machine Learning et le Deep
+Learning.
 
-### 1. Importation des packages et chargement des données
+Le sujet étudié est la reconnaissance d’activité humaine à partir des
+capteurs d’un smartphone.
 
-### 2. Audit initial des données
+## Objectif du notebook
 
-**À faire par l’étudiant :** Explorez le dataset brut pour évaluer sa
-structure : - Quelles sont les dimensions du dataset ? - Quels sont les
-types de données par colonne ? - Reste-t-il des valeurs nulles ? Quel
-est le taux de valeurs manquantes par variable ? - Y a-t-il des doublons
-?
+L’objectif est de préparer le dataset **Human Activity Recognition Using
+Smartphones**.
 
-### 3. Nettoyage et uniformisation des Dates
+Nous allons :
 
-**À faire par l’étudiant :** Appliquez la fonction `clean_dates` de
-votre module `src.data_clean` pour convertir la colonne `timestamp` en
-type Datetime uniforme.
+- vérifier la présence des fichiers bruts ;
+- charger les labels des activités ;
+- charger les noms des variables ;
+- reconstruire les jeux de données `train` et `test` ;
+- fusionner les données tabulaires avec les labels ;
+- sauvegarder des fichiers propres dans `data/processed` ;
+- préparer les signaux inertiels pour la partie Deep Learning.
 
-### 4. Identification et Traitement des Outliers (Anomalies physiques)
+## Structure du dataset
 
-**À faire par l’étudiant :** Analysez les valeurs de la colonne `value`
-et appliquez votre fonction `handle_outliers` pour filtrer les valeurs
-physiques aberrantes (inférieures à 0 ou supérieures à 100).
+Le dataset contient plusieurs fichiers importants :
 
-### 5. Imputation des valeurs manquantes
+- `activity_labels.txt` : correspondance entre identifiant et nom
+  d’activité ;
+- `features.txt` : noms des 561 variables numériques ;
+- `X_train.txt` et `X_test.txt` : variables numériques déjà préparées ;
+- `y_train.txt` et `y_test.txt` : activité associée à chaque ligne ;
+- `subject_train.txt` et `subject_test.txt` : identifiant de la personne
+  observée ;
+- `Inertial Signals` : signaux temporels utilisés pour le Deep Learning.
 
-**À faire par l’étudiant :** Appliquez la fonction
-`impute_missing_values` pour remplir les NaNs issus du chargement
-initial ou du nettoyage des anomalies.
+## Chargement des activités
 
-### 6. Sauvegarde des données propres
+Le problème est une classification supervisée avec six activités
+humaines.
 
-Enregistrez votre DataFrame nettoyé dans
-`data/processed/cleaned_data_sample.csv`.
+## Chargement des variables
+
+Le dataset tabulaire contient 561 variables numériques extraites des
+signaux du smartphone.
+
+Certaines variables ont des noms dupliqués. Pour éviter les problèmes
+dans Pandas, nous rendons les noms de colonnes uniques.
+
+## Reconstruction des jeux train et test
+
+Nous reconstruisons un tableau complet en ajoutant :
+
+- le split `train` ou `test` ;
+- l’identifiant du sujet ;
+- l’identifiant de l’activité ;
+- le libellé de l’activité ;
+- les 561 variables numériques.
+
+## Vérifications qualité
+
+Nous vérifions la présence de valeurs manquantes et la cohérence des
+activités.
+
+## Sauvegarde des données tabulaires propres
+
+Les données propres sont sauvegardées dans `data/processed`.
+
+## Préparation des signaux inertiels
+
+Pour la partie Deep Learning, nous utilisons les signaux temporels
+présents dans les dossiers `Inertial Signals`.
+
+Chaque observation contient :
+
+- 128 pas de temps ;
+- 9 signaux capteurs ;
+- une activité associée.
+
+## Conclusion du wrangling
+
+À l’issue de cette étape, nous disposons de deux types de données
+propres :
+
+1.  des données tabulaires pour le Machine Learning classique ;
+2.  des signaux temporels pour le Deep Learning.
+
+La suite du projet consistera à explorer ces données afin de comprendre
+la répartition des activités et les différences entre les mouvements.
 
 ------------------------------------------------------------------------
 

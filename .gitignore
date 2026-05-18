@@ -39,3 +39,17 @@ Thumbs.db
 
 *.pdf
 *.html
+# Données brutes et fichiers lourds du projet HAR
+data/raw/uci_har_dataset.zip
+data/raw/UCI HAR Dataset.zip
+data/raw/UCI HAR Dataset/
+data/raw/UCI HAR Dataset.names
+
+# Données préparées générées automatiquement
+data/processed/har_train.csv
+data/processed/har_test.csv
+data/processed/har_full.csv
+data/processed/har_signals_train.npz
+data/processed/har_signals_test.npz
+data/processed/activity_labels.csv
+data/processed/features.csv

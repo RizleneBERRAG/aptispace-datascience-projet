@@ -1,28 +1,28 @@
 === STDOUT ===
-Libraries importées avec succès ! Prêt à démarrer le Wrangling.
-✅ Données chargées avec succès. Dimensions : (18, 3)
-<class 'pandas.DataFrame'>
-RangeIndex: 18 entries, 0 to 17
-Data columns (total 3 columns):
- #   Column     Non-Null Count  Dtype  
----  ------     --------------  -----  
- 0   timestamp  18 non-null     str    
- 1   value      15 non-null     float64
- 2   category   18 non-null     str    
-dtypes: float64(1), str(2)
-memory usage: 564.0 bytes
-NaNs: timestamp    0
-value        3
-category     0
-dtype: int64
-Doublons: 0
-📅 Dates nettoyées dans 'timestamp'. Incohérences converties en NaNs : 6
-🚨 Anomalies (outliers) détectées dans 'value' : 2 remplacées par NaN
-🔧 Valeurs manquantes imputées avec la méthode 'interpolate' pour les colonnes : ['value']
-Valeurs manquantes finales : timestamp    6
-value        0
-category     0
-dtype: int64
-💾 Données propres sauvegardées dans : data/processed/cleaned_data_sample.csv
+Dossier brut existe : True
+Dossier processed existe : True
+data/raw/UCI HAR Dataset/activity_labels.txt OK
+data/raw/UCI HAR Dataset/features.txt OK
+data/raw/UCI HAR Dataset/train/X_train.txt OK
+data/raw/UCI HAR Dataset/train/y_train.txt OK
+data/raw/UCI HAR Dataset/train/subject_train.txt OK
+data/raw/UCI HAR Dataset/test/X_test.txt OK
+data/raw/UCI HAR Dataset/test/y_test.txt OK
+data/raw/UCI HAR Dataset/test/subject_test.txt OK
+Nombre de variables : 561
+Colonnes uniques : True
+Train shape : (7352, 565)
+Test shape  : (2947, 565)
+Full shape  : (10299, 565)
+Valeurs manquantes train : 0
+Valeurs manquantes test  : 0
+Valeurs manquantes full  : 0
+
+Répartition des activités :
+Fichiers tabulaires sauvegardés.
+Signaux train : (7352, 128, 9)
+Signaux test  : (2947, 128, 9)
+Nombre de signaux : 9
+Fichiers signaux sauvegardés.
 
 === STDERR ===

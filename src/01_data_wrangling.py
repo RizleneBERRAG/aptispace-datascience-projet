@@ -1,59 +1,175 @@
 import os, sys
 sys.path.append('/workspaces/aptispace-datascience-projet')
 
-# Installation automatique des dépendances requises dans le noyau Jupyter actuel
-# %pip install -r ../requirements.txt
-
-
-import os
-import sys
+from pathlib import Path
 import pandas as pd
 import numpy as np
 
-# Ajout du dossier parent au chemin de recherche de modules pour importer 'src'
-sys.path.append(os.path.abspath('..'))
-from src import data_clean as dc
+RAW_DIR = Path("data/raw/UCI HAR Dataset")
+PROCESSED_DIR = Path("data/processed")
 
-print("Libraries importées avec succès ! Prêt à démarrer le Wrangling.")
+print("Dossier brut existe :", RAW_DIR.exists())
+print("Dossier processed existe :", PROCESSED_DIR.exists())
 
+required_files = [
+    RAW_DIR / "activity_labels.txt",
+    RAW_DIR / "features.txt",
+    RAW_DIR / "train" / "X_train.txt",
+    RAW_DIR / "train" / "y_train.txt",
+    RAW_DIR / "train" / "subject_train.txt",
+    RAW_DIR / "test" / "X_test.txt",
+    RAW_DIR / "test" / "y_test.txt",
+    RAW_DIR / "test" / "subject_test.txt",
+]
 
-# Chargement du dataset brut avec votre fonction load_raw_data
-raw_data_path = 'data/raw/raw_data_sample.csv'
-df_raw = dc.load_raw_data(raw_data_path)
+for file in required_files:
+    print(file, "OK" if file.exists() else "MANQUANT")
 
-# Affichage des premières lignes pour inspection visuelle
-df_raw.head()
+activity_labels = pd.read_csv(
+    RAW_DIR / "activity_labels.txt",
+    sep=r"\s+",
+    header=None,
+    names=["activity_id", "activity"]
+)
 
+activity_labels
 
-# Indication : utilisez df_raw.info(), df_raw.isnull().sum() et df_raw.duplicated().sum()
-df_raw.info()
-print("NaNs:", df_raw.isnull().sum())
-print("Doublons:", df_raw.duplicated().sum())
+features = pd.read_csv(
+    RAW_DIR / "features.txt",
+    sep=r"\s+",
+    header=None,
+    names=["feature_id", "feature_name"]
+)
 
+print("Nombre de variables :", len(features))
+features.head()
 
-# Appliquez votre fonction dc.clean_dates() sur df_raw
-df_clean = dc.clean_dates(df_raw, 'timestamp')
-df_clean.head()
+def make_unique_columns(columns):
+    counts = {}
+    unique = []
 
+    for col in columns:
+        if col in counts:
+            counts[col] += 1
+            unique.append(f"{col}_{counts[col]}")
+        else:
+            counts[col] = 0
+            unique.append(col)
 
-# Affichez le résumé statistique de df_clean pour repérer les anomalies
-df_clean.describe()
+    return unique
 
+features["feature_name"] = make_unique_columns(features["feature_name"].tolist())
 
-# Appliquez votre fonction dc.handle_outliers() avec l'intervalle plausible [0.0, 100.0]
-df_no_outliers = dc.handle_outliers(df_clean, ['value'], 0.0, 100.0)
-df_no_outliers.describe()
+print("Colonnes uniques :", features["feature_name"].is_unique)
 
+def load_split(split_name):
+    split_dir = RAW_DIR / split_name
 
-# Appliquez votre fonction dc.impute_missing_values() avec la méthode d'interpolation
-df_final = dc.impute_missing_values(df_no_outliers, ['value'], 'interpolate')
+    X = pd.read_csv(
+        split_dir / f"X_{split_name}.txt",
+        sep=r"\s+",
+        header=None
+    )
+    X.columns = features["feature_name"].tolist()
 
-# Validation finale : vérifiez qu'il ne reste aucune valeur manquante
-print("Valeurs manquantes finales :", df_final.isnull().sum())
+    y = pd.read_csv(
+        split_dir / f"y_{split_name}.txt",
+        sep=r"\s+",
+        header=None,
+        names=["activity_id"]
+    )
 
+    subjects = pd.read_csv(
+        split_dir / f"subject_{split_name}.txt",
+        sep=r"\s+",
+        header=None,
+        names=["subject_id"]
+    )
 
-# Sauvegarde
-processed_path = 'data/processed/cleaned_data_sample.csv'
-df_final.to_csv(processed_path, index=False)
-print(f"💾 Données propres sauvegardées dans : {processed_path}")
+    meta = pd.concat([subjects, y], axis=1)
+    meta = meta.merge(activity_labels, on="activity_id", how="left")
+    meta.insert(0, "split", split_name)
 
+    df = pd.concat([meta, X], axis=1)
+    return df
+
+train_df = load_split("train")
+test_df = load_split("test")
+full_df = pd.concat([train_df, test_df], ignore_index=True)
+
+print("Train shape :", train_df.shape)
+print("Test shape  :", test_df.shape)
+print("Full shape  :", full_df.shape)
+
+full_df.head()
+
+print("Valeurs manquantes train :", train_df.isna().sum().sum())
+print("Valeurs manquantes test  :", test_df.isna().sum().sum())
+print("Valeurs manquantes full  :", full_df.isna().sum().sum())
+
+print("\nRépartition des activités :")
+full_df["activity"].value_counts()
+
+PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+
+activity_labels.to_csv(PROCESSED_DIR / "activity_labels.csv", index=False)
+features.to_csv(PROCESSED_DIR / "features.csv", index=False)
+train_df.to_csv(PROCESSED_DIR / "har_train.csv", index=False)
+test_df.to_csv(PROCESSED_DIR / "har_test.csv", index=False)
+full_df.to_csv(PROCESSED_DIR / "har_full.csv", index=False)
+
+print("Fichiers tabulaires sauvegardés.")
+
+def load_inertial_signals(split_name):
+    signal_dir = RAW_DIR / split_name / "Inertial Signals"
+
+    signal_files = [
+        f"body_acc_x_{split_name}.txt",
+        f"body_acc_y_{split_name}.txt",
+        f"body_acc_z_{split_name}.txt",
+        f"body_gyro_x_{split_name}.txt",
+        f"body_gyro_y_{split_name}.txt",
+        f"body_gyro_z_{split_name}.txt",
+        f"total_acc_x_{split_name}.txt",
+        f"total_acc_y_{split_name}.txt",
+        f"total_acc_z_{split_name}.txt",
+    ]
+
+    arrays = []
+
+    for file_name in signal_files:
+        arr = pd.read_csv(
+            signal_dir / file_name,
+            sep=r"\s+",
+            header=None
+        ).values
+        arrays.append(arr)
+
+    signals = np.stack(arrays, axis=-1)
+    return signals, signal_files
+
+X_train_signals, signal_files = load_inertial_signals("train")
+X_test_signals, _ = load_inertial_signals("test")
+
+y_train = train_df["activity_id"].values
+y_test = test_df["activity_id"].values
+
+print("Signaux train :", X_train_signals.shape)
+print("Signaux test  :", X_test_signals.shape)
+print("Nombre de signaux :", len(signal_files))
+
+np.savez_compressed(
+    PROCESSED_DIR / "har_signals_train.npz",
+    X=X_train_signals,
+    y=y_train,
+    signal_files=signal_files
+)
+
+np.savez_compressed(
+    PROCESSED_DIR / "har_signals_test.npz",
+    X=X_test_signals,
+    y=y_test,
+    signal_files=signal_files
+)
+
+print("Fichiers signaux sauvegardés.")

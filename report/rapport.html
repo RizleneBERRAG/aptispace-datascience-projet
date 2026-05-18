@@ -147,14 +147,17 @@ window.Quarto = {
   <li><a href="#algorithme-de-nettoyage" id="toc-algorithme-de-nettoyage" class="nav-link" data-scroll-target="#algorithme-de-nettoyage"><span class="header-section-number">2.2</span> Algorithme de Nettoyage</a></li>
   <li><a href="#travaux-pratiques-de-wrangling" id="toc-travaux-pratiques-de-wrangling" class="nav-link" data-scroll-target="#travaux-pratiques-de-wrangling"><span class="header-section-number">2.3</span> Travaux Pratiques de Wrangling</a></li>
   </ul></li>
-  <li><a href="#jalon-1-data-wrangling-nettoyage-squelette-étudiant" id="toc-jalon-1-data-wrangling-nettoyage-squelette-étudiant" class="nav-link" data-scroll-target="#jalon-1-data-wrangling-nettoyage-squelette-étudiant"><span class="header-section-number">3</span> 🧹 Jalon 1 : Data Wrangling &amp; Nettoyage (Squelette Étudiant)</a>
+  <li><a href="#acquisition-compréhension-et-préparation-des-données" id="toc-acquisition-compréhension-et-préparation-des-données" class="nav-link" data-scroll-target="#acquisition-compréhension-et-préparation-des-données"><span class="header-section-number">3</span> 01 — Acquisition, compréhension et préparation des données</a>
   <ul class="collapse">
-  <li><a href="#importation-des-packages-et-chargement-des-données" id="toc-importation-des-packages-et-chargement-des-données" class="nav-link" data-scroll-target="#importation-des-packages-et-chargement-des-données"><span class="header-section-number">3.0.1</span> 1. Importation des packages et chargement des données</a></li>
-  <li><a href="#audit-initial-des-données" id="toc-audit-initial-des-données" class="nav-link" data-scroll-target="#audit-initial-des-données"><span class="header-section-number">3.0.2</span> 2. Audit initial des données</a></li>
-  <li><a href="#nettoyage-et-uniformisation-des-dates" id="toc-nettoyage-et-uniformisation-des-dates" class="nav-link" data-scroll-target="#nettoyage-et-uniformisation-des-dates"><span class="header-section-number">3.0.3</span> 3. Nettoyage et uniformisation des Dates</a></li>
-  <li><a href="#identification-et-traitement-des-outliers-anomalies-physiques" id="toc-identification-et-traitement-des-outliers-anomalies-physiques" class="nav-link" data-scroll-target="#identification-et-traitement-des-outliers-anomalies-physiques"><span class="header-section-number">3.0.4</span> 4. Identification et Traitement des Outliers (Anomalies physiques)</a></li>
-  <li><a href="#imputation-des-valeurs-manquantes" id="toc-imputation-des-valeurs-manquantes" class="nav-link" data-scroll-target="#imputation-des-valeurs-manquantes"><span class="header-section-number">3.0.5</span> 5. Imputation des valeurs manquantes</a></li>
-  <li><a href="#sauvegarde-des-données-propres" id="toc-sauvegarde-des-données-propres" class="nav-link" data-scroll-target="#sauvegarde-des-données-propres"><span class="header-section-number">3.0.6</span> 6. Sauvegarde des données propres</a></li>
+  <li><a href="#objectif-du-notebook" id="toc-objectif-du-notebook" class="nav-link" data-scroll-target="#objectif-du-notebook"><span class="header-section-number">3.1</span> Objectif du notebook</a></li>
+  <li><a href="#structure-du-dataset" id="toc-structure-du-dataset" class="nav-link" data-scroll-target="#structure-du-dataset"><span class="header-section-number">3.2</span> Structure du dataset</a></li>
+  <li><a href="#chargement-des-activités" id="toc-chargement-des-activités" class="nav-link" data-scroll-target="#chargement-des-activités"><span class="header-section-number">3.3</span> Chargement des activités</a></li>
+  <li><a href="#chargement-des-variables" id="toc-chargement-des-variables" class="nav-link" data-scroll-target="#chargement-des-variables"><span class="header-section-number">3.4</span> Chargement des variables</a></li>
+  <li><a href="#reconstruction-des-jeux-train-et-test" id="toc-reconstruction-des-jeux-train-et-test" class="nav-link" data-scroll-target="#reconstruction-des-jeux-train-et-test"><span class="header-section-number">3.5</span> Reconstruction des jeux train et test</a></li>
+  <li><a href="#vérifications-qualité" id="toc-vérifications-qualité" class="nav-link" data-scroll-target="#vérifications-qualité"><span class="header-section-number">3.6</span> Vérifications qualité</a></li>
+  <li><a href="#sauvegarde-des-données-tabulaires-propres" id="toc-sauvegarde-des-données-tabulaires-propres" class="nav-link" data-scroll-target="#sauvegarde-des-données-tabulaires-propres"><span class="header-section-number">3.7</span> Sauvegarde des données tabulaires propres</a></li>
+  <li><a href="#préparation-des-signaux-inertiels" id="toc-préparation-des-signaux-inertiels" class="nav-link" data-scroll-target="#préparation-des-signaux-inertiels"><span class="header-section-number">3.8</span> Préparation des signaux inertiels</a></li>
+  <li><a href="#conclusion-du-wrangling" id="toc-conclusion-du-wrangling" class="nav-link" data-scroll-target="#conclusion-du-wrangling"><span class="header-section-number">3.9</span> Conclusion du wrangling</a></li>
   </ul></li>
   <li><a href="#sec-eda" id="toc-sec-eda" class="nav-link" data-scroll-target="#sec-eda"><span class="header-section-number">4</span> Analyse Exploratoire des Données (EDA)</a>
   <ul class="collapse">
@@ -290,31 +293,82 @@ window.Quarto = {
 <h2 data-number="2.3" class="anchored" data-anchor-id="travaux-pratiques-de-wrangling"><span class="header-section-number">2.3</span> Travaux Pratiques de Wrangling</h2>
 </section>
 </section>
-<section id="jalon-1-data-wrangling-nettoyage-squelette-étudiant" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> 🧹 Jalon 1 : Data Wrangling &amp; Nettoyage (Squelette Étudiant)</h1>
-<p>Ce notebook correspond à la première étape du <strong>Jalon 1</strong>. L’objectif est d’importer le jeu de données brut (<code>data/raw/raw_data_sample.csv</code>), d’effectuer un audit de sa qualité (données manquantes, anomalies physiques, formats de dates hétérogènes) et de le nettoyer à l’aide de votre package personnalisé <code>src.data_clean</code>.</p>
-<section id="importation-des-packages-et-chargement-des-données" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="importation-des-packages-et-chargement-des-données"><span class="header-section-number">3.0.1</span> 1. Importation des packages et chargement des données</h3>
+<section id="acquisition-compréhension-et-préparation-des-données" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 01 — Acquisition, compréhension et préparation des données</h1>
+<p>Ce notebook correspond à la première étape du projet : récupérer les données, comprendre leur structure et produire des fichiers propres utilisables pour l’analyse exploratoire, le Machine Learning et le Deep Learning.</p>
+<p>Le sujet étudié est la reconnaissance d’activité humaine à partir des capteurs d’un smartphone.</p>
+<section id="objectif-du-notebook" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="objectif-du-notebook"><span class="header-section-number">3.1</span> Objectif du notebook</h2>
+<p>L’objectif est de préparer le dataset <strong>Human Activity Recognition Using Smartphones</strong>.</p>
+<p>Nous allons :</p>
+<ul>
+<li>vérifier la présence des fichiers bruts ;</li>
+<li>charger les labels des activités ;</li>
+<li>charger les noms des variables ;</li>
+<li>reconstruire les jeux de données <code>train</code> et <code>test</code> ;</li>
+<li>fusionner les données tabulaires avec les labels ;</li>
+<li>sauvegarder des fichiers propres dans <code>data/processed</code> ;</li>
+<li>préparer les signaux inertiels pour la partie Deep Learning.</li>
+</ul>
 </section>
-<section id="audit-initial-des-données" class="level3" data-number="3.0.2">
-<h3 data-number="3.0.2" class="anchored" data-anchor-id="audit-initial-des-données"><span class="header-section-number">3.0.2</span> 2. Audit initial des données</h3>
-<p><strong>À faire par l’étudiant :</strong> Explorez le dataset brut pour évaluer sa structure : - Quelles sont les dimensions du dataset ? - Quels sont les types de données par colonne ? - Reste-t-il des valeurs nulles ? Quel est le taux de valeurs manquantes par variable ? - Y a-t-il des doublons ?</p>
+<section id="structure-du-dataset" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="structure-du-dataset"><span class="header-section-number">3.2</span> Structure du dataset</h2>
+<p>Le dataset contient plusieurs fichiers importants :</p>
+<ul>
+<li><code>activity_labels.txt</code> : correspondance entre identifiant et nom d’activité ;</li>
+<li><code>features.txt</code> : noms des 561 variables numériques ;</li>
+<li><code>X_train.txt</code> et <code>X_test.txt</code> : variables numériques déjà préparées ;</li>
+<li><code>y_train.txt</code> et <code>y_test.txt</code> : activité associée à chaque ligne ;</li>
+<li><code>subject_train.txt</code> et <code>subject_test.txt</code> : identifiant de la personne observée ;</li>
+<li><code>Inertial Signals</code> : signaux temporels utilisés pour le Deep Learning.</li>
+</ul>
 </section>
-<section id="nettoyage-et-uniformisation-des-dates" class="level3" data-number="3.0.3">
-<h3 data-number="3.0.3" class="anchored" data-anchor-id="nettoyage-et-uniformisation-des-dates"><span class="header-section-number">3.0.3</span> 3. Nettoyage et uniformisation des Dates</h3>
-<p><strong>À faire par l’étudiant :</strong> Appliquez la fonction <code>clean_dates</code> de votre module <code>src.data_clean</code> pour convertir la colonne <code>timestamp</code> en type Datetime uniforme.</p>
+<section id="chargement-des-activités" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="chargement-des-activités"><span class="header-section-number">3.3</span> Chargement des activités</h2>
+<p>Le problème est une classification supervisée avec six activités humaines.</p>
 </section>
-<section id="identification-et-traitement-des-outliers-anomalies-physiques" class="level3" data-number="3.0.4">
-<h3 data-number="3.0.4" class="anchored" data-anchor-id="identification-et-traitement-des-outliers-anomalies-physiques"><span class="header-section-number">3.0.4</span> 4. Identification et Traitement des Outliers (Anomalies physiques)</h3>
-<p><strong>À faire par l’étudiant :</strong> Analysez les valeurs de la colonne <code>value</code> et appliquez votre fonction <code>handle_outliers</code> pour filtrer les valeurs physiques aberrantes (inférieures à 0 ou supérieures à 100).</p>
+<section id="chargement-des-variables" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="chargement-des-variables"><span class="header-section-number">3.4</span> Chargement des variables</h2>
+<p>Le dataset tabulaire contient 561 variables numériques extraites des signaux du smartphone.</p>
+<p>Certaines variables ont des noms dupliqués. Pour éviter les problèmes dans Pandas, nous rendons les noms de colonnes uniques.</p>
 </section>
-<section id="imputation-des-valeurs-manquantes" class="level3" data-number="3.0.5">
-<h3 data-number="3.0.5" class="anchored" data-anchor-id="imputation-des-valeurs-manquantes"><span class="header-section-number">3.0.5</span> 5. Imputation des valeurs manquantes</h3>
-<p><strong>À faire par l’étudiant :</strong> Appliquez la fonction <code>impute_missing_values</code> pour remplir les NaNs issus du chargement initial ou du nettoyage des anomalies.</p>
+<section id="reconstruction-des-jeux-train-et-test" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="reconstruction-des-jeux-train-et-test"><span class="header-section-number">3.5</span> Reconstruction des jeux train et test</h2>
+<p>Nous reconstruisons un tableau complet en ajoutant :</p>
+<ul>
+<li>le split <code>train</code> ou <code>test</code> ;</li>
+<li>l’identifiant du sujet ;</li>
+<li>l’identifiant de l’activité ;</li>
+<li>le libellé de l’activité ;</li>
+<li>les 561 variables numériques.</li>
+</ul>
 </section>
-<section id="sauvegarde-des-données-propres" class="level3" data-number="3.0.6">
-<h3 data-number="3.0.6" class="anchored" data-anchor-id="sauvegarde-des-données-propres"><span class="header-section-number">3.0.6</span> 6. Sauvegarde des données propres</h3>
-<p>Enregistrez votre DataFrame nettoyé dans <code>data/processed/cleaned_data_sample.csv</code>.</p>
+<section id="vérifications-qualité" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="vérifications-qualité"><span class="header-section-number">3.6</span> Vérifications qualité</h2>
+<p>Nous vérifions la présence de valeurs manquantes et la cohérence des activités.</p>
+</section>
+<section id="sauvegarde-des-données-tabulaires-propres" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="sauvegarde-des-données-tabulaires-propres"><span class="header-section-number">3.7</span> Sauvegarde des données tabulaires propres</h2>
+<p>Les données propres sont sauvegardées dans <code>data/processed</code>.</p>
+</section>
+<section id="préparation-des-signaux-inertiels" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="préparation-des-signaux-inertiels"><span class="header-section-number">3.8</span> Préparation des signaux inertiels</h2>
+<p>Pour la partie Deep Learning, nous utilisons les signaux temporels présents dans les dossiers <code>Inertial Signals</code>.</p>
+<p>Chaque observation contient :</p>
+<ul>
+<li>128 pas de temps ;</li>
+<li>9 signaux capteurs ;</li>
+<li>une activité associée.</li>
+</ul>
+</section>
+<section id="conclusion-du-wrangling" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="conclusion-du-wrangling"><span class="header-section-number">3.9</span> Conclusion du wrangling</h2>
+<p>À l’issue de cette étape, nous disposons de deux types de données propres :</p>
+<ol type="1">
+<li>des données tabulaires pour le Machine Learning classique ;</li>
+<li>des signaux temporels pour le Deep Learning.</li>
+</ol>
+<p>La suite du projet consistera à explorer ces données afin de comprendre la répartition des activités et les différences entre les mouvements.</p>
 <hr>
 </section>
 </section>
