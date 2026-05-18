@@ -68,9 +68,17 @@ for nb_file in notebook_files:
                 qmd_lines.append("\n")
             qmd_lines.append("```\n\n")
             
-            # Alimentation des lignes de script Python (.py)
-            py_lines.append(source_str)
-            if not source_str.endswith("\n"):
+            # Alimentation des lignes de script Python (.py) - en commentant les commandes magiques IPython (% ou !) pour éviter les SyntaxError
+            py_cell_lines = []
+            for line in source:
+                stripped_line = line.strip()
+                if stripped_line.startswith('%') or stripped_line.startswith('!'):
+                    py_cell_lines.append(f"# {line}")
+                else:
+                    py_cell_lines.append(line)
+            py_cell_str = "".join(py_cell_lines)
+            py_lines.append(py_cell_str)
+            if not py_cell_str.endswith("\n"):
                 py_lines.append("\n")
                 
     # 1. Écriture du script Python à exécuter (.py) dans src/
@@ -93,6 +101,7 @@ for nb_file in notebook_files:
             [sys.executable, py_file_path],
             capture_output=True,
             text=True,
+            env={**os.environ, "MPLBACKEND": "agg"},
             timeout=30  # Timeout pour éviter les boucles infinies de code étudiant
         )
         with open(log_file_path, 'w', encoding='utf-8') as f:
