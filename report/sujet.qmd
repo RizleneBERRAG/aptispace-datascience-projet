@@ -1,100 +1,146 @@
-# 🎓 Projet Fil Rouge Data Science : Sujet Libre {.unnumbered}
+# Sujet du projet
 
-### 📋 Présentation du Projet Fil Rouge
+## Titre
 
-**Contexte :** Le projet fil rouge est un travail d'application pratique majeur réalisé en équipe de 2 à 3 étudiants. Contrairement aux Travaux Pratiques guidés, il s'agit d'un **sujet libre** : votre groupe d'étudiants est entièrement libre de choisir sa propre problématique métier et son propre jeu de données d'intérêt (provenant de plateformes comme Kaggle, de portails Open Data, ou d'APIs publiques).
+Reconnaissance d'activité humaine à partir des capteurs d'un smartphone
 
-L'objectif est de concevoir un pipeline de Data Science complet de bout en bout, depuis l'acquisition et la préparation des données brutes jusqu'à la modélisation prédictive avancée (combinant Machine Learning tabulaire et Deep Learning d'images ou signaux) et la communication interactive des insights.
+## Contexte
 
-**Votre mission :** Rédiger un dossier de recherche complet (au format Quarto) documentant l'ensemble de votre démarche scientifique. Le projet est structuré en deux jalons progressifs pour vous guider pas à pas dans votre avancée.
+Les smartphones sont aujourd'hui équipés de capteurs capables de mesurer les mouvements du corps, notamment l'accéléromètre et le gyroscope. Ces capteurs permettent d'enregistrer des variations de déplacement, d'inclinaison et de rotation.
 
----
+Dans ce projet, nous allons exploiter des données issues de capteurs de smartphone afin de reconnaître automatiquement l'activité réalisée par une personne.
 
-### 📍 Jalon 1 : Acquisition, Nettoyage et Exploration (Évaluation Intermédiaire)
+Ce sujet s'inscrit dans un contexte d'analyse de signaux. Il permet de construire un pipeline complet de Data Science, depuis l'acquisition et la préparation des données jusqu'à la modélisation prédictive et la restitution des résultats.
 
-1. **Acquisition & Data Wrangling (Chapitres 1 & 2) :**
-* Sélection, justification et récupération de votre jeu de données principal et de données secondaires complémentaires (multi-sources).
-* Nettoyage rigoureux des données brutes : détection et traitement des valeurs manquantes, uniformisation des formats (ex: formats de dates, types numériques), détection des outliers et encodage des caractéristiques qualitatives.
+## Problématique
 
-2. **Analyse Exploratoire (EDA) & Visualisation (Chapitres 3 & 4) :**
-* Statistiques descriptives globales et analyse statistique approfondie des corrélations et relations de causalité.
-* Création de graphiques multidimensionnels percutants pour mettre en évidence les insights majeurs de vos données.
+Comment peut-on utiliser les données issues des capteurs d'un smartphone pour reconnaître automatiquement l'activité humaine réalisée par une personne ?
 
-**🛑 LIVRABLE JALON 1 :** Un premier rapport justifiant vos choix de préparation de la donnée et présentant un résumé visuel des 3 à 5 insights majeurs découverts lors de l'EDA.
+## Objectif métier
 
----
+L'objectif métier est de montrer comment des données de mouvement peuvent être utilisées pour détecter automatiquement une activité physique.
 
-### 📍 Jalon 2 : Modélisation, Évaluation et Restitution (Évaluation Finale)
+Ce type d'approche peut être utile dans plusieurs domaines :
 
-3. **Modélisation & Apprentissage (Chapitre 5) :**
-* **Analyse tabulaire (Machine Learning) :** Entraînement de modèles (supervisés ou non supervisés) adaptés à votre problématique (ex: régression, classification ou clustering).
-* **Deep Learning (Vision ou Signaux) :** Intégration d'une brique de Deep Learning (traitement d'images ou de signaux) à l'aide de réseaux de neurones convolutifs (CNN) sous TensorFlow pour classifier ou enrichir vos prédictions.
+- suivi d'activité physique ;
+- santé connectée ;
+- prévention des chutes ;
+- analyse de mobilité ;
+- applications sportives ;
+- objets connectés.
 
-4. **Évaluation & Robustesse (Chapitre 6) :**
-* Choix rigoureux et motivé des métriques d'erreur ou de classification.
-* Mise en place d'un protocole de validation croisée rigoureux (respectant la structure temporelle ou groupée de vos données).
+## Activités étudiées
 
-5. **Data Storytelling & Communication (Chapitre 7) :**
-* Restitution interactive des résultats de vos modèles sous forme de dashboard (Dash, Plotly ou OJS) et discussion transparente des limites de votre étude.
+Le projet se concentre sur six activités humaines :
 
-**🛑 LIVRABLE JALON 2 :** Le dossier global finalisé, intégrant les retours du Jalon 1 et la nouvelle partie prédictive.
+- marcher ;
+- monter les escaliers ;
+- descendre les escaliers ;
+- être assis ;
+- être debout ;
+- être allongé.
 
----
+## Type de problème
 
-## ⚖️ Grille de Notation (Barème total sur 20)
+Il s'agit d'un problème de classification supervisée.
 
-### 📊 Évaluation Jalon 1 - L'Exploration (sur 8 points)
+Chaque observation possède une activité connue. Le modèle apprend donc à partir d'exemples déjà étiquetés, puis il doit prédire l'activité correspondant à de nouvelles données.
 
-| Critère d'Évaluation | Indicateurs de Réussite | Points |
-| --- | --- | --- |
-| **Data Wrangling** | Propreté des manipulations Pandas, pertinence de l'imputation et de l'encodage. | /3 |
-| **Rigueur de l'EDA** | Profondeur de l'analyse, identification correcte des biais dans le jeu de données. | /3 |
-| **Pertinence Visuelle** | Lisibilité des graphiques, choix adaptés au type de données, axes et légendes clairs. | /2 |
+## Données utilisées
 
-### 🧠 Évaluation Jalon 2 - La Prédiction (sur 12 points)
+Le jeu de données principal sera le dataset Human Activity Recognition Using Smartphones.
 
-| Critère d'Évaluation | Indicateurs de Réussite | Points |
-| --- | --- | --- |
-| **Architecture Modèle** | Split train/test pertinent, maîtrise technique des algorithmes (et des couches de convolution si traitement d'images/signaux). | /4 |
-| **Rigueur d'Évaluation** | Interprétation correcte des métriques d'erreur (RMSE, MAE, etc.) ou de classification (Précision, F1-Score). | /3 |
-| **Data Storytelling** | Capacité à vulgariser les résultats métier (dashboards interactifs/OJS). | /3 |
-| **Qualité Transverse** | Clarté des schémas d'architecture des flux de données (Mermaid) et précision du vocabulaire technique final. | /2 |
+Il contient des mesures issues de capteurs de smartphone. Ces données sont organisées en deux formes complémentaires :
 
-## 🛠️ Livrables finaux attendus
+- des données tabulaires déjà transformées en variables numériques ;
+- des signaux temporels issus des capteurs.
 
-* Un **Document Quarto (.qmd)** compilé en PDF ou HTML interactif contenant l'ensemble du code, des textes et des visualisations.
-* Un **Schéma de pipeline Data** (illustrant le cycle de vie de la donnée, de la source brute à la prédiction).
-* Un code structuré et commenté de manière professionnelle.
+Cette double structure est intéressante car elle permet de comparer deux approches :
 
----
+- une approche Machine Learning classique sur données tabulaires ;
+- une approche Deep Learning sur signaux.
 
-## 📁 Structure du Squelette de Départ
+## Données secondaires complémentaires
 
-Pour démarrer sereinement le projet, un dépôt de base pré-configuré est fourni par l'équipe pédagogique. Vous y trouverez toute l'arborescence standardisée d'un projet de Science des Données moderne, y compris les scripts d'installation automatique et les notebooks des jalons.
+Pour enrichir la compréhension du sujet, nous pourrons ajouter des données secondaires ou des éléments de contexte, par exemple :
 
-Explorez l'arborescence ci-dessous et téléchargez l'archive complète pour démarrer votre travail :
+- documentation du dataset ;
+- description des capteurs utilisés ;
+- correspondance entre les identifiants d'activité et leurs libellés ;
+- métadonnées sur les sujets observés.
 
-::: {.filetree title="Squelette du Projet" zip="lab/projet.zip"}
-- [README.md](lab/projet/README.md) (Rapport final à compléter)
-- [INSTALL.md](lab/projet/INSTALL.md) (Guide d'installation et d'initialisation)
-- [Taskfile.yml](lab/projet/Taskfile.yml) (Fichier d'automatisation des tâches)
-- [requirements.txt](lab/projet/requirements.txt) (Dépendances Python du projet)
-- notebooks/ (Les notebooks guidés des jalons)
-    - [01_data_wrangling.ipynb](lab/projet/notebooks/01_data_wrangling.ipynb)
-    - [02_eda_visualisation.ipynb](lab/projet/notebooks/02_eda_visualisation.ipynb)
-    - [03_modelisation_pred.ipynb](lab/projet/notebooks/03_modelisation_pred.ipynb)
-    - [04_vision_cnn_tf.ipynb](lab/projet/notebooks/04_vision_cnn_tf.ipynb)
-- src/ (Les modules Python réutilisables du pipeline)
-    - [data_clean.py](lab/projet/src/data_clean.py) (Fonctions de nettoyage et d'imputation)
-    - [utils_viz.py](lab/projet/src/utils_viz.py) (Fonctions de tracés de graphiques)
-- tools/ (Scripts de configuration système automatique)
-    - [install_linux.sh](lab/projet/tools/install_linux.sh)
-    - [install_macos.sh](lab/projet/tools/install_macos.sh)
-    - [install_windows.ps1](lab/projet/tools/install_windows.ps1)
-:::
+Ces éléments permettront de mieux expliquer la structure des données et les limites de l'étude.
 
-### ⚙️ Automatisation avec Taskfile
-Le projet inclut un outil de productivité nommé `go-task` (ou `task`). À la racine du projet, vous pouvez ouvrir votre terminal et utiliser les commandes suivantes pour simplifier votre flux de travail :
-- `task compile` : Extrait et compile vos notebooks et prépare les documents Quarto de jalon.
-- `task render` : Compile l'ensemble de votre rapport final en HTML, PDF (via Typst) et Markdown (README.md).
-- `task preview` : Lance un serveur local Quarto de prévisualisation en temps réel pour rédiger confortablement.
+## Approche méthodologique
+
+Le pipeline du projet sera organisé en plusieurs étapes :
+
+1. Acquisition des données
+2. Compréhension de la structure des fichiers
+3. Nettoyage et préparation des données
+4. Analyse exploratoire des activités
+5. Visualisation des signaux et des distributions
+6. Modélisation avec des algorithmes de Machine Learning classiques
+7. Modélisation Deep Learning avec un CNN 1D adapté aux signaux
+8. Évaluation des performances
+9. Comparaison des modèles
+10. Restitution des résultats dans un rapport Quarto
+
+## Analyse exploratoire attendue
+
+L'analyse exploratoire devra permettre d'identifier plusieurs insights majeurs, par exemple :
+
+- la répartition des activités dans les données ;
+- les différences entre activités dynamiques et statiques ;
+- les activités les plus difficiles à distinguer ;
+- la variabilité des signaux selon les mouvements ;
+- les éventuels biais liés aux sujets ou à la structure du dataset.
+
+## Modélisation Machine Learning
+
+Une première approche consistera à entraîner des modèles classiques de classification sur les données tabulaires.
+
+Les modèles envisagés sont :
+
+- Logistic Regression ;
+- Random Forest ;
+- Support Vector Machine ;
+- K-Nearest Neighbors.
+
+Les performances seront comparées afin d'identifier le modèle le plus pertinent.
+
+## Modélisation Deep Learning
+
+Une seconde approche consistera à exploiter directement les signaux temporels issus des capteurs.
+
+Nous utiliserons un réseau de neurones convolutif 1D avec TensorFlow. Ce type de modèle est adapté aux données séquentielles et permet d'apprendre automatiquement des motifs dans les signaux.
+
+## Évaluation
+
+Les modèles seront évalués avec des métriques adaptées à la classification :
+
+- accuracy ;
+- précision ;
+- rappel ;
+- F1-score ;
+- matrice de confusion.
+
+Une attention particulière sera portée à la rigueur de l'évaluation, notamment à la séparation entre les données d'entraînement et les données de test.
+
+## Restitution
+
+Les résultats seront présentés dans un rapport Quarto contenant :
+
+- du texte explicatif ;
+- du code ;
+- des visualisations ;
+- des résultats de modèles ;
+- une matrice de confusion ;
+- un schéma du pipeline Data ;
+- une discussion des limites de l'étude.
+
+## Résultat attendu
+
+À la fin du projet, nous devrons être capables de montrer si les données issues d'un smartphone permettent de reconnaître correctement l'activité humaine réalisée.
+
+Le projet permettra aussi de comparer une approche Machine Learning classique avec une approche Deep Learning appliquée aux signaux.
