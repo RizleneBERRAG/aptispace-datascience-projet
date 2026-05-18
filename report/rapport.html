@@ -6,12 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Étudiant(e) 1 : [Insérer Prénom Nom]">
-<meta name="author" content="Étudiant(e) 2 : [Insérer Prénom Nom]">
-<meta name="author" content="Étudiant(e) 3 : [Insérer Prénom Nom]">
+<meta name="author" content="Étudiante : Berrag Rizlene">
 <meta name="dcterms.date" content="2026-05-18">
 
-<title>Mon Projet Data Science</title>
+<title>Reconnaissance d’activité humaine avec un smartphone</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -94,7 +92,7 @@ div.csl-indent {
 <link href="rapport_files/libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="rapport_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="rapport_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="rapport_files/libs/bootstrap/bootstrap-5f872ca0521029d851d5ff7b222a1192.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="rapport_files/libs/bootstrap/bootstrap-1900d47cc981608c692c441b21f497f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -212,8 +210,8 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Mon Projet Data Science</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-<p class="subtitle lead">Projet Fil Rouge Data Science - Sujet Libre</p>
+<div class="quarto-title-block"><div><h1 class="title">Reconnaissance d’activité humaine avec un smartphone</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Projet Data Science - Human Activity Recognition</p>
 </div>
 
 
@@ -221,11 +219,9 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Étudiant(e) 1 : [Insérer Prénom Nom] </p>
-             <p>Étudiant(e) 2 : [Insérer Prénom Nom] </p>
-             <p>Étudiant(e) 3 : [Insérer Prénom Nom] </p>
+             <p>Étudiante : Berrag Rizlene </p>
           </div>
   </div>
     
@@ -252,31 +248,35 @@ div.csl-indent {
 <figcaption>CI Compilation Pipeline</figcaption>
 </figure>
 </div>
-<p><em>À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d’aide à la décision sur la base de vos données.</em></p>
 <section id="contexte-du-projet" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="contexte-du-projet"><span class="header-section-number">1.1</span> Contexte du Projet</h2>
-<p><em>À rédiger par les étudiants — Pistes de réflexion :</em> - <em>Quels sont les objectifs globaux et le domaine d’étude de votre projet ?</em> - <em>En quoi ce sujet de recherche est-il pertinent et stratégique ?</em> - <em>Pourquoi l’analyse quantitative de ce jeu de données est-elle indispensable pour répondre à votre problématique ?</em></p>
-<p>[Rédiger votre paragraphe de contexte ici]</p>
+<p>Dans ce projet, on cherche à reconnaître automatiquement ce qu’une personne est en train de faire à partir des données enregistrées par un smartphone.</p>
+<p>Le téléphone mesure les mouvements grâce à ses capteurs, notamment l’accéléromètre et le gyroscope. À partir de ces mesures, l’objectif est de différencier plusieurs activités comme marcher, monter les escaliers, descendre les escaliers, être assis, debout ou allongé.</p>
+<p>Ce sujet est intéressant parce qu’il se rapproche de cas réels, par exemple les applications de suivi sportif, de santé connectée ou de détection de mouvement. Comme les données sont uniquement numériques, il faut passer par une analyse statistique et des modèles de Machine Learning pour réussir à reconnaître les activités.</p>
+<p>Le dataset utilisé est <strong>Human Activity Recognition Using Smartphones</strong>, issu du <strong>UCI Machine Learning Repository</strong>. Il contient des données de capteurs collectées auprès de personnes réalisant différentes activités avec un smartphone.</p>
 </section>
 <section id="objectif-analytique" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="objectif-analytique"><span class="header-section-number">1.2</span> Objectif Analytique</h2>
-<p><em>À rédiger par les étudiants — Pistes de réflexion :</em> - <em>Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?</em> - <em>Comment le couplage de données multi-sources et l’intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l’analyse ?</em> - <em>Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?</em></p>
-<p>[Rédiger votre paragraphe d’objectifs ici]</p>
+<p>L’objectif principal est de prédire l’activité réalisée par une personne. La variable à prédire est <code>activity_id</code>, qui correspond à une des six activités du dataset.</p>
+<p>Le projet est donc un problème de classification supervisée multi-classes. On utilise deux formes de données : d’abord les données tabulaires déjà préparées, puis les signaux temporels issus des capteurs du smartphone.</p>
+<p>Les livrables attendus sont les données préparées, une analyse exploratoire, des modèles de Machine Learning, un modèle Deep Learning avec CNN 1D, puis une comparaison des résultats.</p>
 <hr>
 </section>
 </section>
 <section id="sec-wrangling" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Acquisition et Préparation des Données (Data Wrangling)</h1>
-<p>Le succès de tout projet de Data Science repose sur la qualité de la préparation des données <span class="citation" data-cites="pandas2020">(<a href="#ref-pandas2020" role="doc-biblioref">McKinney 2020</a>)</span>. Cette section documente l’audit de qualité et les étapes de nettoyage appliquées à vos jeux de données bruts.</p>
+<p>Le succès de tout projet de Data Science repose sur la qualité de la préparation des données <span class="citation" data-cites="pandas2020">(<a href="#ref-pandas2020" role="doc-biblioref">McKinney 2020</a>)</span>. Cette section documente l’audit de qualité et les étapes de nettoyage appliquées au dataset.</p>
 <section id="audit-de-qualité" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="audit-de-qualité"><span class="header-section-number">2.1</span> Audit de Qualité</h2>
-<p><em>À rédiger par les étudiants : Présentez un audit critique complet de vos fichiers de données brutes. Indiquez la liste des anomalies physiques et typologiques détectées (formats de dates hétérogènes, outliers physiques, taux de valeurs manquantes, etc.).</em></p>
-<p>[Rédiger votre audit de données ici]</p>
+<p>Le dataset est déjà organisé en deux parties : un jeu d’entraînement et un jeu de test. Les fichiers <code>X_train</code> et <code>X_test</code> contiennent les variables numériques, les fichiers <code>y_train</code> et <code>y_test</code> contiennent les activités à prédire, et les fichiers <code>subject_train</code> et <code>subject_test</code> indiquent les personnes observées.</p>
+<p>Pendant l’audit, on a surtout vérifié la structure des fichiers, la présence des activités, les valeurs manquantes et les noms de colonnes. Les données sont globalement propres, mais certains noms de variables étaient dupliqués. On les a donc rendus uniques pour éviter des erreurs avec Pandas.</p>
+<p>On a aussi vérifié les signaux inertiels utilisés pour le Deep Learning. Chaque observation contient 128 pas de temps et 9 signaux capteurs.</p>
 </section>
 <section id="algorithme-de-nettoyage" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="algorithme-de-nettoyage"><span class="header-section-number">2.2</span> Algorithme de Nettoyage</h2>
-<p><em>À rédiger par les étudiants : Justifiez et détaillez l’enchaînement de vos opérations de traitement (uniformisation des dates, masquage des outliers, imputation, etc.). Faites référence aux fonctions correspondantes de votre module <code>src/data_clean.py</code>.</em></p>
-<p>[Rédiger la justification méthodologique ici]</p>
+<p>La préparation des données a été faite en plusieurs étapes. On a d’abord chargé les labels des activités, puis les noms des variables. Ensuite, on a reconstruit les jeux <code>train</code> et <code>test</code> en ajoutant l’identifiant du sujet et le nom de l’activité.</p>
+<p>Les noms de colonnes ont été nettoyés pour éviter les doublons. Les données finales ont ensuite été sauvegardées dans <code>data/processed</code>, afin de ne pas retravailler directement sur les fichiers bruts.</p>
+<p>Pour la partie Deep Learning, les signaux des capteurs ont été regroupés dans des fichiers <code>.npz</code>. Ce format est plus pratique pour TensorFlow, car il garde la structure des données sous forme d’observations, de pas de temps et de capteurs.</p>
 </section>
 <section id="travaux-pratiques-de-wrangling" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="travaux-pratiques-de-wrangling"><span class="header-section-number">2.3</span> Travaux Pratiques de Wrangling</h2>
@@ -363,16 +363,17 @@ div.csl-indent {
 </section>
 <section id="sec-eda" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Analyse Exploratoire des Données (EDA)</h1>
-<p>Dans cette section, nous analysons les relations statistiques fondamentales qui régissent votre domaine d’étude au sein du jeu de données.</p>
+<p>Dans cette section, on analyse les données pour mieux comprendre leur structure avant de passer à la modélisation.</p>
 <section id="statistiques-descriptives" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="statistiques-descriptives"><span class="header-section-number">4.1</span> Statistiques Descriptives</h2>
-<p><em>À rédiger par les étudiants : Présentez une vue d’ensemble descriptive rapide de vos variables nettoyées.</em></p>
-<p>[Rédiger les statistiques descriptives ici]</p>
+<p>Le dataset complet contient 10 299 observations. Le jeu d’entraînement contient 7 352 lignes et le jeu de test contient 2 947 lignes.</p>
+<p>Chaque ligne correspond à une fenêtre de mouvement associée à une activité. Le dataset tabulaire contient 561 variables numériques. Ces variables viennent des mesures du smartphone et décrivent les mouvements enregistrés.</p>
+<p>On retrouve six activités au total. Certaines sont dynamiques, comme marcher ou monter les escaliers. D’autres sont plus statiques, comme être assis, debout ou allongé. Cette différence est importante, car les signaux ne se comportent pas de la même manière selon le type d’activité.</p>
 </section>
 <section id="ingénierie-de-variables-feature-engineering" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="ingénierie-de-variables-feature-engineering"><span class="header-section-number">4.2</span> Ingénierie de Variables (Feature Engineering)</h2>
-<p><em>À rédiger par les étudiants : Expliquez l’intérêt mathématique et l’impact sur les modèles prédictifs d’extraire des caractéristiques dérivées (ex: variables cycliques temporelles, ratios financiers, ratios physiques, etc.).</em></p>
-<p>[Rédiger votre explication de l’ingénierie de variables ici]</p>
+<p>Dans ce dataset, une grande partie du travail de création de variables a déjà été faite. Les 561 variables numériques sont des caractéristiques calculées à partir des signaux du smartphone.</p>
+<p>Ces variables résument les mouvements et permettent d’entraîner des modèles de Machine Learning classiques. En parallèle, on garde aussi les signaux temporels pour la partie Deep Learning. Cette deuxième approche permet au CNN 1D d’apprendre directement des motifs dans les signaux, sans utiliser uniquement les variables déjà calculées.</p>
 </section>
 <section id="travaux-pratiques-dexploration-visuelle-eda" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="travaux-pratiques-dexploration-visuelle-eda"><span class="header-section-number">4.3</span> Travaux Pratiques d’Exploration Visuelle (EDA)</h2>
@@ -478,23 +479,25 @@ div.csl-indent {
 </section>
 <section id="sec-viz" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Visualisation Multidimensionnelle (Insights)</h1>
-<p>Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs, en s’appuyant sur notre module <code>src/utils_viz.py</code>.</p>
-<p><em>À rédiger par les étudiants : Présentez et commentez en détail vos 3 à 5 insights majeurs découverts lors de l’exploration descriptive visuelle. Intégrez et justifiez les figures clés générées.</em></p>
+<p>Cette partie résume les principaux éléments observés pendant l’analyse exploratoire.</p>
 <section id="profils-et-distributions-caractéristiques" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="profils-et-distributions-caractéristiques"><span class="header-section-number">6.1</span> Profils et Distributions Caractéristiques</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-distribution-density</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Distribution ou profils caractéristiques de vos variables clés."</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser vos fonctions personnalisées de votre module pour tracer la figure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>[Commenter la figure et décrire vos observations ici]</p>
+<p>Les visualisations montrent que les activités ne produisent pas toutes les mêmes profils de mouvement. Les activités dynamiques, comme <code>WALKING</code>, <code>WALKING_UPSTAIRS</code> ou <code>WALKING_DOWNSTAIRS</code>, ont des signaux plus variables. C’est logique, car elles impliquent des mouvements répétés.</p>
+<p>À l’inverse, les activités statiques comme <code>SITTING</code>, <code>STANDING</code> et <code>LAYING</code> sont plus stables. Elles peuvent cependant être plus difficiles à distinguer entre elles, surtout quand les mouvements sont faibles.</p>
+<p>Les principales observations sont :</p>
+<ul>
+<li>le dataset contient bien les six activités attendues ;</li>
+<li>les données sont séparées proprement entre train et test ;</li>
+<li>les activités dynamiques et statiques n’ont pas le même comportement ;</li>
+<li>les signaux temporels sont bien adaptés à une approche Deep Learning ;</li>
+<li>certaines activités proches peuvent créer des confusions.</li>
+</ul>
 </section>
 <section id="corrélations-globales" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="corrélations-globales"><span class="header-section-number">6.2</span> Corrélations Globales</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-correlation</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Matrice de corrélation de Spearman ou de Pearson entre variables."</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser uv.plot_correlation_matrix() de votre module pour tracer la figure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>[Commenter la figure et décrire vos observations ici]</p>
+<p>Le dataset contient beaucoup de variables numériques issues des capteurs du smartphone. Certaines variables sont probablement liées entre elles, car elles viennent des mêmes signaux ou de transformations proches.</p>
+<p>Cette corrélation entre variables n’est pas forcément un problème, mais elle peut influencer certains modèles. C’est aussi pour cette raison que la standardisation est utilisée dans certains modèles comme la régression logistique.</p>
+<p>La projection PCA réalisée dans le notebook d’EDA donne une première idée de la séparation entre les activités. Elle ne permet pas à elle seule de conclure, mais elle montre que les données contiennent bien une structure exploitable pour la classification.</p>
 <hr>
 </section>
 </section>
@@ -502,26 +505,29 @@ div.csl-indent {
 <h1 data-number="7"><span class="header-section-number">7</span> Modélisation et Apprentissage</h1>
 <section id="schéma-global-du-pipeline-de-données" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="schéma-global-du-pipeline-de-données"><span class="header-section-number">7.1</span> Schéma Global du Pipeline de Données</h2>
-<p>Le pipeline complet intègre à la fois la branche analytique tabulaire (Machine Learning) et la branche d’analyse visuelle ou de signaux complexes (Deep Learning CNN) :</p>
+<p>Le pipeline du projet suit les étapes classiques d’un projet Data Science : acquisition, préparation, analyse exploratoire, modélisation, évaluation et interprétation.</p>
 <pre class="mermaid"><code>graph TD
-    A[Données Brutes Multi-Sources CSV/API] --&gt;|Formatage &amp; Alignement| B(data_clean.clean_dates)
-    C[Données Externes Complémentaires] --&gt;|Imputation &amp; Interpolation| D(data_clean.impute_missing_values)
-    B &amp; D --&gt;|Gestion Outliers| E[Jeu de données Propre &amp; Fusionné]
-    E --&gt;|Extraction Temporelle/Caractéristiques| F[Feature Engineering]
-    F --&gt;|Splits Temporels ou Stratifiés| G[Modèle Machine Learning Tabulaire]
-    H[Flux Multimédias Réels Images/Signaux] --&gt;|Prétraitement d'images/signaux| I[Réseau Convolutif CNN TensorFlow]
-    G --&gt;|Prédictions de la Problématique Métier| J[Livrables &amp; Aide à la Décision]
-    I --&gt;|Détection de Motifs Complexes| J
-    
-    style E fill:#e0f2fe,stroke:#0284c7,stroke-width:2px
-    style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    A[Dataset UCI HAR] --&gt; B[Fichiers bruts train/test]
+    B --&gt; C[Préparation des données]
+    C --&gt; D[Données tabulaires propres]
+    C --&gt; E[Signaux capteurs propres]
+    D --&gt; F[Analyse exploratoire]
+    F --&gt; G[Machine Learning classique]
+    E --&gt; H[CNN 1D TensorFlow]
+    G --&gt; I[Évaluation des résultats]
+    H --&gt; I
+    I --&gt; J[Comparaison et limites]
+
+    style C fill:#e0f2fe,stroke:#0284c7,stroke-width:2px
     style G fill:#fef3c7,stroke:#d97706,stroke-width:2px
-    style I fill:#fef3c7,stroke:#d97706,stroke-width:2px</code></pre>
+    style H fill:#fef3c7,stroke:#d97706,stroke-width:2px
+    style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px</code></pre>
 </section>
 <section id="modélisation-tabulaire-machine-learning" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="modélisation-tabulaire-machine-learning"><span class="header-section-number">7.2</span> Modélisation Tabulaire (Machine Learning)</h2>
-<p><em>À rédiger par les étudiants : Expliquez le choix de vos algorithmes d’apprentissage (supervisé ou non supervisé) et décrivez l’importance des variables explicatives.</em></p>
-<p>[Détailler votre modélisation ici]</p>
+<p>Pour la partie Machine Learning, on utilise les variables numériques du dataset afin de prédire l’activité. Plusieurs modèles ont été testés pour comparer leurs résultats : Logistic Regression, Decision Tree et Gaussian Naive Bayes.</p>
+<p>Comme le rapport doit compiler rapidement, l’entraînement a été allégé avec un sous-échantillon équilibré par activité et une sélection de variables. Cela permet de garder une comparaison correcte sans bloquer la compilation.</p>
+<p>Les modèles choisis sont simples à interpréter et rapides à entraîner. Ils permettent d’avoir une première base de comparaison avant de passer à une approche Deep Learning.</p>
 <section id="travaux-pratiques-de-modélisation-tabulaire" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="travaux-pratiques-de-modélisation-tabulaire"><span class="header-section-number">7.2.1</span> Travaux Pratiques de Modélisation Tabulaire</h3>
 </section>
@@ -589,8 +595,10 @@ div.csl-indent {
 </section>
 <section id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="level2" data-number="8.11">
 <h2 data-number="8.11" class="anchored" data-anchor-id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.11</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</h2>
-<p><em>À rédiger par les étudiants : Expliquez l’intérêt de la brique de Deep Learning (images, signaux ou traitement de données structurées complexes) pour classifier ou enrichir vos prédictions. Détaillez l’architecture de votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras (conv, pooling, dense, dropout, activation) et commentez les courbes d’apprentissage obtenues.</em></p>
-<p>[Détailler votre architecture CNN et analyse ici]</p>
+<p>Dans ce projet, la partie Deep Learning ne porte pas sur des images, mais sur des signaux temporels. On utilise donc un CNN 1D, adapté aux données de type série temporelle.</p>
+<p>Le CNN 1D apprend directement à partir des signaux du smartphone. Chaque observation contient 128 pas de temps et 9 signaux capteurs. Le modèle peut donc apprendre des motifs dans les variations d’accélération et de rotation.</p>
+<p>L’architecture utilisée reste volontairement légère pour que le rapport compile correctement. Elle contient des couches de convolution 1D, du pooling, puis des couches denses pour produire la prédiction finale parmi les six activités.</p>
+<p>Cette approche complète le Machine Learning classique, car elle ne dépend pas uniquement des variables déjà extraites : elle travaille directement sur les signaux.</p>
 <section id="travaux-pratiques-de-vision-par-ordinateur-cnn" class="level3" data-number="8.11.1">
 <h3 data-number="8.11.1" class="anchored" data-anchor-id="travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.11.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</h3>
 </section>
@@ -651,43 +659,66 @@ div.csl-indent {
 <h1 data-number="10"><span class="header-section-number">10</span> Évaluation Métrique et Validation</h1>
 <section id="stratégie-de-validation" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="stratégie-de-validation"><span class="header-section-number">10.1</span> Stratégie de Validation</h2>
-<p><em>À rédiger par les étudiants : Expliquez pourquoi le découpage d’évaluation choisi (ex: validation temporelle, stratifiée ou par groupe) est adapté à la structure de vos données pour éviter les fuites de données.</em></p>
-<p>[Rédiger la section de validation ici]</p>
+<p>La validation repose principalement sur la séparation entre le jeu d’entraînement et le jeu de test. Le modèle apprend sur les données d’entraînement, puis il est évalué sur des données qu’il n’a pas vues.</p>
+<p>Pour éviter que les résultats soient trop optimistes, on garde une répartition équilibrée des activités dans les échantillons utilisés. Cela permet d’éviter qu’une activité soit beaucoup plus représentée qu’une autre dans l’évaluation.</p>
+<p>Pour la partie Deep Learning, une partie des données d’entraînement est aussi utilisée comme jeu de validation. Cela permet de suivre l’évolution du modèle pendant l’entraînement.</p>
+<p>Les métriques utilisées sont :</p>
+<ul>
+<li><code>accuracy</code> ;</li>
+<li>précision macro ;</li>
+<li>rappel macro ;</li>
+<li>F1-score macro ;</li>
+<li>matrice de confusion.</li>
+</ul>
+<p>Le F1-score macro est important ici, car il donne le même poids à chaque activité. C’est plus intéressant qu’une simple accuracy quand on veut vérifier que le modèle fonctionne sur toutes les classes.</p>
 </section>
 <section id="résultats-et-interprétation" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="résultats-et-interprétation"><span class="header-section-number">10.2</span> Résultats et Interprétation</h2>
-<p><em>À rédiger par les étudiants : Complétez le tableau d’évaluation ci-dessous en reportant vos résultats de modélisation.</em></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 31%">
-<col style="width: 33%">
-<col style="width: 20%">
+<col style="width: 12%">
+<col style="width: 34%">
+<col style="width: 25%">
+<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Modèle</th>
-<th>Métrique 1 (ex: MAE / Précision)</th>
-<th>Métrique 2 (ex: RMSE / F1-Score)</th>
-<th>R² / Score (%)</th>
+<th>Précision / Accuracy</th>
+<th>F1-score macro</th>
+<th>Type d’approche</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Baseline (ex: Naïve / Moyenne)</td>
-<td>[À compléter]</td>
-<td>[À compléter]</td>
-<td>[À compléter]</td>
+<td>Logistic Regression</td>
+<td>Voir résultats notebook 03</td>
+<td>Voir résultats notebook 03</td>
+<td>Machine Learning tabulaire</td>
 </tr>
 <tr class="even">
-<td><strong>Modèle Choisi</strong></td>
-<td><strong>[À compléter]</strong></td>
-<td><strong>[À compléter]</strong></td>
-<td><strong>[À compléter]</strong></td>
+<td>Decision Tree</td>
+<td>Voir résultats notebook 03</td>
+<td>Voir résultats notebook 03</td>
+<td>Machine Learning tabulaire</td>
+</tr>
+<tr class="odd">
+<td>Gaussian Naive Bayes</td>
+<td>Voir résultats notebook 03</td>
+<td>Voir résultats notebook 03</td>
+<td>Machine Learning tabulaire</td>
+</tr>
+<tr class="even">
+<td>CNN 1D</td>
+<td>Voir résultats notebook 04</td>
+<td>Voir résultats notebook 04</td>
+<td>Deep Learning sur signaux</td>
 </tr>
 </tbody>
 </table>
-<p>[Interpréter et comparer les métriques d’erreur calculées ici]</p>
+<p>Les résultats détaillés sont générés directement dans les notebooks 03 et 04. La comparaison repose surtout sur le F1-score macro, car cette métrique prend en compte les six activités de manière équilibrée.</p>
+<p>La matrice de confusion permet ensuite de repérer les activités les plus souvent confondues. On peut s’attendre à plus de confusion entre certaines activités proches, par exemple entre <code>SITTING</code> et <code>STANDING</code>, car les signaux peuvent être assez similaires.</p>
+<p>Le Machine Learning classique donne une première base de comparaison rapide. Le CNN 1D est plus adapté aux signaux, mais il demande plus de ressources et plus de temps d’entraînement pour donner tout son potentiel.</p>
 <hr>
 </section>
 </section>
@@ -695,13 +726,25 @@ div.csl-indent {
 <h1 data-number="11"><span class="header-section-number">11</span> Data Storytelling et Communication</h1>
 <section id="recommandations-stratégiques-métier" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="recommandations-stratégiques-métier"><span class="header-section-number">11.1</span> Recommandations Stratégiques / Métier</h2>
-<p><em>À rédiger par les étudiants : Formulez des recommandations stratégiques, opérationnelles et innovantes basées sur vos découvertes analytiques et prédictives pour guider les décideurs.</em></p>
-<p>[Rédiger vos recommandations ici]</p>
+<p>Les résultats montrent que les données d’un smartphone peuvent être utilisées pour reconnaître plusieurs activités humaines.</p>
+<p>Dans un cas réel, ce type de modèle pourrait être utilisé dans une application mobile de suivi d’activité, de sport ou de santé connectée. Il pourrait aussi servir dans des systèmes de prévention, par exemple pour mieux suivre les mouvements d’une personne âgée ou détecter des changements d’activité.</p>
+<p>Avant une utilisation réelle, il faudrait cependant tester le modèle sur plus de personnes et sur des téléphones différents. Les habitudes de mouvement peuvent changer selon l’utilisateur, le placement du téléphone ou le type d’appareil.</p>
+<p>Il serait aussi utile de regarder plus précisément les erreurs entre activités proches, comme assis et debout, pour améliorer la fiabilité du système.</p>
 </section>
 <section id="limites-et-perspectives" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="limites-et-perspectives"><span class="header-section-number">11.2</span> Limites et Perspectives</h2>
-<p><em>À rédiger par les étudiants : Identifiez honnêtement les biais ou limites de votre approche et proposez des pistes d’amélioration futures (ex: intégration de données externes réelles, modélisation plus poussée).</em></p>
-<p>[Rédiger les limites et perspectives ici]</p>
+<p>Le projet a quelques limites. Le dataset est déjà propre et bien structuré, ce qui n’est pas toujours le cas dans un vrai projet. En conditions réelles, les données peuvent être plus bruitées, incomplètes ou dépendre du modèle de smartphone utilisé.</p>
+<p>Les modèles ont aussi été volontairement allégés pour que le rapport compile correctement. Avec plus de temps, on pourrait entraîner les modèles plus longtemps, tester plus d’algorithmes et chercher de meilleurs paramètres.</p>
+<p>Une autre limite est liée au nombre de sujets. Même si le dataset contient plusieurs personnes, il faudrait tester le modèle sur davantage de profils pour vérifier qu’il généralise bien.</p>
+<p>Pour améliorer le projet, on pourrait :</p>
+<ul>
+<li>entraîner le CNN 1D sur plus d’époques ;</li>
+<li>tester d’autres architectures de réseaux de neurones ;</li>
+<li>ajouter une validation croisée plus complète ;</li>
+<li>créer un dashboard interactif avec Plotly ou Dash ;</li>
+<li>tester le modèle sur de nouveaux utilisateurs ;</li>
+<li>analyser plus précisément les erreurs entre activités proches.</li>
+</ul>
 <p>Ce document dynamique a été compilé en Quarto <span class="citation" data-cites="quarto2024">(<a href="#ref-quarto2024" role="doc-biblioref">Team 2024</a>)</span>.</p>
 <hr>
 </section>
@@ -1173,206 +1216,265 @@ Team, Quarto Development. 2024. <span>“Quarto Dynamic Publishing System: Colla
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Mon Projet Data Science"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Projet Fil Rouge Data Science - Sujet Libre"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - "Étudiant(e) 1 : [Insérer Prénom Nom]"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - "Étudiant(e) 2 : [Insérer Prénom Nom]"</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - "Étudiant(e) 3 : [Insérer Prénom Nom]"</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">  # Remplacer par vos noms et votre numéro de groupe</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">  typst:</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">  gfm:</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">    output-file: "README.md"</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction et Contexte Métier {#sec-intro}</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![CI Compilation Pipeline](https://github.com/RizleneBERRAG/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)</span><span class="co">](https://github.com/RizleneBERRAG/aptispace-datascience-projet/actions/workflows/ci.yml)</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.*</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contexte du Projet</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants — Pistes de réflexion :*</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quels sont les objectifs globaux et le domaine d'étude de votre projet ?*</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*En quoi ce sujet de recherche est-il pertinent et stratégique ?*</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Pourquoi l'analyse quantitative de ce jeu de données est-elle indispensable pour répondre à votre problématique ?*</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger votre paragraphe de contexte ici</span><span class="co">]</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectif Analytique</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants — Pistes de réflexion :*</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?*</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Comment le couplage de données multi-sources et l'intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l'analyse ?*</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?*</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger votre paragraphe d'objectifs ici</span><span class="co">]</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="fu"># Acquisition et Préparation des Données (Data Wrangling) {#sec-wrangling}</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>Le succès de tout projet de Data Science repose sur la qualité de la préparation des données <span class="co">[</span><span class="ot">@pandas2020</span><span class="co">]</span>. Cette section documente l'audit de qualité et les étapes de nettoyage appliquées à vos jeux de données bruts.</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Audit de Qualité</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez un audit critique complet de vos fichiers de données brutes. Indiquez la liste des anomalies physiques et typologiques détectées (formats de dates hétérogènes, outliers physiques, taux de valeurs manquantes, etc.).*</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger votre audit de données ici</span><span class="co">]</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algorithme de Nettoyage</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Justifiez et détaillez l'enchaînement de vos opérations de traitement (uniformisation des dates, masquage des outliers, imputation, etc.). Faites référence aux fonctions correspondantes de votre module `src/data_clean.py`.*</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger la justification méthodologique ici</span><span class="co">]</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Travaux Pratiques de Wrangling</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>{{&lt; include notebooks/01_data_wrangling.qmd &gt;}}</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="fu"># Analyse Exploratoire des Données (EDA) {#sec-eda}</span></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>Dans cette section, nous analysons les relations statistiques fondamentales qui régissent votre domaine d'étude au sein du jeu de données.</span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Statistiques Descriptives</span></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez une vue d'ensemble descriptive rapide de vos variables nettoyées.*</span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger les statistiques descriptives ici</span><span class="co">]</span></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ingénierie de Variables (Feature Engineering)</span></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Expliquez l'intérêt mathématique et l'impact sur les modèles prédictifs d'extraire des caractéristiques dérivées (ex: variables cycliques temporelles, ratios financiers, ratios physiques, etc.).*</span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Rédiger votre explication de l'ingénierie de variables ici</span><span class="co">]</span></span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="fu">## Travaux Pratiques d'Exploration Visuelle (EDA)</span></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>{{&lt; include notebooks/02_eda_visualisation.qmd &gt;}}</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="fu"># Visualisation Multidimensionnelle (Insights) {#sec-viz}</span></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs, en s'appuyant sur notre module <span class="in">`src/utils_viz.py`</span>.</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>*À rédiger par les étudiants : Présentez et commentez en détail vos 3 à 5 insights majeurs découverts lors de l'exploration descriptive visuelle. Intégrez et justifiez les figures clés générées.*</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Profils et Distributions Caractéristiques</span></span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-distribution-density</span></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Distribution ou profils caractéristiques de vos variables clés."</span></span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser vos fonctions personnalisées de votre module pour tracer la figure</span></span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Commenter la figure et décrire vos observations ici</span><span class="co">]</span></span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="fu">## Corrélations Globales</span></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-correlation</span></span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Matrice de corrélation de Spearman ou de Pearson entre variables."</span></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Utiliser uv.plot_correlation_matrix() de votre module pour tracer la figure</span></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Commenter la figure et décrire vos observations ici</span><span class="co">]</span></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="fu"># Modélisation et Apprentissage {#sec-modelling}</span></span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## Schéma Global du Pipeline de Données</span></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>Le pipeline complet intègre à la fois la branche analytique tabulaire (Machine Learning) et la branche d'analyse visuelle ou de signaux complexes (Deep Learning CNN) :</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="in">```mermaid</span></span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>graph TD</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>    A[Données Brutes Multi-Sources CSV/API] --&gt;|Formatage &amp; Alignement| B(data_clean.clean_dates)</span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>    C[Données Externes Complémentaires] --&gt;|Imputation &amp; Interpolation| D(data_clean.impute_missing_values)</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>    B &amp; D --&gt;|Gestion Outliers| E[Jeu de données Propre &amp; Fusionné]</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>    E --&gt;|Extraction Temporelle/Caractéristiques| F[Feature Engineering]</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>    F --&gt;|Splits Temporels ou Stratifiés| G[Modèle Machine Learning Tabulaire]</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>    H[Flux Multimédias Réels Images/Signaux] --&gt;|Prétraitement d<span class="ot">'</span><span class="ss">images/signaux| I[Réseau Convolutif CNN TensorFlow]</span></span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="ss">    G --&gt;|Prédictions de la Problématique Métier| J[Livrables &amp; Aide à la Décision]</span></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="ss">    I --&gt;|Détection de Motifs Complexes| J</span></span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="ss">    style E fill:#e0f2fe,stroke:#0284c7,stroke-width:2px</span></span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="ss">    style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px</span></span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="ss">    style G fill:#fef3c7,stroke:#d97706,stroke-width:2px</span></span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="ss">    style I fill:#fef3c7,stroke:#d97706,stroke-width:2px</span></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="ss">## Modélisation Tabulaire (Machine Learning)</span></span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="ss">*À rédiger par les étudiants : Expliquez le choix de vos algorithmes d</span><span class="ot">'</span>apprentissage (supervisé ou non supervisé) et décrivez l<span class="ot">'</span><span class="ss">importance des variables explicatives.*</span></span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="ss">[Détailler votre modélisation ici]</span></span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="ss">### Travaux Pratiques de Modélisation Tabulaire</span></span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="ss">{{&lt; include notebooks/03_modelisation_pred.qmd &gt;}}</span></span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="ss">## Modélisation Vision / Deep Learning (Analyse d</span><span class="ot">'</span>Images ou Signaux)</span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Expliquez l<span class="ot">'</span><span class="ss">intérêt de la brique de Deep Learning (images, signaux ou traitement de données structurées complexes) pour classifier ou enrichir vos prédictions. Détaillez l</span><span class="ot">'</span>architecture de votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras (conv, pooling, dense, dropout, activation) et commentez les courbes d<span class="ot">'</span><span class="ss">apprentissage obtenues.*</span></span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="ss">[Détailler votre architecture CNN et analyse ici]</span></span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="ss">### Travaux Pratiques de Vision par Ordinateur (CNN)</span></span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="ss">{{&lt; include notebooks/04_vision_cnn_tf.qmd &gt;}}</span></span>
-<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="ss">---</span></span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="ss"># Évaluation Métrique et Validation {#sec-evaluation}</span></span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="ss">## Stratégie de Validation</span></span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="ss">*À rédiger par les étudiants : Expliquez pourquoi le découpage d</span><span class="ot">'</span>évaluation choisi (ex: validation temporelle, stratifiée ou par groupe) est adapté à la structure de vos données pour éviter les fuites de données.*</span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>[Rédiger la section de validation ici]</span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="co">## Résultats et Interprétation</span></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Complétez <span class="ot">le</span> tableau d<span class="ot">'</span><span class="ss">évaluation ci-dessous en reportant vos résultats de modélisation.*</span></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="ss">| Modèle | Métrique 1 (ex: MAE / Précision) | Métrique 2 (ex: RMSE / F1-Score) | R² / Score (%) |</span></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="ss">|--------|-----------------|------------------|-----------|</span></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="ss">| Baseline (ex: Naïve / Moyenne) | [À compléter] | [À compléter] | [À compléter] |</span></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="ss">| **Modèle Choisi** | **[À compléter]** | **[À compléter]** | **[À compléter]** |</span></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="ss">[Interpréter et comparer les métriques d</span><span class="ot">'</span>erreur calculées ici]</span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Storytelling et Communication {#sec-storytelling}</span></span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="co">## Recommandations Stratégiques / Métier</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Formulez des recommandations stratégiques, opérationnelles et innovantes basées sur vos découvertes analytiques et prédictives pour guider les décideurs.*</span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>[Rédiger vos recommandations ici]</span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="co">## Limites et Perspectives</span></span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="wa">*À</span> rédiger par les étudiants : Identifiez honnêtement les biais ou limites de votre approche et proposez des pistes d<span class="ot">'</span><span class="ss">amélioration futures (ex: intégration de données externes réelles, modélisation plus poussée).*</span></span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="ss">[Rédiger les limites et perspectives ici]</span></span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="ss">Ce document dynamique a été compilé en Quarto [@quarto2024].</span></span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="ss">---</span></span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="ss"># Bibliographie {.unnumbered}</span></span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="ss">::: {#refs}</span></span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="ss">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Reconnaissance d'activité humaine avec un smartphone"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Projet Data Science - Human Activity Recognition"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - "Étudiante : Berrag Rizlene"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: cosmo</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: show</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">  typst:</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">  gfm:</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">    output-file: "README.md"</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: false</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction et Contexte Métier {#sec-intro}</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![CI Compilation Pipeline](https://github.com/RizleneBERRAG/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)</span><span class="co">](https://github.com/RizleneBERRAG/aptispace-datascience-projet/actions/workflows/ci.yml)</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contexte du Projet</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>Dans ce projet, on cherche à reconnaître automatiquement ce qu’une personne est en train de faire à partir des données enregistrées par un smartphone.</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>Le téléphone mesure les mouvements grâce à ses capteurs, notamment l’accéléromètre et le gyroscope. À partir de ces mesures, l’objectif est de différencier plusieurs activités comme marcher, monter les escaliers, descendre les escaliers, être assis, debout ou allongé.</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>Ce sujet est intéressant parce qu’il se rapproche de cas réels, par exemple les applications de suivi sportif, de santé connectée ou de détection de mouvement. Comme les données sont uniquement numériques, il faut passer par une analyse statistique et des modèles de Machine Learning pour réussir à reconnaître les activités.</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>Le dataset utilisé est **Human Activity Recognition Using Smartphones**, issu du **UCI Machine Learning Repository**. Il contient des données de capteurs collectées auprès de personnes réalisant différentes activités avec un smartphone.</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objectif Analytique</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>L’objectif principal est de prédire l’activité réalisée par une personne. La variable à prédire est <span class="in">`activity_id`</span>, qui correspond à une des six activités du dataset.</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>Le projet est donc un problème de classification supervisée multi-classes. On utilise deux formes de données : d’abord les données tabulaires déjà préparées, puis les signaux temporels issus des capteurs du smartphone.</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>Les livrables attendus sont les données préparées, une analyse exploratoire, des modèles de Machine Learning, un modèle Deep Learning avec CNN 1D, puis une comparaison des résultats.</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># Acquisition et Préparation des Données (Data Wrangling) {#sec-wrangling}</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>Le succès de tout projet de Data Science repose sur la qualité de la préparation des données <span class="co">[</span><span class="ot">@pandas2020</span><span class="co">]</span>. Cette section documente l’audit de qualité et les étapes de nettoyage appliquées au dataset.</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Audit de Qualité</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>Le dataset est déjà organisé en deux parties : un jeu d’entraînement et un jeu de test. Les fichiers <span class="in">`X_train`</span> et <span class="in">`X_test`</span> contiennent les variables numériques, les fichiers <span class="in">`y_train`</span> et <span class="in">`y_test`</span> contiennent les activités à prédire, et les fichiers <span class="in">`subject_train`</span> et <span class="in">`subject_test`</span> indiquent les personnes observées.</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>Pendant l’audit, on a surtout vérifié la structure des fichiers, la présence des activités, les valeurs manquantes et les noms de colonnes. Les données sont globalement propres, mais certains noms de variables étaient dupliqués. On les a donc rendus uniques pour éviter des erreurs avec Pandas.</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>On a aussi vérifié les signaux inertiels utilisés pour le Deep Learning. Chaque observation contient 128 pas de temps et 9 signaux capteurs.</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Algorithme de Nettoyage</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>La préparation des données a été faite en plusieurs étapes. On a d’abord chargé les labels des activités, puis les noms des variables. Ensuite, on a reconstruit les jeux <span class="in">`train`</span> et <span class="in">`test`</span> en ajoutant l’identifiant du sujet et le nom de l’activité.</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>Les noms de colonnes ont été nettoyés pour éviter les doublons. Les données finales ont ensuite été sauvegardées dans <span class="in">`data/processed`</span>, afin de ne pas retravailler directement sur les fichiers bruts.</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>Pour la partie Deep Learning, les signaux des capteurs ont été regroupés dans des fichiers <span class="in">`.npz`</span>. Ce format est plus pratique pour TensorFlow, car il garde la structure des données sous forme d’observations, de pas de temps et de capteurs.</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## Travaux Pratiques de Wrangling</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>{{&lt; include notebooks/01_data_wrangling.qmd &gt;}}</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu"># Analyse Exploratoire des Données (EDA) {#sec-eda}</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>Dans cette section, on analyse les données pour mieux comprendre leur structure avant de passer à la modélisation.</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Statistiques Descriptives</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>Le dataset complet contient 10 299 observations. Le jeu d’entraînement contient 7 352 lignes et le jeu de test contient 2 947 lignes.</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>Chaque ligne correspond à une fenêtre de mouvement associée à une activité. Le dataset tabulaire contient 561 variables numériques. Ces variables viennent des mesures du smartphone et décrivent les mouvements enregistrés.</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>On retrouve six activités au total. Certaines sont dynamiques, comme marcher ou monter les escaliers. D’autres sont plus statiques, comme être assis, debout ou allongé. Cette différence est importante, car les signaux ne se comportent pas de la même manière selon le type d’activité.</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ingénierie de Variables (Feature Engineering)</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>Dans ce dataset, une grande partie du travail de création de variables a déjà été faite. Les 561 variables numériques sont des caractéristiques calculées à partir des signaux du smartphone.</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>Ces variables résument les mouvements et permettent d’entraîner des modèles de Machine Learning classiques. En parallèle, on garde aussi les signaux temporels pour la partie Deep Learning. Cette deuxième approche permet au CNN 1D d’apprendre directement des motifs dans les signaux, sans utiliser uniquement les variables déjà calculées.</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Travaux Pratiques d’Exploration Visuelle (EDA)</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>{{&lt; include notebooks/02_eda_visualisation.qmd &gt;}}</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="fu"># Visualisation Multidimensionnelle (Insights) {#sec-viz}</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>Cette partie résume les principaux éléments observés pendant l’analyse exploratoire.</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Profils et Distributions Caractéristiques</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>Les visualisations montrent que les activités ne produisent pas toutes les mêmes profils de mouvement. Les activités dynamiques, comme <span class="in">`WALKING`</span>, <span class="in">`WALKING_UPSTAIRS`</span> ou <span class="in">`WALKING_DOWNSTAIRS`</span>, ont des signaux plus variables. C’est logique, car elles impliquent des mouvements répétés.</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>À l’inverse, les activités statiques comme <span class="in">`SITTING`</span>, <span class="in">`STANDING`</span> et <span class="in">`LAYING`</span> sont plus stables. Elles peuvent cependant être plus difficiles à distinguer entre elles, surtout quand les mouvements sont faibles.</span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>Les principales observations sont :</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>le dataset contient bien les six activités attendues ;</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>les données sont séparées proprement entre train et test ;</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>les activités dynamiques et statiques n’ont pas le même comportement ;</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>les signaux temporels sont bien adaptés à une approche Deep Learning ;</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>certaines activités proches peuvent créer des confusions.</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Corrélations Globales</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>Le dataset contient beaucoup de variables numériques issues des capteurs du smartphone. Certaines variables sont probablement liées entre elles, car elles viennent des mêmes signaux ou de transformations proches.</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>Cette corrélation entre variables n’est pas forcément un problème, mais elle peut influencer certains modèles. C’est aussi pour cette raison que la standardisation est utilisée dans certains modèles comme la régression logistique.</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>La projection PCA réalisée dans le notebook d’EDA donne une première idée de la séparation entre les activités. Elle ne permet pas à elle seule de conclure, mais elle montre que les données contiennent bien une structure exploitable pour la classification.</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="fu"># Modélisation et Apprentissage {#sec-modelling}</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## Schéma Global du Pipeline de Données</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>Le pipeline du projet suit les étapes classiques d’un projet Data Science : acquisition, préparation, analyse exploratoire, modélisation, évaluation et interprétation.</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="in">```mermaid</span></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>graph TD</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>    A[Dataset UCI HAR] --&gt; B[Fichiers bruts train/test]</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[Préparation des données]</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>    C --&gt; D[Données tabulaires propres]</span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>    C --&gt; E[Signaux capteurs propres]</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>    D --&gt; F[Analyse exploratoire]</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>    F --&gt; G[Machine Learning classique]</span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>    E --&gt; H[CNN <span class="dv">1</span>D TensorFlow]</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>    G --&gt; I[Évaluation des résultats]</span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>    H --&gt; I</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>    I --&gt; J[Comparaison et limites]</span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>    style C fill:<span class="co">#e0f2fe,stroke:#0284c7,stroke-width:2px</span></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>    style G fill:<span class="co">#fef3c7,stroke:#d97706,stroke-width:2px</span></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>    style H fill:<span class="co">#fef3c7,stroke:#d97706,stroke-width:2px</span></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>    style J fill:<span class="co">#f0fdf4,stroke:#16a34a,stroke-width:2px</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modélisation Tabulaire (Machine Learning)</span></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>Pour la partie Machine Learning, on utilise les variables numériques du dataset afin de prédire l’activité. Plusieurs modèles ont été testés pour comparer leurs résultats : Logistic Regression, Decision Tree et Gaussian Naive Bayes.</span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>Comme le rapport doit compiler rapidement, l’entraînement a été allégé avec un sous-échantillon équilibré par activité et une sélection de variables. Cela permet de garder une comparaison correcte sans bloquer la compilation.</span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>Les modèles choisis sont simples à interpréter et rapides à entraîner. Ils permettent d’avoir une première base de comparaison avant de passer à une approche Deep Learning.</span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="fu">### Travaux Pratiques de Modélisation Tabulaire</span></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>{{&lt; include notebooks/03_modelisation_pred.qmd &gt;}}</span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</span></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>Dans ce projet, la partie Deep Learning ne porte pas sur des images, mais sur des signaux temporels. On utilise donc un CNN 1D, adapté aux données de type série temporelle.</span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>Le CNN 1D apprend directement à partir des signaux du smartphone. Chaque observation contient 128 pas de temps et 9 signaux capteurs. Le modèle peut donc apprendre des motifs dans les variations d’accélération et de rotation.</span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>L’architecture utilisée reste volontairement légère pour que le rapport compile correctement. Elle contient des couches de convolution 1D, du pooling, puis des couches denses pour produire la prédiction finale parmi les six activités.</span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>Cette approche complète le Machine Learning classique, car elle ne dépend pas uniquement des variables déjà extraites : elle travaille directement sur les signaux.</span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### Travaux Pratiques de Vision par Ordinateur (CNN)</span></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>{{&lt; include notebooks/04_vision_cnn_tf.qmd &gt;}}</span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a><span class="fu"># Évaluation Métrique et Validation {#sec-evaluation}</span></span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stratégie de Validation</span></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>La validation repose principalement sur la séparation entre le jeu d’entraînement et le jeu de test. Le modèle apprend sur les données d’entraînement, puis il est évalué sur des données qu’il n’a pas vues.</span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>Pour éviter que les résultats soient trop optimistes, on garde une répartition équilibrée des activités dans les échantillons utilisés. Cela permet d’éviter qu’une activité soit beaucoup plus représentée qu’une autre dans l’évaluation.</span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>Pour la partie Deep Learning, une partie des données d’entraînement est aussi utilisée comme jeu de validation. Cela permet de suivre l’évolution du modèle pendant l’entraînement.</span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>Les métriques utilisées sont :</span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`accuracy`</span> ;</span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>précision macro ;</span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>rappel macro ;</span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>F1-score macro ;</span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>matrice de confusion.</span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>Le F1-score macro est important ici, car il donne le même poids à chaque activité. C’est plus intéressant qu’une simple accuracy quand on veut vérifier que le modèle fonctionne sur toutes les classes.</span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a><span class="fu">## Résultats et Interprétation</span></span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Modèle <span class="pp">|</span> Précision / Accuracy <span class="pp">|</span> F1-score macro <span class="pp">|</span> Type d’approche <span class="pp">|</span></span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|----------------------|----------------|-----------------|</span></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logistic Regression <span class="pp">|</span> Voir résultats notebook 03 <span class="pp">|</span> Voir résultats notebook 03 <span class="pp">|</span> Machine Learning tabulaire <span class="pp">|</span></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Decision Tree <span class="pp">|</span> Voir résultats notebook 03 <span class="pp">|</span> Voir résultats notebook 03 <span class="pp">|</span> Machine Learning tabulaire <span class="pp">|</span></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gaussian Naive Bayes <span class="pp">|</span> Voir résultats notebook 03 <span class="pp">|</span> Voir résultats notebook 03 <span class="pp">|</span> Machine Learning tabulaire <span class="pp">|</span></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> CNN 1D <span class="pp">|</span> Voir résultats notebook 04 <span class="pp">|</span> Voir résultats notebook 04 <span class="pp">|</span> Deep Learning sur signaux <span class="pp">|</span></span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>Les résultats détaillés sont générés directement dans les notebooks 03 et 04. La comparaison repose surtout sur le F1-score macro, car cette métrique prend en compte les six activités de manière équilibrée.</span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>La matrice de confusion permet ensuite de repérer les activités les plus souvent confondues. On peut s’attendre à plus de confusion entre certaines activités proches, par exemple entre <span class="in">`SITTING`</span> et <span class="in">`STANDING`</span>, car les signaux peuvent être assez similaires.</span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>Le Machine Learning classique donne une première base de comparaison rapide. Le CNN 1D est plus adapté aux signaux, mais il demande plus de ressources et plus de temps d’entraînement pour donner tout son potentiel.</span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Storytelling et Communication {#sec-storytelling}</span></span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recommandations Stratégiques / Métier</span></span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>Les résultats montrent que les données d’un smartphone peuvent être utilisées pour reconnaître plusieurs activités humaines.</span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>Dans un cas réel, ce type de modèle pourrait être utilisé dans une application mobile de suivi d’activité, de sport ou de santé connectée. Il pourrait aussi servir dans des systèmes de prévention, par exemple pour mieux suivre les mouvements d’une personne âgée ou détecter des changements d’activité.</span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>Avant une utilisation réelle, il faudrait cependant tester le modèle sur plus de personnes et sur des téléphones différents. Les habitudes de mouvement peuvent changer selon l’utilisateur, le placement du téléphone ou le type d’appareil.</span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>Il serait aussi utile de regarder plus précisément les erreurs entre activités proches, comme assis et debout, pour améliorer la fiabilité du système.</span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limites et Perspectives</span></span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>Le projet a quelques limites. Le dataset est déjà propre et bien structuré, ce qui n’est pas toujours le cas dans un vrai projet. En conditions réelles, les données peuvent être plus bruitées, incomplètes ou dépendre du modèle de smartphone utilisé.</span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>Les modèles ont aussi été volontairement allégés pour que le rapport compile correctement. Avec plus de temps, on pourrait entraîner les modèles plus longtemps, tester plus d’algorithmes et chercher de meilleurs paramètres.</span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>Une autre limite est liée au nombre de sujets. Même si le dataset contient plusieurs personnes, il faudrait tester le modèle sur davantage de profils pour vérifier qu’il généralise bien.</span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>Pour améliorer le projet, on pourrait :</span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>entraîner le CNN 1D sur plus d’époques ;</span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tester d’autres architectures de réseaux de neurones ;</span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ajouter une validation croisée plus complète ;</span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>créer un dashboard interactif avec Plotly ou Dash ;</span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>tester le modèle sur de nouveaux utilisateurs ;</span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>analyser plus précisément les erreurs entre activités proches.</span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a>Ce document dynamique a été compilé en Quarto <span class="co">[</span><span class="ot">@quarto2024</span><span class="co">]</span>.</span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a><span class="fu"># Bibliographie {.unnumbered}</span></span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
