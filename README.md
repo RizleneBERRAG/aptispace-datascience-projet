@@ -31,9 +31,23 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
     Engineering)](#ingénierie-de-variables-feature-engineering)
   - [Travaux Pratiques d’Exploration Visuelle
     (EDA)](#travaux-pratiques-dexploration-visuelle-eda)
-- [📊 Jalon 1 : Analyse Exploratoire des Données (EDA) & Visualisation
-  (Squelette
-  Étudiant)](#bar_chart-jalon-1--analyse-exploratoire-des-données-eda--visualisation-squelette-étudiant)
+- [02 — Analyse exploratoire et
+  visualisation](#02--analyse-exploratoire-et-visualisation)
+  - [Vue générale du dataset](#vue-générale-du-dataset)
+  - [Qualité des données](#qualité-des-données)
+  - [Répartition des activités](#répartition-des-activités)
+  - [Répartition train/test](#répartition-traintest)
+  - [Activités par split](#activités-par-split)
+  - [Activités dynamiques et
+    statiques](#activités-dynamiques-et-statiques)
+  - [Répartition des sujets](#répartition-des-sujets)
+  - [Analyse des variables
+    numériques](#analyse-des-variables-numériques)
+  - [Projection PCA](#projection-pca)
+  - [Chargement des signaux
+    inertiels](#chargement-des-signaux-inertiels)
+  - [Exemple de signal par activité](#exemple-de-signal-par-activité)
+  - [Premiers insights](#premiers-insights)
 - [Visualisation Multidimensionnelle (Insights)](#sec-viz)
   - [Profils et Distributions
     Caractéristiques](#profils-et-distributions-caractéristiques)
@@ -237,47 +251,125 @@ physiques, etc.).*
 
 ## Travaux Pratiques d’Exploration Visuelle (EDA)
 
-# 📊 Jalon 1 : Analyse Exploratoire des Données (EDA) & Visualisation (Squelette Étudiant)
+# 02 — Analyse exploratoire et visualisation
 
-Ce notebook est dédié à la découverte de relations clés et à l’analyse
-visuelle de nos données. À partir du jeu de données propre généré
-précédemment, nous allons enrichir nos variables explicatives et appeler
-les fonctions de notre module de visualisation `src.utils_viz` pour
-générer des graphiques professionnels.
+Ce notebook correspond à l’étape d’analyse exploratoire du projet.
 
-### 1. Importation des packages et configuration du style
+L’objectif est de comprendre les données préparées dans le notebook 01
+avant de passer à la modélisation.
 
-### 2. Ingénierie de variables temporelles
+Nous allons analyser :
 
-**À faire par l’étudiant :** Appliquez la fonction `feature_engineering`
-de `src.data_clean` pour enrichir votre DataFrame en caractéristiques de
-temps classiques (heures, jours de la semaine).
+- la taille du dataset ;
+- la répartition des activités ;
+- la séparation train/test ;
+- les sujets observés ;
+- les différences entre activités dynamiques et statiques ;
+- quelques variables numériques ;
+- les signaux inertiels utilisés pour la partie Deep Learning.
 
-### 3. Visualisations Professionnelles
+## Vue générale du dataset
 
-#### A. Profils d’évolution et tendances
+Le dataset contient les observations issues des capteurs du smartphone.
 
-**À faire par l’étudiant :** Appliquez la fonction `plot_generic_trends`
-de votre module `src.utils_viz` pour tracer l’évolution de la valeur par
-rapport au temps.
+Chaque ligne correspond à une fenêtre temporelle de mouvement associée à
+une activité humaine.
 
-#### B. Matrice de corrélation multi-variables
+## Qualité des données
 
-**À faire par l’étudiant :** Appliquez la fonction
-`plot_correlation_matrix` de votre module `src.utils_viz` pour calculer
-et afficher graphiquement la carte thermique des corrélations sur les
-colonnes `['value', 'hour', 'dayofweek']`.
+Nous vérifions la présence de valeurs manquantes.
 
-#### C. Nuage de points bivarié
+## Répartition des activités
 
-**À faire par l’étudiant :** Générez un nuage de points de la relation
-heure vs valeur en colorant les points selon la variable `dayofweek`, en
-utilisant votre fonction `plot_bivariate_scatter`.
+Cette analyse permet de vérifier si certaines activités sont beaucoup
+plus représentées que d’autres.
 
-### 4. Synthèse des observations clés
+Un fort déséquilibre pourrait influencer l’apprentissage des modèles.
 
-Sur la base de vos figures, listez les **insights majeurs** observés sur
-le comportement de vos variables.
+## Répartition train/test
+
+Le dataset est déjà séparé en deux parties :
+
+- `train` : données utilisées pour entraîner les modèles ;
+- `test` : données utilisées pour évaluer les modèles.
+
+## Activités par split
+
+Nous vérifions que les six activités sont présentes dans les données
+d’entraînement et dans les données de test.
+
+## Activités dynamiques et statiques
+
+Certaines activités impliquent du mouvement :
+
+- marcher ;
+- monter les escaliers ;
+- descendre les escaliers.
+
+D’autres sont plutôt statiques :
+
+- assis ;
+- debout ;
+- allongé.
+
+Cette séparation est importante car les signaux capteurs devraient être
+très différents entre ces deux groupes.
+
+## Répartition des sujets
+
+Le dataset contient plusieurs sujets. Cette information est importante
+car les mouvements peuvent varier d’une personne à l’autre.
+
+## Analyse des variables numériques
+
+Le dataset contient 561 variables numériques extraites des signaux du
+smartphone.
+
+Nous observons ici un résumé statistique d’un échantillon de variables.
+
+## Projection PCA
+
+La PCA permet de réduire les 561 variables en deux dimensions afin de
+visualiser grossièrement la séparation entre les activités.
+
+Cette visualisation ne sert pas à prédire directement, mais à comprendre
+si les activités semblent séparables.
+
+## Chargement des signaux inertiels
+
+Pour la partie Deep Learning, nous utiliserons les signaux présents dans
+les fichiers `.npz`.
+
+Chaque observation contient :
+
+- 128 pas de temps ;
+- 9 signaux capteurs.
+
+## Exemple de signal par activité
+
+Nous affichons un exemple du signal `total_acc_x` pour chaque activité.
+
+L’objectif est de visualiser que les mouvements dynamiques produisent
+des signaux plus variables que les activités statiques.
+
+## Premiers insights
+
+À partir de cette analyse exploratoire, nous pouvons retenir plusieurs
+points :
+
+1.  Le dataset contient six activités humaines clairement identifiées.
+2.  Les données sont déjà séparées en train et test, ce qui facilitera
+    l’évaluation.
+3.  Les activités peuvent être regroupées en activités dynamiques et
+    statiques.
+4.  Les signaux inertiels ont une structure adaptée au Deep Learning :
+    observations, pas de temps, capteurs.
+5.  La projection PCA donne une première idée de la séparabilité des
+    activités, même si la modélisation sera nécessaire pour mesurer
+    réellement les performances.
+
+La prochaine étape consistera à entraîner des modèles de Machine
+Learning classiques sur les variables numériques.
 
 ------------------------------------------------------------------------
 

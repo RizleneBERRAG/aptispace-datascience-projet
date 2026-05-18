@@ -1,5 +1,36 @@
 === STDOUT ===
-🎨 Charte graphique 'light' initialisée avec succès.
-💡 Nouvelles caractéristiques extraites : 'hour', 'dayofweek'
+Données complètes : (10299, 565)
+Train : (7352, 565)
+Test : (2947, 565)
+Nombre de lignes : 10299
+Nombre de colonnes : 565
+Nombre d'activités : 6
+Nombre de sujets : 30
+
+Activités :
+   activity_id            activity
+0            1             WALKING
+1            2    WALKING_UPSTAIRS
+2            3  WALKING_DOWNSTAIRS
+3            4             SITTING
+4            5            STANDING
+5            6              LAYING
+Nombre total de valeurs manquantes : 0
+Nombre de variables numériques : 561
+Variance expliquée PC1 + PC2 : 0.5697740681020989
+Shape des signaux train : (7352, 128, 9)
+Shape des labels train : (7352,)
+Signaux disponibles :
+- body_acc_x_train.txt
+- body_acc_y_train.txt
+- body_acc_z_train.txt
+- body_gyro_x_train.txt
+- body_gyro_y_train.txt
+- body_gyro_z_train.txt
+- total_acc_x_train.txt
+- total_acc_y_train.txt
+- total_acc_z_train.txt
 
 === STDERR ===
+/workspaces/aptispace-datascience-projet/src/02_eda_visualisation.py:80: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  df["activity_type"] = np.where(

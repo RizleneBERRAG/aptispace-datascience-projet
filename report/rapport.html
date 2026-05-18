@@ -165,12 +165,20 @@ window.Quarto = {
   <li><a href="#ingénierie-de-variables-feature-engineering" id="toc-ingénierie-de-variables-feature-engineering" class="nav-link" data-scroll-target="#ingénierie-de-variables-feature-engineering"><span class="header-section-number">4.2</span> Ingénierie de Variables (Feature Engineering)</a></li>
   <li><a href="#travaux-pratiques-dexploration-visuelle-eda" id="toc-travaux-pratiques-dexploration-visuelle-eda" class="nav-link" data-scroll-target="#travaux-pratiques-dexploration-visuelle-eda"><span class="header-section-number">4.3</span> Travaux Pratiques d’Exploration Visuelle (EDA)</a></li>
   </ul></li>
-  <li><a href="#jalon-1-analyse-exploratoire-des-données-eda-visualisation-squelette-étudiant" id="toc-jalon-1-analyse-exploratoire-des-données-eda-visualisation-squelette-étudiant" class="nav-link" data-scroll-target="#jalon-1-analyse-exploratoire-des-données-eda-visualisation-squelette-étudiant"><span class="header-section-number">5</span> 📊 Jalon 1 : Analyse Exploratoire des Données (EDA) &amp; Visualisation (Squelette Étudiant)</a>
+  <li><a href="#analyse-exploratoire-et-visualisation" id="toc-analyse-exploratoire-et-visualisation" class="nav-link" data-scroll-target="#analyse-exploratoire-et-visualisation"><span class="header-section-number">5</span> 02 — Analyse exploratoire et visualisation</a>
   <ul class="collapse">
-  <li><a href="#importation-des-packages-et-configuration-du-style" id="toc-importation-des-packages-et-configuration-du-style" class="nav-link" data-scroll-target="#importation-des-packages-et-configuration-du-style"><span class="header-section-number">5.0.1</span> 1. Importation des packages et configuration du style</a></li>
-  <li><a href="#ingénierie-de-variables-temporelles" id="toc-ingénierie-de-variables-temporelles" class="nav-link" data-scroll-target="#ingénierie-de-variables-temporelles"><span class="header-section-number">5.0.2</span> 2. Ingénierie de variables temporelles</a></li>
-  <li><a href="#visualisations-professionnelles" id="toc-visualisations-professionnelles" class="nav-link" data-scroll-target="#visualisations-professionnelles"><span class="header-section-number">5.0.3</span> 3. Visualisations Professionnelles</a></li>
-  <li><a href="#synthèse-des-observations-clés" id="toc-synthèse-des-observations-clés" class="nav-link" data-scroll-target="#synthèse-des-observations-clés"><span class="header-section-number">5.0.4</span> 4. Synthèse des observations clés</a></li>
+  <li><a href="#vue-générale-du-dataset" id="toc-vue-générale-du-dataset" class="nav-link" data-scroll-target="#vue-générale-du-dataset"><span class="header-section-number">5.1</span> Vue générale du dataset</a></li>
+  <li><a href="#qualité-des-données" id="toc-qualité-des-données" class="nav-link" data-scroll-target="#qualité-des-données"><span class="header-section-number">5.2</span> Qualité des données</a></li>
+  <li><a href="#répartition-des-activités" id="toc-répartition-des-activités" class="nav-link" data-scroll-target="#répartition-des-activités"><span class="header-section-number">5.3</span> Répartition des activités</a></li>
+  <li><a href="#répartition-traintest" id="toc-répartition-traintest" class="nav-link" data-scroll-target="#répartition-traintest"><span class="header-section-number">5.4</span> Répartition train/test</a></li>
+  <li><a href="#activités-par-split" id="toc-activités-par-split" class="nav-link" data-scroll-target="#activités-par-split"><span class="header-section-number">5.5</span> Activités par split</a></li>
+  <li><a href="#activités-dynamiques-et-statiques" id="toc-activités-dynamiques-et-statiques" class="nav-link" data-scroll-target="#activités-dynamiques-et-statiques"><span class="header-section-number">5.6</span> Activités dynamiques et statiques</a></li>
+  <li><a href="#répartition-des-sujets" id="toc-répartition-des-sujets" class="nav-link" data-scroll-target="#répartition-des-sujets"><span class="header-section-number">5.7</span> Répartition des sujets</a></li>
+  <li><a href="#analyse-des-variables-numériques" id="toc-analyse-des-variables-numériques" class="nav-link" data-scroll-target="#analyse-des-variables-numériques"><span class="header-section-number">5.8</span> Analyse des variables numériques</a></li>
+  <li><a href="#projection-pca" id="toc-projection-pca" class="nav-link" data-scroll-target="#projection-pca"><span class="header-section-number">5.9</span> Projection PCA</a></li>
+  <li><a href="#chargement-des-signaux-inertiels" id="toc-chargement-des-signaux-inertiels" class="nav-link" data-scroll-target="#chargement-des-signaux-inertiels"><span class="header-section-number">5.10</span> Chargement des signaux inertiels</a></li>
+  <li><a href="#exemple-de-signal-par-activité" id="toc-exemple-de-signal-par-activité" class="nav-link" data-scroll-target="#exemple-de-signal-par-activité"><span class="header-section-number">5.11</span> Exemple de signal par activité</a></li>
+  <li><a href="#premiers-insights" id="toc-premiers-insights" class="nav-link" data-scroll-target="#premiers-insights"><span class="header-section-number">5.12</span> Premiers insights</a></li>
   </ul></li>
   <li><a href="#sec-viz" id="toc-sec-viz" class="nav-link" data-scroll-target="#sec-viz"><span class="header-section-number">6</span> Visualisation Multidimensionnelle (Insights)</a>
   <ul class="collapse">
@@ -389,34 +397,101 @@ window.Quarto = {
 <h2 data-number="4.3" class="anchored" data-anchor-id="travaux-pratiques-dexploration-visuelle-eda"><span class="header-section-number">4.3</span> Travaux Pratiques d’Exploration Visuelle (EDA)</h2>
 </section>
 </section>
-<section id="jalon-1-analyse-exploratoire-des-données-eda-visualisation-squelette-étudiant" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> 📊 Jalon 1 : Analyse Exploratoire des Données (EDA) &amp; Visualisation (Squelette Étudiant)</h1>
-<p>Ce notebook est dédié à la découverte de relations clés et à l’analyse visuelle de nos données. À partir du jeu de données propre généré précédemment, nous allons enrichir nos variables explicatives et appeler les fonctions de notre module de visualisation <code>src.utils_viz</code> pour générer des graphiques professionnels.</p>
-<section id="importation-des-packages-et-configuration-du-style" class="level3" data-number="5.0.1">
-<h3 data-number="5.0.1" class="anchored" data-anchor-id="importation-des-packages-et-configuration-du-style"><span class="header-section-number">5.0.1</span> 1. Importation des packages et configuration du style</h3>
+<section id="analyse-exploratoire-et-visualisation" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 02 — Analyse exploratoire et visualisation</h1>
+<p>Ce notebook correspond à l’étape d’analyse exploratoire du projet.</p>
+<p>L’objectif est de comprendre les données préparées dans le notebook 01 avant de passer à la modélisation.</p>
+<p>Nous allons analyser :</p>
+<ul>
+<li>la taille du dataset ;</li>
+<li>la répartition des activités ;</li>
+<li>la séparation train/test ;</li>
+<li>les sujets observés ;</li>
+<li>les différences entre activités dynamiques et statiques ;</li>
+<li>quelques variables numériques ;</li>
+<li>les signaux inertiels utilisés pour la partie Deep Learning.</li>
+</ul>
+<section id="vue-générale-du-dataset" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="vue-générale-du-dataset"><span class="header-section-number">5.1</span> Vue générale du dataset</h2>
+<p>Le dataset contient les observations issues des capteurs du smartphone.</p>
+<p>Chaque ligne correspond à une fenêtre temporelle de mouvement associée à une activité humaine.</p>
 </section>
-<section id="ingénierie-de-variables-temporelles" class="level3" data-number="5.0.2">
-<h3 data-number="5.0.2" class="anchored" data-anchor-id="ingénierie-de-variables-temporelles"><span class="header-section-number">5.0.2</span> 2. Ingénierie de variables temporelles</h3>
-<p><strong>À faire par l’étudiant :</strong> Appliquez la fonction <code>feature_engineering</code> de <code>src.data_clean</code> pour enrichir votre DataFrame en caractéristiques de temps classiques (heures, jours de la semaine).</p>
+<section id="qualité-des-données" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="qualité-des-données"><span class="header-section-number">5.2</span> Qualité des données</h2>
+<p>Nous vérifions la présence de valeurs manquantes.</p>
 </section>
-<section id="visualisations-professionnelles" class="level3" data-number="5.0.3">
-<h3 data-number="5.0.3" class="anchored" data-anchor-id="visualisations-professionnelles"><span class="header-section-number">5.0.3</span> 3. Visualisations Professionnelles</h3>
-<section id="a.-profils-dévolution-et-tendances" class="level4" data-number="5.0.3.1">
-<h4 data-number="5.0.3.1" class="anchored" data-anchor-id="a.-profils-dévolution-et-tendances"><span class="header-section-number">5.0.3.1</span> A. Profils d’évolution et tendances</h4>
-<p><strong>À faire par l’étudiant :</strong> Appliquez la fonction <code>plot_generic_trends</code> de votre module <code>src.utils_viz</code> pour tracer l’évolution de la valeur par rapport au temps.</p>
+<section id="répartition-des-activités" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="répartition-des-activités"><span class="header-section-number">5.3</span> Répartition des activités</h2>
+<p>Cette analyse permet de vérifier si certaines activités sont beaucoup plus représentées que d’autres.</p>
+<p>Un fort déséquilibre pourrait influencer l’apprentissage des modèles.</p>
 </section>
-<section id="b.-matrice-de-corrélation-multi-variables" class="level4" data-number="5.0.3.2">
-<h4 data-number="5.0.3.2" class="anchored" data-anchor-id="b.-matrice-de-corrélation-multi-variables"><span class="header-section-number">5.0.3.2</span> B. Matrice de corrélation multi-variables</h4>
-<p><strong>À faire par l’étudiant :</strong> Appliquez la fonction <code>plot_correlation_matrix</code> de votre module <code>src.utils_viz</code> pour calculer et afficher graphiquement la carte thermique des corrélations sur les colonnes <code>['value', 'hour', 'dayofweek']</code>.</p>
+<section id="répartition-traintest" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="répartition-traintest"><span class="header-section-number">5.4</span> Répartition train/test</h2>
+<p>Le dataset est déjà séparé en deux parties :</p>
+<ul>
+<li><code>train</code> : données utilisées pour entraîner les modèles ;</li>
+<li><code>test</code> : données utilisées pour évaluer les modèles.</li>
+</ul>
 </section>
-<section id="c.-nuage-de-points-bivarié" class="level4" data-number="5.0.3.3">
-<h4 data-number="5.0.3.3" class="anchored" data-anchor-id="c.-nuage-de-points-bivarié"><span class="header-section-number">5.0.3.3</span> C. Nuage de points bivarié</h4>
-<p><strong>À faire par l’étudiant :</strong> Générez un nuage de points de la relation heure vs valeur en colorant les points selon la variable <code>dayofweek</code>, en utilisant votre fonction <code>plot_bivariate_scatter</code>.</p>
+<section id="activités-par-split" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="activités-par-split"><span class="header-section-number">5.5</span> Activités par split</h2>
+<p>Nous vérifions que les six activités sont présentes dans les données d’entraînement et dans les données de test.</p>
 </section>
+<section id="activités-dynamiques-et-statiques" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="activités-dynamiques-et-statiques"><span class="header-section-number">5.6</span> Activités dynamiques et statiques</h2>
+<p>Certaines activités impliquent du mouvement :</p>
+<ul>
+<li>marcher ;</li>
+<li>monter les escaliers ;</li>
+<li>descendre les escaliers.</li>
+</ul>
+<p>D’autres sont plutôt statiques :</p>
+<ul>
+<li>assis ;</li>
+<li>debout ;</li>
+<li>allongé.</li>
+</ul>
+<p>Cette séparation est importante car les signaux capteurs devraient être très différents entre ces deux groupes.</p>
 </section>
-<section id="synthèse-des-observations-clés" class="level3" data-number="5.0.4">
-<h3 data-number="5.0.4" class="anchored" data-anchor-id="synthèse-des-observations-clés"><span class="header-section-number">5.0.4</span> 4. Synthèse des observations clés</h3>
-<p>Sur la base de vos figures, listez les <strong>insights majeurs</strong> observés sur le comportement de vos variables.</p>
+<section id="répartition-des-sujets" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="répartition-des-sujets"><span class="header-section-number">5.7</span> Répartition des sujets</h2>
+<p>Le dataset contient plusieurs sujets. Cette information est importante car les mouvements peuvent varier d’une personne à l’autre.</p>
+</section>
+<section id="analyse-des-variables-numériques" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="analyse-des-variables-numériques"><span class="header-section-number">5.8</span> Analyse des variables numériques</h2>
+<p>Le dataset contient 561 variables numériques extraites des signaux du smartphone.</p>
+<p>Nous observons ici un résumé statistique d’un échantillon de variables.</p>
+</section>
+<section id="projection-pca" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="projection-pca"><span class="header-section-number">5.9</span> Projection PCA</h2>
+<p>La PCA permet de réduire les 561 variables en deux dimensions afin de visualiser grossièrement la séparation entre les activités.</p>
+<p>Cette visualisation ne sert pas à prédire directement, mais à comprendre si les activités semblent séparables.</p>
+</section>
+<section id="chargement-des-signaux-inertiels" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="chargement-des-signaux-inertiels"><span class="header-section-number">5.10</span> Chargement des signaux inertiels</h2>
+<p>Pour la partie Deep Learning, nous utiliserons les signaux présents dans les fichiers <code>.npz</code>.</p>
+<p>Chaque observation contient :</p>
+<ul>
+<li>128 pas de temps ;</li>
+<li>9 signaux capteurs.</li>
+</ul>
+</section>
+<section id="exemple-de-signal-par-activité" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="exemple-de-signal-par-activité"><span class="header-section-number">5.11</span> Exemple de signal par activité</h2>
+<p>Nous affichons un exemple du signal <code>total_acc_x</code> pour chaque activité.</p>
+<p>L’objectif est de visualiser que les mouvements dynamiques produisent des signaux plus variables que les activités statiques.</p>
+</section>
+<section id="premiers-insights" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="premiers-insights"><span class="header-section-number">5.12</span> Premiers insights</h2>
+<p>À partir de cette analyse exploratoire, nous pouvons retenir plusieurs points :</p>
+<ol type="1">
+<li>Le dataset contient six activités humaines clairement identifiées.</li>
+<li>Les données sont déjà séparées en train et test, ce qui facilitera l’évaluation.</li>
+<li>Les activités peuvent être regroupées en activités dynamiques et statiques.</li>
+<li>Les signaux inertiels ont une structure adaptée au Deep Learning : observations, pas de temps, capteurs.</li>
+<li>La projection PCA donne une première idée de la séparabilité des activités, même si la modélisation sera nécessaire pour mesurer réellement les performances.</li>
+</ol>
+<p>La prochaine étape consistera à entraîner des modèles de Machine Learning classiques sur les variables numériques.</p>
 <hr>
 </section>
 </section>
