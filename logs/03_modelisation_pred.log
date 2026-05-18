@@ -1,13 +1,1 @@
-=== STDOUT ===
-🎨 Charte graphique 'light' initialisée avec succès.
-Libraries de modélisation prêtes !
-💡 Nouvelles caractéristiques extraites : 'hour', 'dayofweek'
-Taille Train : (14, 2), Taille Test : (4, 2)
-Prédictions générées : [23.71 23.71 23.71 23.71]
-MAE  : 5.815
-RMSE : 6.002
-R²   : -15.288
-Variable : hour         | Importance : 0.9661
-Variable : dayofweek    | Importance : 0.0339
-
-=== STDERR ===
+❌ ÉCHEC : Temps d'exécution limite dépassé (30s).

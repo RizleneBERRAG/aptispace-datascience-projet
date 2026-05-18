@@ -193,21 +193,27 @@ window.Quarto = {
   <li><a href="#travaux-pratiques-de-modélisation-tabulaire" id="toc-travaux-pratiques-de-modélisation-tabulaire" class="nav-link" data-scroll-target="#travaux-pratiques-de-modélisation-tabulaire"><span class="header-section-number">7.2.1</span> Travaux Pratiques de Modélisation Tabulaire</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#jalon-2-modélisation-prédictive-apprentissage-squelette-étudiant" id="toc-jalon-2-modélisation-prédictive-apprentissage-squelette-étudiant" class="nav-link" data-scroll-target="#jalon-2-modélisation-prédictive-apprentissage-squelette-étudiant"><span class="header-section-number">8</span> 🧠 Jalon 2 : Modélisation Prédictive &amp; Apprentissage (Squelette Étudiant)</a>
+  <li><a href="#modélisation-machine-learning" id="toc-modélisation-machine-learning" class="nav-link" data-scroll-target="#modélisation-machine-learning"><span class="header-section-number">8</span> 03 — Modélisation Machine Learning</a>
   <ul class="collapse">
-  <li><a href="#préparation-de-lenvironnement" id="toc-préparation-de-lenvironnement" class="nav-link" data-scroll-target="#préparation-de-lenvironnement"><span class="header-section-number">8.0.1</span> 1. Préparation de l’environnement</a></li>
-  <li><a href="#définition-des-variables-et-split-chronologique" id="toc-définition-des-variables-et-split-chronologique" class="nav-link" data-scroll-target="#définition-des-variables-et-split-chronologique"><span class="header-section-number">8.0.2</span> 2. Définition des variables et split chronologique</a></li>
-  <li><a href="#entraînement-du-modèle-de-forêt-aléatoire" id="toc-entraînement-du-modèle-de-forêt-aléatoire" class="nav-link" data-scroll-target="#entraînement-du-modèle-de-forêt-aléatoire"><span class="header-section-number">8.0.3</span> 3. Entraînement du modèle de Forêt Aléatoire</a></li>
-  <li><a href="#évaluation-métrique" id="toc-évaluation-métrique" class="nav-link" data-scroll-target="#évaluation-métrique"><span class="header-section-number">8.0.4</span> 4. Évaluation métrique</a></li>
-  <li><a href="#importance-des-variables-explicatives" id="toc-importance-des-variables-explicatives" class="nav-link" data-scroll-target="#importance-des-variables-explicatives"><span class="header-section-number">8.0.5</span> 5. Importance des variables explicatives</a></li>
-  <li><a href="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux" id="toc-modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="nav-link" data-scroll-target="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.1</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</a>
+  <li><a href="#préparation-des-variables" id="toc-préparation-des-variables" class="nav-link" data-scroll-target="#préparation-des-variables"><span class="header-section-number">8.1</span> Préparation des variables</a></li>
+  <li><a href="#choix-des-modèles" id="toc-choix-des-modèles" class="nav-link" data-scroll-target="#choix-des-modèles"><span class="header-section-number">8.2</span> Choix des modèles</a></li>
+  <li><a href="#validation-croisée-groupée" id="toc-validation-croisée-groupée" class="nav-link" data-scroll-target="#validation-croisée-groupée"><span class="header-section-number">8.3</span> Validation croisée groupée</a></li>
+  <li><a href="#visualisation-des-résultats-de-validation-croisée" id="toc-visualisation-des-résultats-de-validation-croisée" class="nav-link" data-scroll-target="#visualisation-des-résultats-de-validation-croisée"><span class="header-section-number">8.4</span> Visualisation des résultats de validation croisée</a></li>
+  <li><a href="#entraînement-final-sur-le-train-et-évaluation-sur-le-test" id="toc-entraînement-final-sur-le-train-et-évaluation-sur-le-test" class="nav-link" data-scroll-target="#entraînement-final-sur-le-train-et-évaluation-sur-le-test"><span class="header-section-number">8.5</span> Entraînement final sur le train et évaluation sur le test</a></li>
+  <li><a href="#comparaison-des-performances-sur-le-test" id="toc-comparaison-des-performances-sur-le-test" class="nav-link" data-scroll-target="#comparaison-des-performances-sur-le-test"><span class="header-section-number">8.6</span> Comparaison des performances sur le test</a></li>
+  <li><a href="#meilleur-modèle" id="toc-meilleur-modèle" class="nav-link" data-scroll-target="#meilleur-modèle"><span class="header-section-number">8.7</span> Meilleur modèle</a></li>
+  <li><a href="#matrice-de-confusion" id="toc-matrice-de-confusion" class="nav-link" data-scroll-target="#matrice-de-confusion"><span class="header-section-number">8.8</span> Matrice de confusion</a></li>
+  <li><a href="#analyse-des-erreurs" id="toc-analyse-des-erreurs" class="nav-link" data-scroll-target="#analyse-des-erreurs"><span class="header-section-number">8.9</span> Analyse des erreurs</a></li>
+  <li><a href="#sauvegarde-des-résultats" id="toc-sauvegarde-des-résultats" class="nav-link" data-scroll-target="#sauvegarde-des-résultats"><span class="header-section-number">8.10</span> Sauvegarde des résultats</a></li>
+  <li><a href="#conclusion-de-la-modélisation-machine-learning" id="toc-conclusion-de-la-modélisation-machine-learning" class="nav-link" data-scroll-target="#conclusion-de-la-modélisation-machine-learning"><span class="header-section-number">8.11</span> Conclusion de la modélisation Machine Learning</a></li>
+  <li><a href="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux" id="toc-modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="nav-link" data-scroll-target="#modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.12</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</a>
   <ul class="collapse">
-  <li><a href="#travaux-pratiques-de-vision-par-ordinateur-cnn" id="toc-travaux-pratiques-de-vision-par-ordinateur-cnn" class="nav-link" data-scroll-target="#travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.1.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</a></li>
+  <li><a href="#travaux-pratiques-de-vision-par-ordinateur-cnn" id="toc-travaux-pratiques-de-vision-par-ordinateur-cnn" class="nav-link" data-scroll-target="#travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.12.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#jalon-2-brique-de-vision-par-ordinateur-cnn-tensorflow-squelette-étudiant" id="toc-jalon-2-brique-de-vision-par-ordinateur-cnn-tensorflow-squelette-étudiant" class="nav-link" data-scroll-target="#jalon-2-brique-de-vision-par-ordinateur-cnn-tensorflow-squelette-étudiant"><span class="header-section-number">9</span> 📷 Jalon 2 : Brique de Vision par Ordinateur (CNN &amp; TensorFlow) (Squelette Étudiant)</a>
   <ul class="collapse">
-  <li><a href="#préparation-de-lenvironnement-1" id="toc-préparation-de-lenvironnement-1" class="nav-link" data-scroll-target="#préparation-de-lenvironnement-1"><span class="header-section-number">9.0.1</span> 1. Préparation de l’environnement</a></li>
+  <li><a href="#préparation-de-lenvironnement" id="toc-préparation-de-lenvironnement" class="nav-link" data-scroll-target="#préparation-de-lenvironnement"><span class="header-section-number">9.0.1</span> 1. Préparation de l’environnement</a></li>
   <li><a href="#génération-du-jeu-dimages-synthétiques" id="toc-génération-du-jeu-dimages-synthétiques" class="nav-link" data-scroll-target="#génération-du-jeu-dimages-synthétiques"><span class="header-section-number">9.0.2</span> 2. Génération du jeu d’images synthétiques</a></li>
   <li><a href="#split-dévaluation-entraînement-validation" id="toc-split-dévaluation-entraînement-validation" class="nav-link" data-scroll-target="#split-dévaluation-entraînement-validation"><span class="header-section-number">9.0.3</span> 3. Split d’évaluation (Entraînement / Validation)</a></li>
   <li><a href="#conception-de-larchitecture-du-cnn" id="toc-conception-de-larchitecture-du-cnn" class="nav-link" data-scroll-target="#conception-de-larchitecture-du-cnn"><span class="header-section-number">9.0.4</span> 4. Conception de l’architecture du CNN</a></li>
@@ -546,43 +552,92 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="jalon-2-modélisation-prédictive-apprentissage-squelette-étudiant" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> 🧠 Jalon 2 : Modélisation Prédictive &amp; Apprentissage (Squelette Étudiant)</h1>
-<p>Dans ce notebook du <strong>Jalon 2</strong>, l’objectif est d’implémenter un pipeline complet d’apprentissage supervisé pour prédire une variable cible (<code>value</code>) à l’aide de Scikit-Learn.</p>
-<p>Vous devrez mettre en œuvre une stratégie de découpage train/test chronologique pour respecter la causalité temporelle.</p>
-<section id="préparation-de-lenvironnement" class="level3" data-number="8.0.1">
-<h3 data-number="8.0.1" class="anchored" data-anchor-id="préparation-de-lenvironnement"><span class="header-section-number">8.0.1</span> 1. Préparation de l’environnement</h3>
+<section id="modélisation-machine-learning" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 03 — Modélisation Machine Learning</h1>
+<p>Ce notebook correspond à la partie modélisation classique du projet.</p>
+<p>L’objectif est d’entraîner plusieurs modèles de classification afin de prédire l’activité humaine à partir des variables numériques extraites des capteurs du smartphone.</p>
+<p>Nous allons comparer plusieurs modèles :</p>
+<ul>
+<li>Logistic Regression ;</li>
+<li>Random Forest ;</li>
+<li>Linear SVM ;</li>
+<li>K-Nearest Neighbors.</li>
+</ul>
+<p>L’évaluation sera réalisée avec des métriques adaptées à la classification multi-classes.</p>
+<section id="préparation-des-variables" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="préparation-des-variables"><span class="header-section-number">8.1</span> Préparation des variables</h2>
+<p>Nous séparons les variables explicatives <code>X</code> de la cible <code>y</code>.</p>
+<p>La cible à prédire est <code>activity_id</code>, qui correspond à l’activité humaine réalisée.</p>
 </section>
-<section id="définition-des-variables-et-split-chronologique" class="level3" data-number="8.0.2">
-<h3 data-number="8.0.2" class="anchored" data-anchor-id="définition-des-variables-et-split-chronologique"><span class="header-section-number">8.0.2</span> 2. Définition des variables et split chronologique</h3>
-<p><strong>À faire par l’étudiant :</strong> - Identifiez vos colonnes prédictives (<code>features</code>) et la colonne cible (<code>value</code>). - Séparez chronologiquement vos données en ensembles d’entraînement (<code>Train</code>) et de test (<code>Test</code>). N’utilisez pas de split aléatoire !</p>
+<section id="choix-des-modèles" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="choix-des-modèles"><span class="header-section-number">8.2</span> Choix des modèles</h2>
+<p>Nous comparons plusieurs familles de modèles :</p>
+<ul>
+<li><strong>Logistic Regression</strong> : modèle linéaire simple et interprétable ;</li>
+<li><strong>Random Forest</strong> : modèle d’ensemble capable de capturer des relations non linéaires ;</li>
+<li><strong>Linear SVM</strong> : modèle efficace pour des données avec beaucoup de variables ;</li>
+<li><strong>KNN</strong> : modèle basé sur la proximité entre observations.</li>
+</ul>
+<p>Certains modèles utilisent une standardisation des variables, car ils sont sensibles aux échelles.</p>
 </section>
-<section id="entraînement-du-modèle-de-forêt-aléatoire" class="level3" data-number="8.0.3">
-<h3 data-number="8.0.3" class="anchored" data-anchor-id="entraînement-du-modèle-de-forêt-aléatoire"><span class="header-section-number">8.0.3</span> 3. Entraînement du modèle de Forêt Aléatoire</h3>
-<p><strong>À faire par l’étudiant :</strong> - Instanciez et entraînez un modèle <code>RandomForestRegressor</code>. - Générez les prédictions <code>y_pred</code> sur l’ensemble de test.</p>
+<section id="validation-croisée-groupée" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="validation-croisée-groupée"><span class="header-section-number">8.3</span> Validation croisée groupée</h2>
+<p>Pour éviter une évaluation trop optimiste, nous utilisons une validation croisée groupée par sujet.</p>
+<p>Cela signifie que les observations d’un même sujet ne sont pas mélangées entre entraînement et validation au sein d’un même fold.</p>
+<p>Cette approche est plus rigoureuse car les mouvements d’une même personne peuvent se ressembler.</p>
 </section>
-<section id="évaluation-métrique" class="level3" data-number="8.0.4">
-<h3 data-number="8.0.4" class="anchored" data-anchor-id="évaluation-métrique"><span class="header-section-number">8.0.4</span> 4. Évaluation métrique</h3>
-<p><strong>À faire par l’étudiant :</strong> Calculez et affichez les scores d’évaluation requis : - <strong>MAE</strong> (Mean Absolute Error) - <strong>RMSE</strong> (Root Mean Squared Error) - <strong>R²</strong> (Coefficient de détermination)</p>
+<section id="visualisation-des-résultats-de-validation-croisée" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="visualisation-des-résultats-de-validation-croisée"><span class="header-section-number">8.4</span> Visualisation des résultats de validation croisée</h2>
+<p>Nous comparons les modèles selon le F1-score macro moyen.</p>
+<p>Le F1-score macro est pertinent ici car il donne le même poids à chaque activité.</p>
 </section>
-<section id="importance-des-variables-explicatives" class="level3" data-number="8.0.5">
-<h3 data-number="8.0.5" class="anchored" data-anchor-id="importance-des-variables-explicatives"><span class="header-section-number">8.0.5</span> 5. Importance des variables explicatives</h3>
-<p><strong>À faire par l’étudiant :</strong> Extrayez et affichez l’importance relative de chaque caractéristique prédictive.</p>
+<section id="entraînement-final-sur-le-train-et-évaluation-sur-le-test" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="entraînement-final-sur-le-train-et-évaluation-sur-le-test"><span class="header-section-number">8.5</span> Entraînement final sur le train et évaluation sur le test</h2>
+<p>Après la validation croisée, nous entraînons chaque modèle sur tout le jeu d’entraînement.</p>
+<p>Nous évaluons ensuite les performances sur le jeu de test officiel.</p>
 </section>
-<section id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.1</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</h2>
+<section id="comparaison-des-performances-sur-le-test" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="comparaison-des-performances-sur-le-test"><span class="header-section-number">8.6</span> Comparaison des performances sur le test</h2>
+<p>Cette étape permet d’identifier le modèle le plus performant sur des données non vues pendant l’entraînement.</p>
+</section>
+<section id="meilleur-modèle" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="meilleur-modèle"><span class="header-section-number">8.7</span> Meilleur modèle</h2>
+<p>Nous sélectionnons le modèle avec le meilleur F1-score macro sur le jeu de test.</p>
+</section>
+<section id="matrice-de-confusion" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="matrice-de-confusion"><span class="header-section-number">8.8</span> Matrice de confusion</h2>
+<p>La matrice de confusion permet d’identifier les activités bien reconnues et celles qui sont confondues entre elles.</p>
+<p>Elle est particulièrement utile dans un problème multi-classes.</p>
+</section>
+<section id="analyse-des-erreurs" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="analyse-des-erreurs"><span class="header-section-number">8.9</span> Analyse des erreurs</h2>
+<p>Nous observons les exemples mal prédits par le meilleur modèle.</p>
+<p>Cette analyse permet de mieux comprendre les limites du modèle.</p>
+</section>
+<section id="sauvegarde-des-résultats" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="sauvegarde-des-résultats"><span class="header-section-number">8.10</span> Sauvegarde des résultats</h2>
+<p>Nous sauvegardons les résultats des modèles afin de pouvoir les réutiliser dans le rapport ou dans une synthèse finale.</p>
+</section>
+<section id="conclusion-de-la-modélisation-machine-learning" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="conclusion-de-la-modélisation-machine-learning"><span class="header-section-number">8.11</span> Conclusion de la modélisation Machine Learning</h2>
+<p>Cette étape a permis de comparer plusieurs modèles classiques de classification.</p>
+<p>Les résultats permettent d’identifier le modèle le plus performant pour reconnaître l’activité humaine à partir des variables numériques du smartphone.</p>
+<p>La prochaine étape consistera à utiliser les signaux temporels directement avec une approche Deep Learning basée sur un CNN 1D.</p>
+</section>
+<section id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux" class="level2" data-number="8.12">
+<h2 data-number="8.12" class="anchored" data-anchor-id="modélisation-vision-deep-learning-analyse-dimages-ou-signaux"><span class="header-section-number">8.12</span> Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)</h2>
 <p><em>À rédiger par les étudiants : Expliquez l’intérêt de la brique de Deep Learning (images, signaux ou traitement de données structurées complexes) pour classifier ou enrichir vos prédictions. Détaillez l’architecture de votre réseau de neurones convolutif (CNN) conçu sous TensorFlow/Keras (conv, pooling, dense, dropout, activation) et commentez les courbes d’apprentissage obtenues.</em></p>
 <p>[Détailler votre architecture CNN et analyse ici]</p>
-<section id="travaux-pratiques-de-vision-par-ordinateur-cnn" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.1.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</h3>
+<section id="travaux-pratiques-de-vision-par-ordinateur-cnn" class="level3" data-number="8.12.1">
+<h3 data-number="8.12.1" class="anchored" data-anchor-id="travaux-pratiques-de-vision-par-ordinateur-cnn"><span class="header-section-number">8.12.1</span> Travaux Pratiques de Vision par Ordinateur (CNN)</h3>
 </section>
 </section>
 </section>
 <section id="jalon-2-brique-de-vision-par-ordinateur-cnn-tensorflow-squelette-étudiant" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> 📷 Jalon 2 : Brique de Vision par Ordinateur (CNN &amp; TensorFlow) (Squelette Étudiant)</h1>
 <p>Ce notebook est dédié à la brique d’analyse d’images du <strong>Jalon 2</strong>. L’objectif est de concevoir un Réseau de Neurones Convolutif (CNN) sous TensorFlow/Keras pour classifier des motifs géométriques simples (Classe 0: Cercle vs Classe 1: Multiples Rectangles).</p>
-<section id="préparation-de-lenvironnement-1" class="level3" data-number="9.0.1">
-<h3 data-number="9.0.1" class="anchored" data-anchor-id="préparation-de-lenvironnement-1"><span class="header-section-number">9.0.1</span> 1. Préparation de l’environnement</h3>
+<section id="préparation-de-lenvironnement" class="level3" data-number="9.0.1">
+<h3 data-number="9.0.1" class="anchored" data-anchor-id="préparation-de-lenvironnement"><span class="header-section-number">9.0.1</span> 1. Préparation de l’environnement</h3>
 </section>
 <section id="génération-du-jeu-dimages-synthétiques" class="level3" data-number="9.0.2">
 <h3 data-number="9.0.2" class="anchored" data-anchor-id="génération-du-jeu-dimages-synthétiques"><span class="header-section-number">9.0.2</span> 2. Génération du jeu d’images synthétiques</h3>

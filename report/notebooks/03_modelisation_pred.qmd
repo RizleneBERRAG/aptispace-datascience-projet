@@ -1,106 +1,368 @@
+# 03 — Modélisation Machine Learning
+
+Ce notebook correspond à la partie modélisation classique du projet.
+
+L'objectif est d'entraîner plusieurs modèles de classification afin de prédire l'activité humaine à partir des variables numériques extraites des capteurs du smartphone.
+
+Nous allons comparer plusieurs modèles :
+
+- Logistic Regression ;
+- Random Forest ;
+- Linear SVM ;
+- K-Nearest Neighbors.
+
+L'évaluation sera réalisée avec des métriques adaptées à la classification multi-classes.
+
+
 ```{python}
-# Installation automatique des dépendances requises dans le noyau Jupyter actuel
-%pip install -r ../requirements.txt
-```
-
-# 🧠 Jalon 2 : Modélisation Prédictive & Apprentissage (Squelette Étudiant)
-
-Dans ce notebook du **Jalon 2**, l'objectif est d'implémenter un pipeline complet d'apprentissage supervisé pour prédire une variable cible (`value`) à l'aide de Scikit-Learn. 
-
-Vous devrez mettre en œuvre une stratégie de découpage train/test chronologique pour respecter la causalité temporelle.
-
-### 1. Préparation de l'environnement
-
-```{python}
-import os
-import sys
+from pathlib import Path
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from IPython.display import display
 
-sys.path.append(os.path.abspath('..'))
-from src import data_clean as dc
-from src import utils_viz as uv
+from sklearn.model_selection import GroupKFold, cross_validate
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import LinearSVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    classification_report,
+    confusion_matrix,
+    ConfusionMatrixDisplay
+)
 
-uv.set_custom_style()
-print("Libraries de modélisation prêtes !")
+PROCESSED_DIR = Path("data/processed")
+FIGURES_DIR = Path("report/figures")
+FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+
+train_df = pd.read_csv(PROCESSED_DIR / "har_train.csv")
+test_df = pd.read_csv(PROCESSED_DIR / "har_test.csv")
+activity_labels = pd.read_csv(PROCESSED_DIR / "activity_labels.csv")
+
+print("Train :", train_df.shape)
+print("Test :", test_df.shape)
+
+display(activity_labels)
+```
+
+## Préparation des variables
+
+Nous séparons les variables explicatives `X` de la cible `y`.
+
+La cible à prédire est `activity_id`, qui correspond à l'activité humaine réalisée.
+
+
+```{python}
+meta_cols = ["split", "subject_id", "activity_id", "activity"]
+
+feature_cols = [col for col in train_df.columns if col not in meta_cols]
+
+X_train = train_df[feature_cols]
+y_train = train_df["activity_id"]
+
+X_test = test_df[feature_cols]
+y_test = test_df["activity_id"]
+
+groups_train = train_df["subject_id"]
+
+print("Nombre de variables :", X_train.shape[1])
+print("Nombre de classes :", y_train.nunique())
+print("Taille X_train :", X_train.shape)
+print("Taille X_test :", X_test.shape)
+```
+
+## Choix des modèles
+
+Nous comparons plusieurs familles de modèles :
+
+- **Logistic Regression** : modèle linéaire simple et interprétable ;
+- **Random Forest** : modèle d'ensemble capable de capturer des relations non linéaires ;
+- **Linear SVM** : modèle efficace pour des données avec beaucoup de variables ;
+- **KNN** : modèle basé sur la proximité entre observations.
+
+Certains modèles utilisent une standardisation des variables, car ils sont sensibles aux échelles.
+
+
+```{python}
+models = {
+    "Logistic Regression": Pipeline([
+        ("scaler", StandardScaler()),
+        ("model", LogisticRegression(max_iter=1000, n_jobs=-1))
+    ]),
+    "Random Forest": RandomForestClassifier(
+        n_estimators=120,
+        random_state=42,
+        n_jobs=-1
+    ),
+    "Linear SVM": Pipeline([
+        ("scaler", StandardScaler()),
+        ("model", LinearSVC(max_iter=5000, random_state=42))
+    ]),
+    "KNN": Pipeline([
+        ("scaler", StandardScaler()),
+        ("model", KNeighborsClassifier(n_neighbors=5))
+    ])
+}
+
+list(models.keys())
+```
+
+## Validation croisée groupée
+
+Pour éviter une évaluation trop optimiste, nous utilisons une validation croisée groupée par sujet.
+
+Cela signifie que les observations d'un même sujet ne sont pas mélangées entre entraînement et validation au sein d'un même fold.
+
+Cette approche est plus rigoureuse car les mouvements d'une même personne peuvent se ressembler.
+
+
+```{python}
+cv = GroupKFold(n_splits=3)
+
+scoring = {
+    "accuracy": "accuracy",
+    "f1_macro": "f1_macro"
+}
+
+cv_results = []
+
+for model_name, model in models.items():
+    print(f"Validation croisée : {model_name}")
+
+    scores = cross_validate(
+        model,
+        X_train,
+        y_train,
+        groups=groups_train,
+        cv=cv,
+        scoring=scoring,
+        n_jobs=-1
+    )
+
+    cv_results.append({
+        "model": model_name,
+        "mean_accuracy": scores["test_accuracy"].mean(),
+        "std_accuracy": scores["test_accuracy"].std(),
+        "mean_f1_macro": scores["test_f1_macro"].mean(),
+        "std_f1_macro": scores["test_f1_macro"].std()
+    })
+
+cv_results_df = pd.DataFrame(cv_results).sort_values(
+    by="mean_f1_macro",
+    ascending=False
+)
+
+display(cv_results_df)
+```
+
+## Visualisation des résultats de validation croisée
+
+Nous comparons les modèles selon le F1-score macro moyen.
+
+Le F1-score macro est pertinent ici car il donne le même poids à chaque activité.
+
+
+```{python}
+fig, ax = plt.subplots(figsize=(9, 5))
+
+cv_results_df.sort_values("mean_f1_macro").plot(
+    x="model",
+    y="mean_f1_macro",
+    kind="barh",
+    ax=ax,
+    legend=False
+)
+
+ax.set_title("Comparaison des modèles - F1-score macro")
+ax.set_xlabel("F1-score macro moyen")
+ax.set_ylabel("Modèle")
+fig.tight_layout()
+plt.show()
+```
+
+## Entraînement final sur le train et évaluation sur le test
+
+Après la validation croisée, nous entraînons chaque modèle sur tout le jeu d'entraînement.
+
+Nous évaluons ensuite les performances sur le jeu de test officiel.
+
+
+```{python}
+test_results = []
+trained_models = {}
+
+for model_name, model in models.items():
+    print(f"Entraînement final : {model_name}")
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    trained_models[model_name] = model
+
+    test_results.append({
+        "model": model_name,
+        "accuracy": accuracy_score(y_test, y_pred),
+        "precision_macro": precision_score(y_test, y_pred, average="macro", zero_division=0),
+        "recall_macro": recall_score(y_test, y_pred, average="macro", zero_division=0),
+        "f1_macro": f1_score(y_test, y_pred, average="macro", zero_division=0)
+    })
+
+test_results_df = pd.DataFrame(test_results).sort_values(
+    by="f1_macro",
+    ascending=False
+)
+
+display(test_results_df)
+```
+
+## Comparaison des performances sur le test
+
+Cette étape permet d'identifier le modèle le plus performant sur des données non vues pendant l'entraînement.
+
+
+```{python}
+fig, ax = plt.subplots(figsize=(9, 5))
+
+test_results_df.sort_values("f1_macro").plot(
+    x="model",
+    y="f1_macro",
+    kind="barh",
+    ax=ax,
+    legend=False
+)
+
+ax.set_title("Comparaison des modèles sur le test - F1-score macro")
+ax.set_xlabel("F1-score macro")
+ax.set_ylabel("Modèle")
+fig.tight_layout()
+plt.show()
+```
+
+## Meilleur modèle
+
+Nous sélectionnons le modèle avec le meilleur F1-score macro sur le jeu de test.
+
+
+```{python}
+best_model_name = test_results_df.iloc[0]["model"]
+best_model = trained_models[best_model_name]
+
+print("Meilleur modèle :", best_model_name)
+
+y_pred_best = best_model.predict(X_test)
+
+print("\nRapport de classification :")
+print(
+    classification_report(
+        y_test,
+        y_pred_best,
+        labels=activity_labels["activity_id"].tolist(),
+        target_names=activity_labels["activity"].tolist(),
+        zero_division=0
+    )
+)
+```
+
+## Matrice de confusion
+
+La matrice de confusion permet d'identifier les activités bien reconnues et celles qui sont confondues entre elles.
+
+Elle est particulièrement utile dans un problème multi-classes.
+
+
+```{python}
+labels = activity_labels["activity_id"].tolist()
+display_labels = activity_labels["activity"].tolist()
+
+cm = confusion_matrix(y_test, y_pred_best, labels=labels)
+
+fig, ax = plt.subplots(figsize=(9, 8))
+disp = ConfusionMatrixDisplay(
+    confusion_matrix=cm,
+    display_labels=display_labels
+)
+disp.plot(ax=ax, xticks_rotation=45, values_format="d")
+ax.set_title(f"Matrice de confusion - {best_model_name}")
+fig.tight_layout()
+
+fig.savefig(FIGURES_DIR / "confusion_matrix_best_ml_model.png", dpi=150)
+plt.show()
+```
+
+## Analyse des erreurs
+
+Nous observons les exemples mal prédits par le meilleur modèle.
+
+Cette analyse permet de mieux comprendre les limites du modèle.
+
+
+```{python}
+errors_df = test_df[["subject_id", "activity_id", "activity"]].copy()
+errors_df["predicted_activity_id"] = y_pred_best
+
+id_to_activity = dict(zip(activity_labels["activity_id"], activity_labels["activity"]))
+errors_df["predicted_activity"] = errors_df["predicted_activity_id"].map(id_to_activity)
+errors_df["is_error"] = errors_df["activity_id"] != errors_df["predicted_activity_id"]
+
+error_rate = errors_df["is_error"].mean()
+
+print("Taux d'erreur :", round(error_rate, 4))
+
+errors_by_activity = (
+    errors_df
+    .groupby("activity")["is_error"]
+    .mean()
+    .sort_values(ascending=False)
+    .reset_index()
+)
+
+display(errors_by_activity)
 ```
 
 ```{python}
-# Charger 'data/processed/cleaned_data_sample.csv'
-df = pd.read_csv('data/processed/cleaned_data_sample.csv')
-df['timestamp'] = pd.to_datetime(df['timestamp'])
+fig, ax = plt.subplots(figsize=(9, 5))
 
-# Appliquer l'ingénierie de caractéristiques temporelles
-df_feat = dc.feature_engineering(df, 'timestamp')
-df_feat.head()
+errors_by_activity.sort_values("is_error").plot(
+    x="activity",
+    y="is_error",
+    kind="barh",
+    ax=ax,
+    legend=False
+)
+
+ax.set_title("Taux d'erreur par activité")
+ax.set_xlabel("Taux d'erreur")
+ax.set_ylabel("Activité")
+fig.tight_layout()
+plt.show()
 ```
 
-### 2. Définition des variables et split chronologique
+## Sauvegarde des résultats
 
-**À faire par l'étudiant :**
-- Identifiez vos colonnes prédictives (`features`) et la colonne cible (`value`).
-- Séparez chronologiquement vos données en ensembles d'entraînement (`Train`) et de test (`Test`). N'utilisez pas de split aléatoire !
+Nous sauvegardons les résultats des modèles afin de pouvoir les réutiliser dans le rapport ou dans une synthèse finale.
+
 
 ```{python}
-# Définissez la liste des variables prédictives (features) et de la cible (target)
-features = ['hour', 'dayofweek']
-target = 'value'
+cv_results_df.to_csv(PROCESSED_DIR / "ml_cv_results.csv", index=False)
+test_results_df.to_csv(PROCESSED_DIR / "ml_test_results.csv", index=False)
 
-# Split chronologique simple (ex: les 4 dernières lignes pour le Test)
-X_train = df_feat[features].iloc[:-4]
-y_train = df_feat[target].iloc[:-4]
-X_test = df_feat[features].iloc[-4:]
-y_test = df_feat[target].iloc[-4:]
-
-print(f"Taille Train : {X_train.shape}, Taille Test : {X_test.shape}")
+print("Résultats sauvegardés dans data/processed.")
 ```
 
-### 3. Entraînement du modèle de Forêt Aléatoire
+## Conclusion de la modélisation Machine Learning
 
-**À faire par l'étudiant :**
-- Instanciez et entraînez un modèle `RandomForestRegressor`.
-- Générez les prédictions `y_pred` sur l'ensemble de test.
+Cette étape a permis de comparer plusieurs modèles classiques de classification.
 
-```{python}
-# Instanciez et entraînez votre modèle RandomForestRegressor
-model = RandomForestRegressor(n_estimators=10, random_state=42)
-model.fit(X_train, y_train)
+Les résultats permettent d'identifier le modèle le plus performant pour reconnaître l'activité humaine à partir des variables numériques du smartphone.
 
-# Générez les prédictions y_pred
-y_pred = model.predict(X_test)
-print("Prédictions générées :", y_pred)
-```
+La prochaine étape consistera à utiliser les signaux temporels directement avec une approche Deep Learning basée sur un CNN 1D.
 
-### 4. Évaluation métrique
-
-**À faire par l'étudiant :**
-Calculez et affichez les scores d'évaluation requis :
-- **MAE** (Mean Absolute Error)
-- **RMSE** (Root Mean Squared Error)
-- **R²** (Coefficient de détermination)
-
-```{python}
-mae = mean_absolute_error(y_test, y_pred)
-rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-r2 = r2_score(y_test, y_pred)
-
-print(f"MAE  : {mae:.3f}")
-print(f"RMSE : {rmse:.3f}")
-print(f"R²   : {r2:.3f}")
-```
-
-### 5. Importance des variables explicatives
-
-**À faire par l'étudiant :**
-Extrayez et affichez l'importance relative de chaque caractéristique prédictive.
-
-```{python}
-importances = model.feature_importances_
-for feat, imp in zip(features, importances):
-    print(f"Variable : {feat:12} | Importance : {imp:.4f}")
-```
 

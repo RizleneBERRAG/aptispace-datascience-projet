@@ -57,8 +57,23 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
     Données](#schéma-global-du-pipeline-de-données)
   - [Modélisation Tabulaire (Machine
     Learning)](#modélisation-tabulaire-machine-learning)
-- [🧠 Jalon 2 : Modélisation Prédictive & Apprentissage (Squelette
-  Étudiant)](#brain-jalon-2--modélisation-prédictive--apprentissage-squelette-étudiant)
+- [03 — Modélisation Machine
+  Learning](#03--modélisation-machine-learning)
+  - [Préparation des variables](#préparation-des-variables)
+  - [Choix des modèles](#choix-des-modèles)
+  - [Validation croisée groupée](#validation-croisée-groupée)
+  - [Visualisation des résultats de validation
+    croisée](#visualisation-des-résultats-de-validation-croisée)
+  - [Entraînement final sur le train et évaluation sur le
+    test](#entraînement-final-sur-le-train-et-évaluation-sur-le-test)
+  - [Comparaison des performances sur le
+    test](#comparaison-des-performances-sur-le-test)
+  - [Meilleur modèle](#meilleur-modèle)
+  - [Matrice de confusion](#matrice-de-confusion)
+  - [Analyse des erreurs](#analyse-des-erreurs)
+  - [Sauvegarde des résultats](#sauvegarde-des-résultats)
+  - [Conclusion de la modélisation Machine
+    Learning](#conclusion-de-la-modélisation-machine-learning)
   - [Modélisation Vision / Deep Learning (Analyse d’Images ou
     Signaux)](#modélisation-vision--deep-learning-analyse-dimages-ou-signaux)
 - [📷 Jalon 2 : Brique de Vision par Ordinateur (CNN & TensorFlow)
@@ -442,40 +457,109 @@ des variables explicatives.*
 
 ### Travaux Pratiques de Modélisation Tabulaire
 
-# 🧠 Jalon 2 : Modélisation Prédictive & Apprentissage (Squelette Étudiant)
+# 03 — Modélisation Machine Learning
 
-Dans ce notebook du **Jalon 2**, l’objectif est d’implémenter un
-pipeline complet d’apprentissage supervisé pour prédire une variable
-cible (`value`) à l’aide de Scikit-Learn.
+Ce notebook correspond à la partie modélisation classique du projet.
 
-Vous devrez mettre en œuvre une stratégie de découpage train/test
-chronologique pour respecter la causalité temporelle.
+L’objectif est d’entraîner plusieurs modèles de classification afin de
+prédire l’activité humaine à partir des variables numériques extraites
+des capteurs du smartphone.
 
-### 1. Préparation de l’environnement
+Nous allons comparer plusieurs modèles :
 
-### 2. Définition des variables et split chronologique
+- Logistic Regression ;
+- Random Forest ;
+- Linear SVM ;
+- K-Nearest Neighbors.
 
-**À faire par l’étudiant :** - Identifiez vos colonnes prédictives
-(`features`) et la colonne cible (`value`). - Séparez chronologiquement
-vos données en ensembles d’entraînement (`Train`) et de test (`Test`).
-N’utilisez pas de split aléatoire !
+L’évaluation sera réalisée avec des métriques adaptées à la
+classification multi-classes.
 
-### 3. Entraînement du modèle de Forêt Aléatoire
+## Préparation des variables
 
-**À faire par l’étudiant :** - Instanciez et entraînez un modèle
-`RandomForestRegressor`. - Générez les prédictions `y_pred` sur
-l’ensemble de test.
+Nous séparons les variables explicatives `X` de la cible `y`.
 
-### 4. Évaluation métrique
+La cible à prédire est `activity_id`, qui correspond à l’activité
+humaine réalisée.
 
-**À faire par l’étudiant :** Calculez et affichez les scores
-d’évaluation requis : - **MAE** (Mean Absolute Error) - **RMSE** (Root
-Mean Squared Error) - **R²** (Coefficient de détermination)
+## Choix des modèles
 
-### 5. Importance des variables explicatives
+Nous comparons plusieurs familles de modèles :
 
-**À faire par l’étudiant :** Extrayez et affichez l’importance relative
-de chaque caractéristique prédictive.
+- **Logistic Regression** : modèle linéaire simple et interprétable ;
+- **Random Forest** : modèle d’ensemble capable de capturer des
+  relations non linéaires ;
+- **Linear SVM** : modèle efficace pour des données avec beaucoup de
+  variables ;
+- **KNN** : modèle basé sur la proximité entre observations.
+
+Certains modèles utilisent une standardisation des variables, car ils
+sont sensibles aux échelles.
+
+## Validation croisée groupée
+
+Pour éviter une évaluation trop optimiste, nous utilisons une validation
+croisée groupée par sujet.
+
+Cela signifie que les observations d’un même sujet ne sont pas mélangées
+entre entraînement et validation au sein d’un même fold.
+
+Cette approche est plus rigoureuse car les mouvements d’une même
+personne peuvent se ressembler.
+
+## Visualisation des résultats de validation croisée
+
+Nous comparons les modèles selon le F1-score macro moyen.
+
+Le F1-score macro est pertinent ici car il donne le même poids à chaque
+activité.
+
+## Entraînement final sur le train et évaluation sur le test
+
+Après la validation croisée, nous entraînons chaque modèle sur tout le
+jeu d’entraînement.
+
+Nous évaluons ensuite les performances sur le jeu de test officiel.
+
+## Comparaison des performances sur le test
+
+Cette étape permet d’identifier le modèle le plus performant sur des
+données non vues pendant l’entraînement.
+
+## Meilleur modèle
+
+Nous sélectionnons le modèle avec le meilleur F1-score macro sur le jeu
+de test.
+
+## Matrice de confusion
+
+La matrice de confusion permet d’identifier les activités bien reconnues
+et celles qui sont confondues entre elles.
+
+Elle est particulièrement utile dans un problème multi-classes.
+
+## Analyse des erreurs
+
+Nous observons les exemples mal prédits par le meilleur modèle.
+
+Cette analyse permet de mieux comprendre les limites du modèle.
+
+## Sauvegarde des résultats
+
+Nous sauvegardons les résultats des modèles afin de pouvoir les
+réutiliser dans le rapport ou dans une synthèse finale.
+
+## Conclusion de la modélisation Machine Learning
+
+Cette étape a permis de comparer plusieurs modèles classiques de
+classification.
+
+Les résultats permettent d’identifier le modèle le plus performant pour
+reconnaître l’activité humaine à partir des variables numériques du
+smartphone.
+
+La prochaine étape consistera à utiliser les signaux temporels
+directement avec une approche Deep Learning basée sur un CNN 1D.
 
 ## Modélisation Vision / Deep Learning (Analyse d’Images ou Signaux)
 
