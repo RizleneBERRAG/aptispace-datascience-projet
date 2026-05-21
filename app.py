@@ -180,7 +180,8 @@ st.markdown(
 # =========================
 
 BASE_DIR = Path(__file__).parent
-PROCESSED_DIR = BASE_DIR / "data" / "processed"
+DASHBOARD_DIR = BASE_DIR / "data" / "dashboard"
+PROCESSED_DIR = DASHBOARD_DIR if DASHBOARD_DIR.exists() else BASE_DIR / "data" / "processed"
 FIGURES_DIR = BASE_DIR / "report" / "figures"
 REPORT_DIR = BASE_DIR / "report"
 
