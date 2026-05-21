@@ -1,6 +1,6 @@
 # Reconnaissance d’activité humaine avec un smartphone
 Étudiante : Berrag Rizlene
-2026-05-19
+2026-05-21
 
 - [Introduction et Contexte Métier](#sec-intro)
   - [Contexte du Projet](#contexte-du-projet)

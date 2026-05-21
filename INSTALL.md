@@ -1,6 +1,6 @@
 # Guide d’Installation de l’Environnement de Data Science
 Équipe Pédagogique - Aptispace
-2026-05-19
+2026-05-21
 
 - [Introduction](#introduction)
 - [Aperçu de la Boîte à Outils](#aperçu-de-la-boîte-à-outils)
