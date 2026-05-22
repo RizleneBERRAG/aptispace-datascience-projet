@@ -32,192 +32,295 @@ REPORT_URL = "https://rizleneberrag.github.io/aptispace-datascience-projet/"
 # STYLE PREMIUM MINIMAL
 # =========================
 
+
 st.markdown(
     """
 <style>
-    .stApp {
-        background: #f7f4ef;
-        color: #111827;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-    .block-container {
-        max-width: 1180px;
-        padding-top: 2.2rem;
-        padding-bottom: 4rem;
-    }
+:root {
+    --bg: #F5F2EC;
+    --card: #FCFBF8;
+    --card-soft: #F9F6EF;
+    --navy: #111827;
+    --navy-soft: #1F2937;
+    --muted: #667085;
+    --border: #E7E0D4;
+    --shadow: 0 18px 60px rgba(17,24,39,.07);
+}
 
-    [data-testid="stHeader"] {
-        background: rgba(247,244,239,0.85);
-        backdrop-filter: blur(14px);
-    }
+.stApp {
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 30%),
+        linear-gradient(135deg, #F5F2EC 0%, #EFE8DB 100%);
+    color: var(--navy);
+}
 
-    h1, h2, h3 {
-        color: #111827;
-        letter-spacing: -0.045em;
-    }
+.block-container {
+    max-width: 1180px;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
 
-    p, span, label, div {
-        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+[data-testid="stHeader"] {
+    background: rgba(245,242,236,.78);
+    backdrop-filter: blur(16px);
+}
 
+html, body, p, div, span, label {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+h1, h2, h3 {
+    color: var(--navy);
+    letter-spacing: -.045em;
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 46px 44px;
+    border-radius: 34px;
+    background:
+        linear-gradient(135deg, rgba(252,251,248,.98), rgba(245,240,230,.96));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+}
+
+.hero:after {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -130px;
+    top: -150px;
+    border-radius: 999px;
+    background: rgba(217,226,242,.8);
+    filter: blur(6px);
+    z-index: 0;
+}
+
+.hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 13px;
+    border-radius: 999px;
+    background: #F1EDE5;
+    border: 1px solid var(--border);
+    color: #6B7280;
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: clamp(3rem, 6vw, 5.9rem);
+    line-height: .9;
+    font-weight: 900;
+    max-width: 900px;
+    margin-bottom: 20px;
+    color: var(--navy);
+}
+
+.subtitle {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 760px;
+}
+
+.soft-pill,
+.pill {
+    display: inline-flex;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.62);
+    color: var(--navy);
+    font-size: .86rem;
+    font-weight: 700;
+    margin: 8px 6px 0 0;
+}
+
+.pill {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+}
+
+/* KPI */
+.metric-card {
+    background: rgba(252,251,248,.92);
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    min-height: 145px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 70px rgba(17,24,39,.10);
+}
+
+.metric-label {
+    color: #6B7280;
+    font-size: .76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-bottom: 13px;
+}
+
+.metric-value {
+    color: var(--navy);
+    font-size: 2.25rem;
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -.05em;
+}
+
+.metric-note {
+    color: var(--muted);
+    font-size: .9rem;
+    margin-top: 10px;
+}
+
+/* PANELS */
+.panel {
+    background: rgba(252,251,248,.92);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    padding: 31px;
+    box-shadow: var(--shadow);
+    margin-top: 24px;
+    margin-bottom: 18px;
+}
+
+.panel-title {
+    font-size: 2rem;
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -.045em;
+    color: var(--navy);
+    margin-bottom: 10px;
+}
+
+.panel-text {
+    color: var(--muted);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    max-width: 860px;
+}
+
+/* TABS */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    background: rgba(252,251,248,.78);
+    padding: 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    width: fit-content;
+    box-shadow: 0 12px 40px rgba(17,24,39,.055);
+    margin-top: 14px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 999px;
+    padding: 10px 18px;
+    color: var(--navy);
+    font-weight: 800;
+}
+
+.stTabs [aria-selected="true"] {
+    background: var(--navy);
+    color: white;
+}
+
+/* TABLES */
+div[data-testid="stDataFrame"] {
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 14px 45px rgba(17,24,39,.055);
+    background: var(--card);
+}
+
+/* BUTTONS */
+.stButton > button,
+.stLinkButton > a {
+    border-radius: 999px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    padding: .72rem 1.25rem;
+    font-weight: 800;
+}
+
+.stButton > button:hover,
+.stLinkButton > a:hover {
+    background: var(--navy-soft);
+    color: white;
+}
+
+hr {
+    margin: 2.4rem 0;
+    border-color: var(--border);
+}
+
+/* Graph containers */
+[data-testid="stVegaLiteChart"] {
+    background: rgba(252,251,248,.88);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
     .hero {
-        padding: 54px 46px;
-        border-radius: 34px;
-        background:
-            linear-gradient(135deg, rgba(255,255,255,.95), rgba(244,239,229,.95));
-        border: 1px solid rgba(17,24,39,.08);
-        box-shadow: 0 24px 80px rgba(17,24,39,.08);
-        margin-bottom: 26px;
-    }
-
-    .eyebrow {
-        display: inline-block;
-        font-size: .78rem;
-        letter-spacing: .16em;
-        text-transform: uppercase;
-        color: #6b7280;
-        font-weight: 800;
-        margin-bottom: 18px;
+        padding: 28px 22px;
+        border-radius: 26px;
     }
 
     .title {
-        font-size: clamp(2.8rem, 6vw, 6.4rem);
-        line-height: .88;
-        font-weight: 950;
-        max-width: 950px;
-        margin-bottom: 22px;
+        font-size: 2.75rem;
     }
 
     .subtitle {
-        font-size: 1.12rem;
-        line-height: 1.75;
-        color: #4b5563;
-        max-width: 780px;
+        font-size: 1rem;
     }
 
     .metric-card {
-        background: rgba(255,255,255,.86);
-        border: 1px solid rgba(17,24,39,.08);
-        border-radius: 26px;
-        padding: 24px;
-        box-shadow: 0 18px 50px rgba(17,24,39,.055);
-        min-height: 124px;
-    }
-
-    .metric-label {
-        color: #6b7280;
-        font-size: .84rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: .08em;
-        margin-bottom: 12px;
-    }
-
-    .metric-value {
-        color: #111827;
-        font-size: 2.2rem;
-        font-weight: 950;
-        letter-spacing: -.04em;
-    }
-
-    .metric-note {
-        color: #6b7280;
-        font-size: .9rem;
-        margin-top: 8px;
+        min-height: auto;
     }
 
     .panel {
-        background: rgba(255,255,255,.86);
-        border: 1px solid rgba(17,24,39,.08);
-        border-radius: 30px;
-        padding: 32px;
-        box-shadow: 0 18px 55px rgba(17,24,39,.055);
-        margin-top: 22px;
-    }
-
-    .panel-title {
-        font-size: 2rem;
-        font-weight: 950;
-        letter-spacing: -.04em;
-        margin-bottom: 8px;
-        color: #111827;
-    }
-
-    .panel-text {
-        color: #4b5563;
-        font-size: 1rem;
-        line-height: 1.72;
-        max-width: 820px;
-    }
-
-    .pill {
-        display: inline-flex;
-        padding: 9px 14px;
-        border-radius: 999px;
-        background: #111827;
-        color: #fff;
-        font-size: .86rem;
-        font-weight: 750;
-        margin: 6px 6px 0 0;
-    }
-
-    .soft-pill {
-        display: inline-flex;
-        padding: 9px 14px;
-        border-radius: 999px;
-        background: #f3efe7;
-        border: 1px solid rgba(17,24,39,.08);
-        color: #374151;
-        font-size: .86rem;
-        font-weight: 700;
-        margin: 6px 6px 0 0;
+        padding: 24px;
     }
 
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background: rgba(255,255,255,.55);
-        padding: 8px;
-        border-radius: 999px;
-        border: 1px solid rgba(17,24,39,.08);
-        width: fit-content;
+        width: 100%;
+        overflow-x: auto;
+        border-radius: 22px;
     }
-
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 999px;
-        padding: 10px 18px;
-        color: #374151;
-        font-weight: 750;
-    }
-
-    .stTabs [aria-selected="true"] {
-        background: #111827;
-        color: white;
-    }
-
-    div[data-testid="stDataFrame"] {
-        border-radius: 20px;
-        overflow: hidden;
-        border: 1px solid rgba(17,24,39,.08);
-    }
-
-    .stButton > button,
-    .stLinkButton > a {
-        border-radius: 999px !important;
-        background: #111827 !important;
-        color: white !important;
-        border: none !important;
-        padding: .75rem 1.25rem !important;
-        font-weight: 800 !important;
-    }
-
-    hr {
-        margin: 2.2rem 0;
-        border-color: rgba(17,24,39,.08);
-    }
+}
 </style>
 """,
     unsafe_allow_html=True,
 )
+
 
 
 # =========================
